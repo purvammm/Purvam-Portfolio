@@ -1,6 +1,6 @@
-# Modern Portfolio Website
+# Purvam Prajapati - Portfolio Website
 
-A modern, responsive portfolio website built with Next.js, featuring smooth animations, interactive components, and optimized performance. Perfect for showcasing your professional journey and projects.
+A modern, responsive portfolio website showcasing my journey as a Computer Science Engineer, AI/ML Researcher, and Full-Stack Developer. Built with Next.js, featuring smooth animations, interactive components, and optimized performance.
 
 ## ✨ Features
 
@@ -29,13 +29,13 @@ A modern, responsive portfolio website built with Next.js, featuring smooth anim
 - **Skills** with categorized technology showcase
 - **Contact** with social links and contact information
 
-## 🎯 Perfect For
+## 🎯 Key Highlights
 
-- Software Engineers and Developers
-- Computer Science Students
-- AI/ML Researchers
-- Full-Stack Developers
-- Anyone looking for a modern portfolio template
+- **8.84 CGPA** in BTech Computer Science Engineering
+- **Software Engineer** at Tata Consultancy Services (2025)
+- **10+ Projects** in AI/ML, Full-Stack Development
+- **2+ Research Publications** in Springer and IEEE
+- **Expertise** in JavaScript, Python, React.js, Node.js, AI/ML
 
 ## 🛠️ Technologies Used
 
@@ -50,8 +50,8 @@ A modern, responsive portfolio website built with Next.js, featuring smooth anim
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/portfolio.git
-   cd portfolio
+   git clone https://github.com/purvammm/Purvam-Portfolio.git
+   cd Purvam-Portfolio
    ```
 
 2. **Install dependencies**
@@ -111,16 +111,11 @@ Replace `public/resume.pdf` with your actual resume file.
 - Hardware acceleration for animations
 - Efficient CSS and JavaScript
 
-## 🎨 Customization
+## 📞 Contact
 
-This portfolio template is fully customizable. Update the following files with your information:
-
-- **Hero Section**: `src/components/Hero.tsx` - Change name, title, and description
-- **About Section**: `src/components/About.tsx` - Update personal journey and skills
-- **Experience**: `src/components/Experience.tsx` - Add your work experience
-- **Projects**: `src/components/Projects.tsx` - Showcase your projects
-- **Skills**: `src/components/Skills.tsx` - Update your skill levels
-- **Contact**: `src/components/Contact.tsx` - Update contact information
+- **Email**: prajapatipurvam2003@gmail.com
+- **LinkedIn**: [Purvam Prajapati](https://linkedin.com/in/purvam-prajapati)
+- **GitHub**: [purvammm](https://github.com/purvammm)
 
 ## 📄 License
 
@@ -136,4 +131,4 @@ Give a ⭐️ if this project helped you!
 
 ---
 
-**Built with ❤️ using Next.js, Tailwind CSS, and Framer Motion**
+**Built with ❤️ by Purvam Prajapati**
