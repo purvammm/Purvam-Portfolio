@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import "tailwindcss";
-
-@custom-variant dark (&:is(.dark *));
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   margin: 0;
@@ -11,6 +11,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -39,120 +40,77 @@ body {
   background: linear-gradient(45deg, #db2777, #7c3aed);
 }
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
+/* Theme variables moved to :root */
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 215 20.2% 65.1%;
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 30 80% 55%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+/* Base styles */
+* {
+  border-color: var(--border);
+  outline-color: var(--ring);
+  outline-offset: 2px;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  /* Enhanced smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
 }
 
 /* Light mode theme overrides */
@@ -339,73 +297,272 @@ body {
   display: none; /* WebKit */
 }
 
-/* About Cards Grid Mobile Responsive */
+/* About Cards Grid Mobile Responsive - Compact Layout */
 @media (max-width: 768px) {
+  .about-section-mobile {
+    padding: 1.5rem 0.5rem 0.75rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-radius: 12px !important;
+    margin: 1rem !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  }
+
   .about-cards-grid {
+    grid-template-columns: repeat(8, 1fr) !important;
+    grid-template-rows: repeat(11, 32px) !important;
+    gap: 0px !important;
+    padding: 0 0.25rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    min-height: auto !important;
+    height: auto !important;
+    margin: 0 auto 0.5rem !important;
+  }
+
+  /* Mobile-specific card positioning - maintaining desktop proportions */
+  .about-cards-grid > div:nth-child(1) { /* Name Card */
+    grid-column: 1 / 6 !important;
+    grid-row: 1 / 3 !important;
+  }
+
+  .about-cards-grid > div:nth-child(2) { /* Profile Image */
+    grid-column: 6 / 9 !important;
+    grid-row: 1 / 3 !important;
+  }
+
+  .about-cards-grid > div:nth-child(3) { /* Location */
+    grid-column: 1 / 3 !important;
+    grid-row: 3 / 5 !important;
+  }
+
+  .about-cards-grid > div:nth-child(4) { /* CGPA */
+    grid-column: 3 / 5 !important;
+    grid-row: 3 / 5 !important;
+  }
+
+  .about-cards-grid > div:nth-child(5) { /* Projects */
+    grid-column: 5 / 7 !important;
+    grid-row: 3 / 5 !important;
+  }
+
+  .about-cards-grid > div:nth-child(6) { /* Connect */
+    grid-column: 7 / 9 !important;
+    grid-row: 3 / 5 !important;
+  }
+
+  .about-cards-grid > div:nth-child(7) { /* Skills */
+    grid-column: 1 / 6 !important;
+    grid-row: 5 / 7 !important;
+  }
+
+  .about-cards-grid > div:nth-child(8) { /* Research */
+    grid-column: 6 / 9 !important;
+    grid-row: 5 / 7 !important;
+  }
+
+  .about-cards-grid > div:nth-child(9) { /* Languages */
+    grid-column: 1 / 4 !important;
+    grid-row: 7 / 9 !important;
+  }
+
+  .about-cards-grid > div:nth-child(10) { /* Hobbies */
+    grid-column: 4 / 7 !important;
+    grid-row: 7 / 9 !important;
+  }
+
+  .about-cards-grid > div:nth-child(11) { /* Goofy Animation */
+    grid-column: 7 / 9 !important;
+    grid-row: 7 / 9 !important;
+  }
+
+  .about-cards-grid > div:nth-child(12) { /* Technical Skills */
+    grid-column: 1 / 6 !important;
+    grid-row: 9 / 11 !important;
+  }
+
+  .about-cards-grid > div:nth-child(13) { /* Achievement */
+    grid-column: 6 / 8 !important;
+    grid-row: 9 / 11 !important;
+  }
+
+  .about-cards-grid > div:nth-child(14) { /* Last card */
+    grid-column: 8 / 9 !important;
+    grid-row: 9 / 11 !important;
+  }
+
+  /* Mobile card styling adjustments - Ultra Compact */
+  .about-cards-grid > div {
+    padding: 0.2rem 0.15rem !important;
+    font-size: 0.65rem !important;
+    border-radius: 0px !important;
+    min-height: 30px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 1rem !important;
-    padding: 0 1rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    border-right: 1px dotted rgba(0, 0, 0, 0.05) !important;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.05) !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: none !important;
+    word-wrap: break-word !important;
+    hyphens: auto !important;
+    margin: 0 !important;
   }
 
-  .about-cards-grid > div {
-    grid-column: unset !important;
-    grid-row: unset !important;
+  .about-cards-grid h3 {
+    font-size: 0.8rem !important;
+    margin: 0 0 0.1rem 0 !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
     width: 100% !important;
-    min-height: 120px !important;
-    padding: 1.5rem !important;
+    word-break: break-word !important;
+    padding: 0 !important;
+    font-weight: 600 !important;
+    color: #1f2937 !important;
   }
 
-  .about-cards-grid > div:first-child {
-    order: 1;
+  .about-cards-grid p {
+    font-size: 0.6rem !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    text-align: center !important;
+    width: 100% !important;
+    word-break: break-word !important;
+    padding: 0 !important;
+    color: #6b7280 !important;
   }
 
-  .about-cards-grid > div:nth-child(2) {
-    order: 2;
+  /* Ensure images in cards are ultra compact */
+  .about-cards-grid img {
+    max-width: 100% !important;
+    max-height: 20px !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+    display: block !important;
   }
 
-  .about-cards-grid > div:nth-child(3) {
-    order: 3;
+  /* Fix any text overflow issues */
+  .about-cards-grid * {
+    text-overflow: ellipsis !important;
+    white-space: normal !important;
   }
 
-  .about-cards-grid > div:nth-child(4) {
-    order: 4;
+  /* Subtle hover effect */
+  .about-cards-grid > div:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.2s ease !important;
   }
 
-  .about-cards-grid > div:nth-child(5) {
-    order: 5;
+  /* Special styling for first two cards - Name and TCS */
+  .about-cards-grid > div:nth-child(1), /* Name Card */
+  .about-cards-grid > div:nth-child(2) { /* TCS Card */
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+    padding: 0.5rem 0.3rem !important;
   }
 
-  .about-cards-grid > div:nth-child(6) {
-    order: 6;
+  /* Name card typography */
+  .about-cards-grid > div:nth-child(1) h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.2rem !important;
+    color: #1f2937 !important;
   }
 
-  .about-cards-grid > div:nth-child(7) {
-    order: 7;
+  .about-cards-grid > div:nth-child(1) div {
+    font-size: 0.7rem !important;
+    color: #6b7280 !important;
   }
 
-  .about-cards-grid > div:nth-child(8) {
-    order: 8;
+  /* TCS card typography */
+  .about-cards-grid > div:nth-child(2) div:first-child {
+    font-size: 0.65rem !important;
+    color: #6b7280 !important;
+    margin-bottom: 0.3rem !important;
   }
 
-  .about-cards-grid > div:nth-child(9) {
-    order: 9;
+  .about-cards-grid > div:nth-child(2) img {
+    height: 25px !important;
+    width: auto !important;
   }
 
-  .about-cards-grid > div:nth-child(10) {
-    order: 10;
+  /* Special styling for cards with multiple items - Ultra Compact */
+  .about-cards-grid > div:nth-child(9), /* Languages */
+  .about-cards-grid > div:nth-child(10), /* Hobbies */
+  .about-cards-grid > div:nth-child(12) { /* Technical Skills */
+    padding-top: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
+    overflow: hidden !important;
+    justify-content: flex-start !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Better spacing for technical skills on mobile */
+  .about-cards-grid > div:nth-child(12) { /* Technical Skills */
+    padding: 0.4rem 0.3rem !important;
+  }
+
+  /* Adjust the title and content spacing - Ultra Compact */
+  .about-cards-grid > div:nth-child(9) > div:first-child,
+  .about-cards-grid > div:nth-child(10) > div:first-child,
+  .about-cards-grid > div:nth-child(12) > div:first-child {
+    margin-bottom: 0.15rem !important;
+    font-size: 0.6rem !important;
+    color: #4b5563 !important;
+    font-weight: 600 !important;
+  }
+
+  /* Adjust the items display - Ultra Compact */
+  .about-cards-grid > div:nth-child(9) > div:nth-child(2),
+  .about-cards-grid > div:nth-child(10) > div:nth-child(2),
+  .about-cards-grid > div:nth-child(12) > div:nth-child(2) {
+    gap: 0.2rem !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  /* Adjust the item text - Ultra Compact */
+  .about-cards-grid > div:nth-child(9) span,
+  .about-cards-grid > div:nth-child(10) span,
+  .about-cards-grid > div:nth-child(12) span {
+    font-size: 0.6rem !important;
+    padding: 0.1rem 0.3rem !important;
+    background: rgba(243, 244, 246, 0.8) !important;
+    border-radius: 4px !important;
+    color: #374151 !important;
+    font-weight: 500 !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
+  }
+
+  /* Specializing in card text - smaller on mobile */
+  .about-cards-grid > div:nth-child(7) div:nth-child(2) {
+    font-size: 0.65rem !important;
   }
 }
 
-@media (max-width: 480px) {
-  .about-cards-grid {
-    padding: 0 0.5rem !important;
-  }
+/* Removed duplicate 480px media query - using the comprehensive one below */
 
-  .about-cards-grid > div {
-    padding: 1rem !important;
-    min-height: 100px !important;
-  }
+/* Skills Component - Desktop Default */
+#skills .skill-icon-mobile {
+  display: none;
+}
+
+#skills .tech-icon-mobile {
+  display: none;
+}
+
+#skills .tech-name-desktop {
+  display: inline;
 }
 
 /* Skills Component Mobile Responsive */
@@ -422,6 +579,101 @@ body {
   #skills h3 {
     font-size: 1.1rem !important;
   }
+
+  /* Hide skill names and progress bars on mobile, show only icons */
+  #skills .skill-item .skill-name,
+  #skills .skill-item .skill-percentage,
+  #skills .skill-item .skill-progress {
+    display: none !important;
+  }
+
+  /* Show only icon on mobile for skill items */
+  #skills .skill-item .skill-icon-mobile {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Make skill items display as icon grid */
+  #skills .skills-container {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)) !important;
+    gap: 1rem !important;
+    justify-items: center !important;
+  }
+
+  #skills .skill-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 60px !important;
+    height: 60px !important;
+    background: rgba(55, 65, 81, 0.8) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(6, 182, 212, 0.3) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+  }
+
+  #skills .skill-item:hover {
+    background: rgba(6, 182, 212, 0.1) !important;
+    border-color: rgba(6, 182, 212, 0.6) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* Technology badges - show icons with labels on mobile */
+  #skills .tech-badges {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important;
+    gap: 1rem !important;
+    justify-items: center !important;
+  }
+
+  #skills .tech-badge {
+    width: 80px !important;
+    height: 80px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(55, 65, 81, 0.8) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(6, 182, 212, 0.3) !important;
+    padding: 0.75rem !important;
+    cursor: pointer !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Show both icon and text on mobile with better styling */
+  #skills .tech-badge .tech-name-desktop {
+    display: block !important;
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+    color: #06b6d4 !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
+    letter-spacing: 0.025em !important;
+  }
+
+  #skills .tech-badge .tech-icon-mobile {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Improve icon sizing on mobile */
+  #skills .tech-badge .tech-icon-mobile svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  #skills .tech-badge:hover {
+    background: rgba(6, 182, 212, 0.1) !important;
+    border-color: rgba(6, 182, 212, 0.6) !important;
+    transform: translateY(-2px) scale(1.05) !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -436,6 +688,267 @@ body {
   #skills .grid > div {
     padding: 1.5rem !important;
   }
+
+  /* Technology badges for very small screens */
+  #skills .tech-badges {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)) !important;
+    gap: 0.75rem !important;
+  }
+
+  #skills .tech-badge {
+    width: 70px !important;
+    height: 70px !important;
+    padding: 0.5rem !important;
+  }
+
+  #skills .tech-badge .tech-name-desktop {
+    font-size: 0.65rem !important;
+    line-height: 1.1 !important;
+  }
+
+  /* Smaller icon size for small screens */
+  #skills .skill-icon-mobile svg,
+  #skills .tech-icon-mobile svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+/* AdvancedSkills Component - Enhanced Scrolling */
+.skills-scroll-container {
+  /* Essential scroll properties */
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+
+  /* Performance optimizations */
+  will-change: scroll-position;
+  transform: translateZ(0);
+  contain: layout style paint;
+
+  /* Smooth scrolling for desktop, auto for mobile */
+  scroll-behavior: smooth;
+
+  /* Custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+
+  /* Ensure proper height calculation */
+  position: relative;
+  min-height: 0;
+  flex: 1;
+}
+
+/* Mobile scrolling optimizations */
+@media (max-width: 768px) {
+  .skills-scroll-container {
+    scroll-behavior: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+}
+
+/* Experience Grid - Clean Layout */
+.experience-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Experience and Education Cards - Clean Design */
+.experience-card {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(16px) !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  /* Prevent text selection during drag */
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+/* Desktop-specific drag enablement - Higher specificity */
+@media (min-width: 769px) {
+  .experience-card, .drag-test-card {
+    touch-action: none !important;
+    cursor: grab !important;
+    -webkit-user-drag: none !important;
+    -webkit-touch-callout: none !important;
+  }
+
+  .experience-card:active, .drag-test-card:active {
+    cursor: grabbing !important;
+  }
+
+  /* Override any mobile touch-action rules */
+  #experience .experience-card {
+    touch-action: none !important;
+  }
+}
+
+.experience-card:hover {
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(-4px) translateZ(0) !important;
+}
+
+/* Dragging state for experience cards */
+.experience-card[data-dragging="true"] {
+  cursor: grabbing !important;
+  z-index: 1000 !important;
+  transform: scale(1.05) translateZ(0) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Prevent scroll conflicts during drag */
+body.dragging {
+  overflow: hidden !important;
+  touch-action: none !important;
+  overscroll-behavior: none !important;
+  will-change: transform !important;
+  contain: strict !important;
+}
+
+
+
+/* Mobile Experience Cards */
+@media (max-width: 768px) {
+  .experience-card {
+    border-radius: 20px !important;
+    padding: 1rem !important;
+    min-height: 280px !important;
+    max-height: 320px !important;
+    /* Disable drag on mobile to prevent conflicts */
+    touch-action: pan-y !important;
+  }
+}
+
+/* Mobile Experience Cards - 2 per row layout optimizations */
+@media (max-width: 768px) {
+  #experience .experience-grid .experience-card {
+    /* Ensure cards fit well in 2-column layout */
+    font-size: 0.85rem !important;
+  }
+
+  #experience .experience-grid .experience-card h3 {
+    font-size: 1rem !important;
+    line-height: 1.2 !important;
+  }
+
+  #experience .experience-grid .experience-card .period-badge {
+    font-size: 0.7rem !important;
+    padding: 0.2rem 0.4rem !important;
+  }
+
+  #experience .experience-grid .experience-card .company-location {
+    font-size: 0.7rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+  }
+
+  #experience .experience-grid .experience-card .company-location > div {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    flex-wrap: nowrap !important;
+  }
+
+  #experience .experience-grid .experience-card .company-location span {
+    display: inline-flex !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 50px !important;
+  }
+
+  /* Ensure company logos are properly sized on mobile */
+  #experience .experience-grid .company-location .company-logo {
+    height: 10px !important;
+    max-width: 30px !important;
+    width: auto !important;
+    object-fit: contain !important;
+  }
+
+  #experience .experience-grid .experience-card .description li {
+    font-size: 0.7rem !important;
+    line-height: 1.3 !important;
+  }
+
+  #experience .experience-grid .experience-card .tech-badge {
+    font-size: 0.6rem !important;
+    padding: 0.15rem 0.3rem !important;
+  }
+}
+
+
+
+.skills-scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.skills-scroll-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.skills-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.skills-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* AdvancedSkills Component - Desktop Default */
+.skills-icons-grid-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.skills-icons-grid {
+  display: grid !important;
+  grid-template-columns: repeat(8, 1fr) !important;
+  gap: 20px !important;
+  justify-items: center !important;
+  width: 100% !important;
+}
+
+.skill-icon-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-icon-mobile .icon-container {
+  width: 60px;
+  height: 60px;
+}
+
+.skill-icon-mobile .icon-container img {
+  width: 32px;
+  height: 32px;
+}
+
+.skill-icon-mobile span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: 0.025em;
+  line-height: 1.2;
+  max-width: 80px;
+  text-align: center;
 }
 
 /* AdvancedSkills Component Mobile Responsive */
@@ -448,50 +961,344 @@ body {
   .advanced-skills-sidebar {
     width: 100% !important;
     height: auto !important;
-    max-height: 200px !important;
+    max-height: 120px !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
+    padding: 0.75rem 1rem !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+  }
+
+  .skills-scroll-container {
     padding: 1rem !important;
+    background: transparent !important;
+  }
+
+  .advanced-skills-sidebar::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Fix category buttons layout on mobile */
+  .advanced-skills-sidebar .categories {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.5rem !important;
+    padding: 0 0.5rem !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+
+  .advanced-skills-sidebar .categories button {
+    flex-shrink: 0 !important;
+    min-width: auto !important;
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 6px !important;
+  }
+
+  /* Skills scroll container mobile fix */
+  .skills-scroll-container {
+    flex: 1 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 1rem 0.75rem 2rem !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 
   .advanced-skills-sidebar .categories {
     display: flex !important;
     flex-direction: row !important;
-    gap: 0.5rem !important;
+    gap: 0.75rem !important;
+    white-space: nowrap !important;
+    padding: 0.5rem 0 !important;
+    min-width: max-content !important;
+  }
+
+  .advanced-skills-sidebar .categories button {
+    flex-shrink: 0 !important;
+    min-width: auto !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem !important;
+    border-radius: 8px !important;
     white-space: nowrap !important;
   }
 
-  .advanced-skills-content {
+  .skills-scroll-container {
     flex: 1 !important;
     padding: 1rem !important;
+    padding-bottom: 3rem !important; /* Extra padding to ensure scrolling to end */
     height: auto !important;
-    max-height: none !important;
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-behavior: auto !important;
+
+    /* Mobile-specific optimizations */
+    transform: translateZ(0) !important;
+    will-change: scroll-position !important;
+    contain: layout style paint !important;
+
+    /* Prevent momentum scrolling issues */
+    overscroll-behavior: contain !important;
+    touch-action: pan-y !important;
+
+    /* Ensure proper dimensions */
+    position: relative !important;
+    min-height: 0 !important;
   }
 
   .advanced-skills-window {
     height: auto !important;
-    min-height: 400px !important;
+    min-height: 450px !important;
+    max-height: 75vh !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* FORCE HIDE DESKTOP CARDS ON MOBILE */
+  .desktop-skills-cards {
+    display: none !important;
+  }
+
+  /* FORCE SHOW SKILLS ICON GRID - 5 ICONS PER ROW ON MOBILE */
+  .skills-icons-grid-container .skills-icons-grid,
+  #skills .skills-icons-grid,
+  #skills .mobile-skills-icons,
+  .advanced-skills-container .skills-icons-grid,
+  .skills-icons-responsive {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 12px !important;
+    justify-items: center !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 15px 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Hide any remaining card elements */
+  .skills-scroll-container .hidden {
+    display: none !important;
+  }
+
+  /* Ensure skill icon mobile elements are visible with proper layout */
+  .skill-icon-mobile {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /* Optimize mobile skill icons for performance */
+  .skill-icon-mobile .icon-container {
+    /* Reduce backdrop filter on mobile for better performance */
+    backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+
+    /* Optimize transforms */
+    transform: translateZ(0) !important;
+    will-change: transform !important;
+  }
+
+  /* Remove hover tooltip since we now have permanent labels */
+  .skill-icon-mobile:hover::after {
+    display: none !important;
+  }
+
+  .skills-scroll-container {
+    flex: 1 !important;
+    padding: 1rem !important;
+    height: auto !important;
+    max-height: 60vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-behavior: auto !important; /* Disable smooth scroll on mobile for better performance */
+
+    /* Mobile-specific optimizations */
+    transform: translateZ(0) !important;
+    will-change: scroll-position !important;
+    contain: layout style paint !important;
+
+    /* Prevent momentum scrolling issues */
+    overscroll-behavior: contain !important;
+    touch-action: pan-y !important;
+
+    /* Ensure proper dimensions */
+    position: relative !important;
+    min-height: 0 !important;
+  }
+
+  .advanced-skills-window {
+    height: auto !important;
+    min-height: 450px !important;
+    max-height: 75vh !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* FORCE HIDE DESKTOP CARDS ON MOBILE */
+  .desktop-skills-cards {
+    display: none !important;
+  }
+
+  /* FORCE SHOW MOBILE ICON GRID */
+  .mobile-skills-icons {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important;
+    gap: 20px !important;
+    justify-items: center !important;
+    padding: 10px 0 !important;
+  }
+
+  /* Hide any remaining card elements */
+  .skills-scroll-container .hidden {
+    display: none !important;
+  }
+
+  /* Ensure skill icon mobile elements are visible with proper layout */
+  .skill-icon-mobile {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /* Optimize mobile skill icons for performance */
+  .skill-icon-mobile .icon-container {
+    /* Reduce backdrop filter on mobile for better performance */
+    backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+
+    /* Optimize transforms */
+    transform: translateZ(0) !important;
+    will-change: transform !important;
+  }
+
+  /* Remove hover tooltip since we now have permanent labels */
+  .skill-icon-mobile:hover::after {
+    display: none !important;
   }
 }
 
 @media (max-width: 480px) {
+  .skills-section-mobile {
+    padding: 1.5rem 0.25rem !important;
+  }
+
+  .skills-window-mobile {
+    height: 450px !important;
+    max-height: 65vh !important;
+  }
+
   .advanced-skills-sidebar {
-    padding: 0.75rem !important;
+    padding: 0.4rem 0.5rem !important;
+    max-height: 70px !important;
   }
 
-  .advanced-skills-content {
-    padding: 0.75rem !important;
+  .advanced-skills-sidebar .categories {
+    gap: 0.4rem !important;
+    padding: 0 0.25rem !important;
   }
 
-  .advanced-skills-content .grid {
-    grid-template-columns: 1fr !important;
+  .advanced-skills-sidebar .categories button {
+    padding: 0.3rem 0.5rem !important;
+    font-size: 0.7rem !important;
+    border-radius: 4px !important;
   }
+
+  .skills-scroll-container {
+    padding: 0.75rem 0.5rem 1.5rem !important;
+  }
+
+  /* Smaller skill icons for very small screens */
+  .skill-icon-mobile .icon-container {
+    width: 45px !important;
+    height: 45px !important;
+  }
+
+  .skill-icon-mobile .icon-container img {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  /* Add bottom padding to skills content for proper scrolling */
+  .skills-scroll-container {
+    padding-bottom: 2rem !important;
+  }
+
+  /* Adjust mobile icon grid for small screens - 5 ICONS PER ROW */
+  .skills-icons-grid-container .skills-icons-grid,
+  #skills .skills-icons-grid,
+  #skills .mobile-skills-icons,
+  .advanced-skills-container .skills-icons-grid,
+  .skills-icons-responsive {
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    padding: 12px 8px !important;
+  }
+
+  /* Smaller icons for very small screens */
+  .skill-icon-mobile .icon-container {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .skill-icon-mobile .icon-container img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  /* Better font styling for technology names on small screens */
+  .skill-icon-mobile span {
+    font-size: 11px !important;
+    max-width: 70px !important;
+    font-weight: 600 !important;
+    color: #374151 !important;
+    font-family: 'Inter', system-ui, sans-serif !important;
+    letter-spacing: 0.025em !important;
+    line-height: 1.2 !important;
+  }
+}
+
+/* Project Cards - Modern Minimal Design */
+.project-card {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(16px) !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.project-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(-2px) !important;
 }
 
 /* Projects Component Mobile Responsive */
 @media (max-width: 768px) {
   #projects {
-    padding: 3rem 0 !important;
+    padding: 1rem 0 3rem !important;
+  }
+
+  .projects-section-spacing {
+    padding: 1rem 0 3rem !important;
   }
 
   #projects h2 {
@@ -501,7 +1308,8 @@ body {
   .project-card {
     min-width: 280px !important;
     max-width: 280px !important;
-    height: 380px !important;
+    height: 340px !important;
+    border-radius: 20px !important;
   }
 
   .projects-scroll-container {
@@ -515,7 +1323,11 @@ body {
 
 @media (max-width: 480px) {
   #projects {
-    padding: 2rem 0 !important;
+    padding: 0.5rem 0 2rem !important;
+  }
+
+  .projects-section-spacing {
+    padding: 0.5rem 0 2rem !important;
   }
 
   #projects h2 {
@@ -525,7 +1337,8 @@ body {
   .project-card {
     min-width: 260px !important;
     max-width: 260px !important;
-    height: 360px !important;
+    height: 320px !important;
+    border-radius: 18px !important;
   }
 
   .projects-scroll-container {
@@ -533,23 +1346,61 @@ body {
   }
 }
 
+/* Experience Component Tablet Responsive */
+@media (max-width: 1024px) and (min-width: 769px) {
+  #experience .experience-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem !important;
+  }
+}
+
 /* Experience Component Mobile Responsive */
 @media (max-width: 768px) {
   #experience {
-    padding: 3rem 1rem !important;
+    padding: 2rem 1rem !important;
+  }
+
+  .experience-section-spacing {
+    padding: 2rem 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* Even more compact spacing for smaller screens */
+@media (max-width: 480px) {
+  #experience {
+    padding: 1.5rem 0.5rem !important;
+  }
+
+  .experience-section-spacing {
+    padding: 1.5rem 0.5rem !important;
+    margin-bottom: 0.5rem !important;
   }
 
   #experience h2 {
     font-size: 2rem !important;
   }
 
-  .experience-grid {
-    grid-template-columns: 1fr !important;
-    gap: 1rem !important;
+  #experience .experience-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+    max-width: 100% !important;
   }
 
-  .experience-grid > div {
+  #experience .experience-grid > div {
     margin: 0 !important;
+    min-height: 280px !important;
+    max-height: 320px !important;
+  }
+
+  /* Fix TCS logo size in experience cards */
+  #experience .experience-grid img[alt*="TCS"],
+  #experience .experience-grid img[src*="tcs-logo"],
+  #experience .experience-grid .company-location img {
+    height: 10px !important;
+    max-width: 30px !important;
+    object-fit: contain !important;
+    width: auto !important;
   }
 }
 
@@ -562,8 +1413,64 @@ body {
     font-size: 1.75rem !important;
   }
 
-  .experience-grid {
-    gap: 0.75rem !important;
+  #experience .experience-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+    max-width: 100% !important;
+  }
+
+  #experience .experience-grid > div {
+    min-height: 260px !important;
+    max-height: 300px !important;
+    padding: 0.75rem !important;
+  }
+
+  /* Smaller text for very small screens in 2-column layout */
+  #experience .experience-grid .experience-card h3 {
+    font-size: 0.9rem !important;
+  }
+
+  #experience .experience-grid .experience-card .period-badge {
+    font-size: 0.65rem !important;
+  }
+
+  #experience .experience-grid .experience-card .description li {
+    font-size: 0.65rem !important;
+  }
+
+  #experience .experience-grid .experience-card .tech-badge {
+    font-size: 0.55rem !important;
+  }
+
+  #experience .experience-grid img[alt*="TCS"],
+  #experience .experience-grid img[src*="tcs-logo"],
+  #experience .experience-grid .company-location img,
+  #experience .experience-grid .company-location .company-logo {
+    height: 8px !important;
+    max-width: 25px !important;
+    object-fit: contain !important;
+    width: auto !important;
+  }
+}
+
+/* Extra small screens - maintain 2 columns but with tighter spacing */
+@media (max-width: 360px) {
+  #experience .experience-grid {
+    gap: 0.4rem !important;
+  }
+
+  #experience .experience-grid > div {
+    min-height: 240px !important;
+    max-height: 280px !important;
+    padding: 0.6rem !important;
+  }
+
+  #experience .experience-grid .experience-card h3 {
+    font-size: 0.85rem !important;
+  }
+
+  #experience .experience-grid .experience-card .description li {
+    font-size: 0.6rem !important;
   }
 }
 
@@ -707,41 +1614,236 @@ body {
 /* Navbar Mobile Enhancements */
 @media (max-width: 768px) {
   .navbar-mobile {
-    padding: 0.5rem 1rem !important;
+    padding: 0.25rem 0.75rem !important;
+    height: 3.5rem !important; /* Reduced from default 5rem */
   }
 
   .navbar-mobile .container {
     padding: 0 !important;
+    height: 100% !important;
   }
 
   .navbar-mobile button {
-    padding: 0.5rem !important;
-    min-width: 44px !important;
-    min-height: 44px !important;
-  }
-
-  .navbar-mobile .mobile-menu {
-    margin-top: 0.5rem !important;
-    padding: 1rem !important;
-    border-radius: 12px !important;
-  }
-
-  .navbar-mobile .mobile-menu a {
-    padding: 0.75rem 1rem !important;
-    min-height: 44px !important;
-    display: flex !important;
-    align-items: center !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar-mobile {
-    padding: 0.25rem 0.5rem !important;
+    padding: 0.375rem !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
   }
 
   .navbar-mobile .mobile-menu {
     margin-top: 0.25rem !important;
     padding: 0.75rem !important;
+    border-radius: 12px !important;
+    max-height: calc(100vh - 4rem) !important;
+    overflow-y: auto !important;
+  }
+
+  .navbar-mobile .mobile-menu a {
+    padding: 0.625rem 0.875rem !important;
+    min-height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Logo container mobile optimization */
+  .navbar-mobile .logo-container {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-mobile {
+    padding: 0.125rem 0.5rem !important;
+    height: 3rem !important; /* Even smaller for very small screens */
+  }
+
+  .navbar-mobile .mobile-menu {
+    margin-top: 0.125rem !important;
+    padding: 0.5rem !important;
+  }
+
+  .navbar-mobile .logo-container {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .navbar-mobile button {
+    min-width: 36px !important;
+    min-height: 36px !important;
+    padding: 0.25rem !important;
+  }
+}
+
+/* Floating Sidebar Mobile Optimization */
+@media (max-width: 768px) {
+  .floating-sidebar {
+    left: 8px !important;
+    padding: 12px 8px !important;
+    border-radius: 20px !important;
+    gap: 8px !important;
+  }
+
+  .floating-sidebar button {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+  }
+
+  .floating-sidebar .social-button {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+  }
+
+  .floating-sidebar .theme-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-sidebar {
+    left: 4px !important;
+    padding: 8px 6px !important;
+    border-radius: 16px !important;
+    gap: 6px !important;
+  }
+
+  .floating-sidebar button {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+  }
+
+  .floating-sidebar .social-button {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+  }
+
+  .floating-sidebar .theme-toggle {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Mobile Typography and Spacing Optimization */
+@media (max-width: 768px) {
+  /* Global mobile typography */
+  body {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Section headings mobile optimization */
+  section h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  section h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  section h3 {
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Paragraph and text optimization */
+  section p {
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* Button typography */
+  button {
+    font-size: 0.875rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Card content typography */
+  .card h3, .card h4 {
+    font-size: 1rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .card p, .card span {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Section spacing optimization */
+  section {
+    padding-top: 2rem !important;
+    padding-bottom: 1.5rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Remove excessive margins */
+  * {
+    margin-top: 0 !important;
+  }
+
+  /* Optimize container spacing */
+  .container, [class*="container"] {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small screen typography */
+  body {
+    font-size: 13px !important;
+  }
+
+  section h1 {
+    font-size: 1.5rem !important;
+  }
+
+  section h2 {
+    font-size: 1.25rem !important;
+  }
+
+  section h3 {
+    font-size: 1.125rem !important;
+  }
+
+  section p {
+    font-size: 0.8rem !important;
+  }
+
+  button {
+    font-size: 0.8rem !important;
+  }
+
+  /* Tighter spacing for small screens */
+  section {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .container, [class*="container"] {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  /* Card typography for small screens */
+  .card h3, .card h4 {
+    font-size: 0.9rem !important;
+  }
+
+  .card p, .card span {
+    font-size: 0.75rem !important;
   }
 }
 
@@ -798,26 +1900,96 @@ body {
 
 /* Improved touch interactions for all components */
 @media (max-width: 768px) {
+  /* Touch-action optimizations */
+  body, html {
+    touch-action: pan-y !important;
+  }
+
+  /* Enhanced scrollable containers for mobile */
+  .horizontal-scroll, .projects-scroll-container, .smooth-horizontal-scroll {
+    touch-action: pan-x !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-behavior: smooth !important;
+    overscroll-behavior-x: contain !important;
+    overscroll-behavior-y: auto !important;
+    /* Conservative hardware acceleration */
+    transform: translateZ(0) !important;
+  }
+
+  /* Interactive elements touch optimization */
+  button, a, [role="button"], .magnetic-card, .project-card, .skill-card {
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  /* Experience cards - mobile only touch-action */
+  @media (max-width: 768px) {
+    .experience-card {
+      touch-action: pan-y !important;
+      -webkit-tap-highlight-color: transparent !important;
+      -webkit-touch-callout: none !important;
+    }
+  }
+
   /* Ensure all interactive elements are touch-friendly */
   .magnetic-card, .project-card, .skill-card, .experience-card {
     transform: none !important;
-    transition: transform 0.2s ease !important;
+    transition: transform 0.15s ease !important;
+    will-change: transform !important;
   }
 
   .magnetic-card:active, .project-card:active, .skill-card:active, .experience-card:active {
     transform: scale(0.98) !important;
   }
 
-  /* Improve scroll behavior on mobile */
-  .horizontal-scroll {
+  /* Enhanced scroll behavior for projects section */
+  .horizontal-scroll, .projects-scroll-container {
     -webkit-overflow-scrolling: touch !important;
     scroll-behavior: smooth !important;
+    overscroll-behavior-x: contain !important;
+    /* Additional performance optimizations */
+    scroll-snap-type: x proximity !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+    backface-visibility: hidden !important;
+  }
+
+  /* Smooth scroll snap for project cards */
+  .horizontal-scroll > * {
+    scroll-snap-align: start !important;
   }
 
   /* Better focus states for accessibility */
   button:focus, a:focus, [tabindex]:focus {
     outline: 2px solid #3b82f6 !important;
     outline-offset: 2px !important;
+  }
+
+  /* Optimize animations for touch devices */
+  * {
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px !important;
+    touch-action: manipulation !important;
+  }
+
+  /* Optimize card hover effects for touch */
+  .hero-card, .about-cards-grid > div {
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+
+  /* Disable hover effects on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .magnetic-card:hover, .project-card:hover, .skill-card:hover, .experience-card:hover {
+      transform: none !important;
+      box-shadow: initial !important;
+    }
   }
 }
 
@@ -872,16 +2044,16 @@ body {
   }
 }
 
-/* Floating sidebar responsive styles */
+/* Floating sidebar responsive styles - Keep visible on all devices */
 @media (max-width: 768px) {
   .floating-sidebar {
-    display: none !important;
+    display: flex !important;
   }
 }
 
 /* Prevent hydration layout shift and ensure proper centering */
 .floating-sidebar {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.3s ease;
   position: fixed !important;
   left: 20px !important;
@@ -916,10 +2088,113 @@ body {
               inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-/* Smooth scroll behavior for better UX */
+/* Enhanced smooth scroll behavior for better UX */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  /* Optimize for high refresh rate displays */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Force enable drag on desktop - highest specificity */
+@media (min-width: 769px) {
+  [data-dragging], .drag-test-card, .experience-card[data-dragging] {
+    touch-action: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    cursor: grab !important;
+  }
+
+  [data-dragging="true"], .experience-card[data-dragging="true"] {
+    cursor: grabbing !important;
+    z-index: 1000 !important;
+  }
+
+  /* Prevent scroll jerkiness in experience section */
+  #experience {
+    contain: layout style !important;
+    will-change: auto !important;
+    transform: translateZ(0) !important;
+  }
+
+  .experience-grid {
+    contain: layout !important;
+    will-change: auto !important;
+    transform: translateZ(0) !important;
+  }
+
+  /* Improved drag performance */
+  .drag-test-card[data-dragging="true"] {
+    will-change: transform !important;
+    transform: translateZ(0) !important;
+    isolation: isolate !important;
+  }
+}
+
+/* Smooth horizontal scrolling optimizations */
+.smooth-horizontal-scroll {
+  /* Essential performance properties */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
+  scroll-behavior: smooth;
+
+  /* Hardware acceleration */
+  will-change: scroll-position;
+  transform: translateZ(0);
+  contain: layout style paint;
+
+  /* Smooth momentum scrolling on iOS */
+  -webkit-transform: translate3d(0, 0, 0);
+
+  /* Prevent scroll chaining */
+  overscroll-behavior: contain;
+}
+
+/* Essential Performance Optimizations Only */
+
+/* Optimize scrollable containers */
+.scroll-container, .overflow-auto, .overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Mobile scroll optimizations for 120Hz displays */
+@media (max-width: 768px) {
+  html {
+    /* Optimize for high refresh rate displays */
+    scroll-behavior: smooth;
+  }
+
+  body {
+    /* Improve scroll performance on mobile */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    /* Smooth momentum scrolling for iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Smooth scrolling for touch devices */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Enhanced scrolling for sections */
+  section {
+    scroll-margin-top: 80px;
+  }
+}
+
+/* Optimize animations for mobile - only reduce if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Custom focus styles for accessibility */
@@ -930,30 +2205,276 @@ a:focus-visible {
   border-radius: 4px;
 }
 
-/* About section card grid responsive styles */
-@media (max-width: 768px) {
-  .about-card-grid {
-    grid-template-columns: repeat(6, 1fr) !important;
-  }
+/* Essential Performance Optimizations */
 
-  .about-card-grid > * {
-    grid-column: span 6 !important;
-  }
+/* Smooth scrolling with momentum on iOS */
+.scroll-smooth {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
 
-  .about-card-grid .hero-card {
-    grid-row: span 2 !important;
-  }
-
-  .about-card-grid .small-card {
-    grid-column: span 3 !important;
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
+/* Removed conflicting About section CSS - using the improved layout above */
+
+
+
+/* About Cards Grid Mobile Responsive - 480px Ultra Compact */
 @media (max-width: 480px) {
-  .about-card-grid .small-card {
-    grid-column: span 6 !important;
-  }
+    .about-section-mobile {
+      padding: 1rem 0.25rem 0.5rem !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      border-radius: 10px !important;
+      margin: 0.5rem !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .about-cards-grid {
+      grid-template-columns: repeat(6, 1fr) !important;
+      grid-template-rows: repeat(15, 28px) !important;
+      gap: 0px !important;
+      padding: 0 0.1rem !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      overflow: visible !important;
+      min-height: auto !important;
+      height: auto !important;
+      margin: 0 auto 0.25rem !important;
+    }
+
+    /* Extra small mobile positioning */
+    .about-cards-grid > div:nth-child(1) { /* Name Card */
+      grid-column: 1 / 5 !important;
+      grid-row: 1 / 3 !important;
+    }
+
+    .about-cards-grid > div:nth-child(2) { /* Profile Image */
+      grid-column: 5 / 7 !important;
+      grid-row: 1 / 3 !important;
+    }
+
+    .about-cards-grid > div:nth-child(3) { /* Location */
+      grid-column: 1 / 3 !important;
+      grid-row: 3 / 5 !important;
+    }
+
+    .about-cards-grid > div:nth-child(4) { /* CGPA */
+      grid-column: 3 / 5 !important;
+      grid-row: 3 / 5 !important;
+    }
+
+    .about-cards-grid > div:nth-child(5) { /* Projects */
+      grid-column: 5 / 7 !important;
+      grid-row: 3 / 5 !important;
+    }
+
+    .about-cards-grid > div:nth-child(6) { /* Connect */
+      grid-column: 1 / 3 !important;
+      grid-row: 5 / 7 !important;
+    }
+
+    .about-cards-grid > div:nth-child(7) { /* Skills */
+      grid-column: 3 / 7 !important;
+      grid-row: 5 / 7 !important;
+    }
+
+    .about-cards-grid > div:nth-child(8) { /* Research */
+      grid-column: 1 / 4 !important;
+      grid-row: 7 / 9 !important;
+    }
+
+    .about-cards-grid > div:nth-child(9) { /* Languages */
+      grid-column: 4 / 7 !important;
+      grid-row: 7 / 9 !important;
+    }
+
+    .about-cards-grid > div:nth-child(10) { /* Hobbies */
+      grid-column: 1 / 4 !important;
+      grid-row: 9 / 11 !important;
+    }
+
+    .about-cards-grid > div:nth-child(11) { /* Goofy Animation */
+      grid-column: 4 / 7 !important;
+      grid-row: 9 / 11 !important;
+    }
+
+    .about-cards-grid > div:nth-child(12) { /* Technical Skills */
+      grid-column: 1 / 5 !important;
+      grid-row: 11 / 13 !important;
+    }
+
+    .about-cards-grid > div:nth-child(13) { /* Achievement */
+      grid-column: 5 / 7 !important;
+      grid-row: 11 / 13 !important;
+    }
+
+    .about-cards-grid > div:nth-child(14) { /* Last card */
+      grid-column: 1 / 7 !important;
+      grid-row: 13 / 15 !important;
+    }
+
+    /* Extra small mobile styling - Ultra Compact */
+    .about-cards-grid > div {
+      padding: 0.15rem 0.1rem !important;
+      font-size: 0.55rem !important;
+      border-radius: 0px !important;
+      min-height: 25px !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      text-align: center !important;
+      border-right: 1px dotted rgba(0, 0, 0, 0.05) !important;
+      border-bottom: 1px dotted rgba(0, 0, 0, 0.05) !important;
+      background: rgba(255, 255, 255, 0.5) !important;
+      box-shadow: none !important;
+      word-wrap: break-word !important;
+      hyphens: auto !important;
+      margin: 0 !important;
+    }
+
+    .about-cards-grid h3 {
+      font-size: 0.7rem !important;
+      margin: 0 0 0.05rem 0 !important;
+      line-height: 1.1 !important;
+      text-align: center !important;
+      width: 100% !important;
+      word-break: break-word !important;
+      padding: 0 !important;
+      font-weight: 600 !important;
+      color: #1f2937 !important;
+    }
+
+    .about-cards-grid p {
+      font-size: 0.5rem !important;
+      line-height: 1.1 !important;
+      margin: 0 !important;
+      text-align: center !important;
+      width: 100% !important;
+      word-break: break-word !important;
+      padding: 0 !important;
+      color: #6b7280 !important;
+    }
+
+    /* Ultra compact images for 480px */
+    .about-cards-grid img {
+      max-width: 100% !important;
+      max-height: 15px !important;
+      object-fit: contain !important;
+      margin: 0 auto !important;
+      display: block !important;
+    }
+
+    /* Fix any text overflow issues for 480px */
+    .about-cards-grid * {
+      text-overflow: ellipsis !important;
+      white-space: normal !important;
+    }
+
+    /* Special styling for first two cards at 480px - Name and TCS */
+    .about-cards-grid > div:nth-child(1), /* Name Card */
+    .about-cards-grid > div:nth-child(2) { /* TCS Card */
+      background: rgba(255, 255, 255, 0.95) !important;
+      border: 1px solid rgba(0, 0, 0, 0.08) !important;
+      border-radius: 6px !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+      padding: 0.4rem 0.25rem !important;
+    }
+
+    /* Name card typography for 480px */
+    .about-cards-grid > div:nth-child(1) h3 {
+      font-size: 0.9rem !important;
+      margin-bottom: 0.15rem !important;
+      color: #1f2937 !important;
+    }
+
+    .about-cards-grid > div:nth-child(1) div {
+      font-size: 0.65rem !important;
+      color: #6b7280 !important;
+    }
+
+    /* TCS card typography for 480px */
+    .about-cards-grid > div:nth-child(2) div:first-child {
+      font-size: 0.6rem !important;
+      color: #6b7280 !important;
+      margin-bottom: 0.2rem !important;
+    }
+
+    .about-cards-grid > div:nth-child(2) img {
+      height: 20px !important;
+      width: auto !important;
+    }
+
+    /* Special styling for cards with multiple items at 480px - Ultra Compact */
+    .about-cards-grid > div:nth-child(9), /* Languages */
+    .about-cards-grid > div:nth-child(10), /* Hobbies */
+    .about-cards-grid > div:nth-child(12) { /* Technical Skills */
+      padding-top: 0.25rem !important;
+      padding-bottom: 0.25rem !important;
+      overflow: hidden !important;
+      justify-content: flex-start !important;
+      background: rgba(255, 255, 255, 0.8) !important;
+      line-height: 1.3 !important;
+    }
+
+    /* Better spacing for technical skills on mobile at 480px */
+    .about-cards-grid > div:nth-child(12) { /* Technical Skills */
+      padding: 0.35rem 0.25rem !important;
+    }
+
+    /* Adjust the title and content spacing for 480px - Ultra Compact */
+    .about-cards-grid > div:nth-child(9) > div:first-child,
+    .about-cards-grid > div:nth-child(10) > div:first-child,
+    .about-cards-grid > div:nth-child(12) > div:first-child {
+      margin-bottom: 0.1rem !important;
+      font-size: 0.55rem !important;
+      color: #4b5563 !important;
+      font-weight: 600 !important;
+    }
+
+    /* Adjust the items display for 480px - Ultra Compact */
+    .about-cards-grid > div:nth-child(9) > div:nth-child(2),
+    .about-cards-grid > div:nth-child(10) > div:nth-child(2),
+    .about-cards-grid > div:nth-child(12) > div:nth-child(2) {
+      gap: 0.15rem !important;
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+    }
+
+    /* Adjust the item text for 480px - Ultra Compact */
+    .about-cards-grid > div:nth-child(9) span,
+    .about-cards-grid > div:nth-child(10) span,
+    .about-cards-grid > div:nth-child(12) span {
+      font-size: 0.55rem !important;
+      padding: 0.05rem 0.25rem !important;
+      background: rgba(243, 244, 246, 0.8) !important;
+      border-radius: 3px !important;
+      color: #374151 !important;
+      font-weight: 500 !important;
+      font-family: 'Inter', system-ui, sans-serif !important;
+    }
+
+    /* Specializing in card text - even smaller on 480px */
+    .about-cards-grid > div:nth-child(7) div:nth-child(2) {
+      font-size: 0.55rem !important;
+    }
 }
+
+/* Legacy CSS rules removed - using new mobile design */
 
 /* Enhanced card hover effects */
 .about-card {
@@ -978,31 +2499,204 @@ a:focus-visible {
 @media (max-width: 768px) {
   .hero-card {
     flex-direction: column !important;
-    width: 90vw !important;
+    width: 95vw !important;
+    max-width: 420px !important;
     min-height: auto !important;
+    margin: 1rem auto !important;
+    padding: 0 !important;
   }
 
   .hero-left {
     flex: none !important;
-    padding: 2rem 1rem 1rem !important;
+    padding: 1.5rem 1rem 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 
   .hero-right {
-    padding: 1rem 2rem 2rem !important;
+    padding: 1rem 1.5rem 1.5rem !important;
     text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
   }
 
   .hero-profile {
-    width: 120px !important;
-    height: 120px !important;
-    margin-bottom: 1rem !important;
+    width: 100px !important;
+    height: 100px !important;
+    margin-bottom: 0.75rem !important;
   }
 
   .hero-name {
-    font-size: 2rem !important;
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.5rem !important;
   }
 
   .hero-intro {
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Fix highlights layout in mobile */
+  .hero-highlights {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .hero-highlight-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 0.75rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .hero-highlight-item .icon {
+    margin-bottom: 0.25rem !important;
+    font-size: 1.25rem !important;
+  }
+
+  .hero-highlight-item .text {
+    font-size: 0.8rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Social links mobile optimization */
+  .hero-social-links {
+    display: flex !important;
+    gap: 0.75rem !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+
+  .hero-social-links a {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-card {
+    width: 98vw !important;
+    max-width: 360px !important;
+    margin: 0.5rem auto !important;
+  }
+
+  .hero-left {
+    padding: 1rem 0.75rem 0.75rem !important;
+  }
+
+  .hero-right {
+    padding: 0.75rem 1rem 1rem !important;
+    gap: 0.75rem !important;
+  }
+
+  .hero-profile {
+    width: 80px !important;
+    height: 80px !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .hero-name {
     font-size: 1.5rem !important;
   }
+
+  .hero-intro {
+    font-size: 1.1rem !important;
+  }
+
+  .hero-highlights {
+    gap: 0.5rem !important;
+  }
+
+  .hero-highlight-item {
+    padding: 0.5rem !important;
+  }
+
+  .hero-highlight-item .text {
+    font-size: 0.75rem !important;
+  }
+
+  .hero-social-links {
+    gap: 0.5rem !important;
+  }
+
+  .hero-social-links a {
+    min-width: 40px !important;
+    min-height: 40px !important;
+    padding: 0.625rem !important;
+  }
+}
+
+/* Enhanced Skills Window Visual Design */
+.advanced-skills-window {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.advanced-skills-window:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.6) inset !important;
+}
+
+.advanced-skills-sidebar {
+  position: relative;
+}
+
+.advanced-skills-sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(226, 232, 240, 0.8) 20%,
+    rgba(226, 232, 240, 0.8) 80%,
+    transparent 100%);
+}
+
+/* Category Button Hover Effects */
+.categories button:hover {
+  background: rgba(55, 65, 81, 0.05) !important;
+  transform: translateX(8px) scale(1.02) !important;
+}
+
+.categories button:active {
+  transform: translateX(6px) scale(0.98) !important;
+}
+
+/* Enhanced Scrollbar Styling for Skills Content */
+.skills-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.skills-scroll-container::-webkit-scrollbar-track {
+  background: rgba(248, 250, 252, 0.5);
+  border-radius: 3px;
+}
+
+.skills-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.skills-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.8);
 }

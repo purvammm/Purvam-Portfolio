@@ -47,70 +47,272 @@ const AdvancedSkills = () => {
       description: 'Core programming language used for backend development and building robust applications.',
       category: 'Programming',
       level: 'Advanced',
-      experience: '2+ years'
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg'
     },
     {
       name: 'JavaScript',
       description: 'Used for full-stack web development, building interactive UIs and server-side applications.',
       category: 'Programming',
       level: 'Advanced',
-      experience: '2+ years'
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg'
     },
     {
       name: 'Python',
       description: 'Primary language for AI/ML projects, data analysis, and building intelligent systems.',
       category: 'Programming',
       level: 'Expert',
-      experience: '3+ years'
+      experience: '3+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg'
     },
     {
       name: 'React.js',
       description: 'Built modern web applications with component-based architecture and state management.',
       category: 'Web Development',
       level: 'Advanced',
-      experience: '2+ years'
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg'
     },
     {
       name: 'Node.js',
       description: 'Developed backend services, REST APIs, and server-side applications.',
       category: 'Web Development',
       level: 'Advanced',
-      experience: '2+ years'
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg'
     },
     {
       name: 'MongoDB',
       description: 'NoSQL database management for scalable web applications and data storage.',
       category: 'Database',
       level: 'Advanced',
-      experience: '2+ years'
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg'
     },
     {
       name: 'MySQL',
       description: 'Relational database design and management for structured data applications.',
       category: 'Database',
       level: 'Advanced',
-      experience: '2+ years'
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg'
     },
     {
       name: 'Machine Learning',
       description: 'Developed AI models for fake news detection, sign language recognition, and predictive analytics.',
       category: 'Machine Learning',
       level: 'Expert',
-      experience: '2+ years'
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg'
     },
     {
       name: 'Deep Learning',
       description: 'Built CNN models using ResNet50 for image classification with 99.96% accuracy.',
       category: 'Machine Learning',
       level: 'Advanced',
-      experience: '2+ years'
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg'
     },
     {
       name: 'NLP',
       description: 'Developed question-answering systems using RoBERTa and context-aware text processing.',
       category: 'Machine Learning',
       level: 'Advanced',
-      experience: '1+ years'
+      experience: '1+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg'
+    },
+    {
+      name: 'Next.js',
+      description: 'Full-stack React framework for production-ready web applications.',
+      category: 'Web Development',
+      level: 'Advanced',
+      experience: '1+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg'
+    },
+    {
+      name: 'TypeScript',
+      description: 'Strongly typed JavaScript for better code quality and developer experience.',
+      category: 'Programming',
+      level: 'Advanced',
+      experience: '1+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg'
+    },
+    {
+      name: 'Express.js',
+      description: 'Fast, unopinionated web framework for Node.js backend development.',
+      category: 'Web Development',
+      level: 'Advanced',
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg'
+    },
+    {
+      name: 'PostgreSQL',
+      description: 'Advanced relational database with powerful features for complex applications.',
+      category: 'Database',
+      level: 'Intermediate',
+      experience: '1+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg'
+    },
+    {
+      name: 'Docker',
+      description: 'Containerization platform for consistent development and deployment environments.',
+      category: 'Programming',
+      level: 'Intermediate',
+      experience: '1+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg'
+    },
+    {
+      name: 'Git',
+      description: 'Version control system for tracking changes and collaborative development.',
+      category: 'Programming',
+      level: 'Advanced',
+      experience: '3+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg'
+    },
+    {
+      name: 'AWS',
+      description: 'Cloud computing platform for scalable and reliable application deployment.',
+      category: 'Programming',
+      level: 'Intermediate',
+      experience: '1+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'
+    },
+    {
+      name: 'TensorFlow',
+      description: 'Open-source machine learning framework for building and training AI models.',
+      category: 'Machine Learning',
+      level: 'Advanced',
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg'
+    },
+    {
+      name: 'PyTorch',
+      description: 'Dynamic neural network framework for research and production AI applications.',
+      category: 'Machine Learning',
+      level: 'Advanced',
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg'
+    },
+    {
+      name: 'Tailwind CSS',
+      description: 'Utility-first CSS framework for rapid UI development.',
+      category: 'Web Development',
+      level: 'Expert',
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg'
+    },
+    {
+      name: 'VS Code',
+      description: 'Primary code editor with extensive customization and debugging capabilities.',
+      category: 'Programming',
+      level: 'Expert',
+      experience: '3+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg'
+    },
+    {
+      name: 'Figma',
+      description: 'Design tool for creating user interfaces and collaborative design workflows.',
+      category: 'Web Development',
+      level: 'Advanced',
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg'
+    },
+    {
+      name: 'Postman',
+      description: 'API development and testing platform for building robust web services.',
+      category: 'Web Development',
+      level: 'Advanced',
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg'
+    },
+    {
+      name: 'Flask',
+      description: 'Lightweight Python web framework for building APIs and web applications.',
+      category: 'Web Development',
+      level: 'Advanced',
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg'
+    },
+    {
+      name: 'FastAPI',
+      description: 'Modern, fast Python web framework for building APIs with automatic documentation.',
+      category: 'Web Development',
+      level: 'Intermediate',
+      experience: '1+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg'
+    },
+    {
+      name: 'Jupyter',
+      description: 'Interactive computing environment for data science and machine learning.',
+      category: 'Machine Learning',
+      level: 'Expert',
+      experience: '3+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg'
+    },
+    {
+      name: 'Pandas',
+      description: 'Powerful data manipulation and analysis library for Python.',
+      category: 'Machine Learning',
+      level: 'Expert',
+      experience: '3+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg'
+    },
+    {
+      name: 'NumPy',
+      description: 'Fundamental package for scientific computing with Python.',
+      category: 'Machine Learning',
+      level: 'Expert',
+      experience: '3+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg'
+    },
+    {
+      name: 'Streamlit',
+      description: 'Framework for building and sharing data science web applications.',
+      category: 'Machine Learning',
+      level: 'Advanced',
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/streamlit/streamlit-original.svg'
+    },
+    {
+      name: 'Linux',
+      description: 'Unix-like operating system for development and server environments.',
+      category: 'Programming',
+      level: 'Advanced',
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg'
+    },
+    {
+      name: 'HTML5',
+      description: 'Modern markup language for structuring and presenting web content.',
+      category: 'Web Development',
+      level: 'Expert',
+      experience: '3+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg'
+    },
+    {
+      name: 'CSS3',
+      description: 'Styling language for designing responsive and interactive web interfaces.',
+      category: 'Web Development',
+      level: 'Expert',
+      experience: '3+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg'
+    },
+    {
+      name: 'C++',
+      description: 'High-performance programming language for system programming and competitive coding.',
+      category: 'Programming',
+      level: 'Advanced',
+      experience: '2+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg'
+    },
+    {
+      name: 'GitHub',
+      description: 'Version control platform for collaborative software development and project management.',
+      category: 'Programming',
+      level: 'Expert',
+      experience: '3+ years',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg'
     }
   ];
 
@@ -153,7 +355,39 @@ const AdvancedSkills = () => {
   };
 
   return (
-    <section id="skills" ref={ref} style={{ padding: '5rem 1rem', position: 'relative' }}>
+    <>
+      <style jsx>{`
+        /* Mobile: Always 5 icons per row */
+        @media (max-width: 768px) {
+          .skills-icons-responsive {
+            grid-template-columns: repeat(5, 1fr) !important;
+            gap: 12px !important;
+            padding: 15px 10px !important;
+          }
+
+          /* Improve scrolling performance on mobile */
+          .skills-scroll-container {
+            scroll-behavior: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            overscroll-behavior-y: contain !important;
+            transform: translate3d(0, 0, 0) !important;
+          }
+
+          /* Reduce motion for better performance */
+          .skill-icon-mobile {
+            transition: transform 0.15s ease !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .skills-icons-responsive {
+            grid-template-columns: repeat(5, 1fr) !important;
+            gap: 10px !important;
+            padding: 12px 8px !important;
+          }
+        }
+      `}</style>
+      <section id="skills" ref={ref} style={{ padding: '5rem 1rem', position: 'relative' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <motion.div
           variants={containerVariants}
@@ -180,11 +414,11 @@ const AdvancedSkills = () => {
             variants={itemVariants}
             className="advanced-skills-window"
             style={{
-              background: 'rgba(255, 255, 255, 0.95)',
+              background: 'rgba(255, 255, 255, 0.98)',
               backdropFilter: 'blur(20px)',
-              borderRadius: '12px',
-              border: '1px solid rgba(255, 255, 255, 0.3)',
-              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
+              borderRadius: '16px',
+              border: '1px solid rgba(226, 232, 240, 0.8)',
+              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5) inset',
               overflow: 'hidden',
               height: '600px',
               position: 'relative'
@@ -195,10 +429,10 @@ const AdvancedSkills = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              padding: '12px 16px',
-              background: 'rgba(248, 250, 252, 0.8)',
-              borderBottom: '1px solid rgba(226, 232, 240, 0.5)',
-              backdropFilter: 'blur(10px)'
+              padding: '14px 20px',
+              background: 'rgba(248, 250, 252, 0.95)',
+              borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
+              backdropFilter: 'blur(15px)'
             }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <div style={{
@@ -244,34 +478,35 @@ const AdvancedSkills = () => {
             <div className="advanced-skills-container" style={{ display: 'flex', height: 'calc(100% - 49px)' }}>
               {/* Sidebar */}
               <div className="advanced-skills-sidebar" style={{
-                width: '240px',
-                background: 'rgba(248, 250, 252, 0.6)',
-                borderRight: '1px solid rgba(226, 232, 240, 0.5)',
-                padding: '20px 0',
-                backdropFilter: 'blur(10px)'
+                width: '260px',
+                background: 'rgba(248, 250, 252, 0.8)',
+                borderRight: '1px solid rgba(226, 232, 240, 0.8)',
+                padding: '24px 0',
+                backdropFilter: 'blur(15px)'
               }}>
                 {/* Profile Section */}
                 <div style={{
-                  padding: '0 20px',
-                  marginBottom: '24px',
+                  padding: '0 24px',
+                  marginBottom: '28px',
                   textAlign: 'center'
                 }}>
                   <div style={{
-                    width: '50px',
-                    height: '50px',
+                    width: '56px',
+                    height: '56px',
                     borderRadius: '50%',
-                    background: 'rgba(55, 65, 81, 0.1)',
-                    border: '1px solid rgba(55, 65, 81, 0.2)',
-                    margin: '0 auto 12px',
+                    background: 'rgba(55, 65, 81, 0.08)',
+                    border: '1px solid rgba(55, 65, 81, 0.15)',
+                    margin: '0 auto 14px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#374151'
+                    color: '#374151',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)'
                   }}>
-                    <User size={20} strokeWidth={1.5} />
+                    <User size={22} strokeWidth={1.5} />
                   </div>
                   <p style={{
-                    fontSize: '14px',
+                    fontSize: '15px',
                     fontWeight: '600',
                     color: '#1f2937',
                     marginBottom: '4px'
@@ -281,15 +516,15 @@ const AdvancedSkills = () => {
                 </div>
 
                 {/* Categories */}
-                <div className="categories" style={{ padding: '0 12px' }}>
+                <div className="categories" style={{ padding: '0 16px' }}>
                   <p style={{
-                    fontSize: '12px',
-                    fontWeight: '600',
+                    fontSize: '11px',
+                    fontWeight: '700',
                     color: '#64748b',
-                    marginBottom: '12px',
-                    padding: '0 8px',
+                    marginBottom: '16px',
+                    padding: '0 12px',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.5px'
+                    letterSpacing: '0.8px'
                   }}>
                     Categories
                   </p>
@@ -298,26 +533,31 @@ const AdvancedSkills = () => {
                     return (
                       <motion.button
                         key={category.name}
-                        whileHover={{ x: 4 }}
+                        whileHover={{ x: 6, scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setActiveCategory(category.name)}
                         style={{
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '12px',
+                          gap: '14px',
                           width: '100%',
-                          padding: '10px 12px',
-                          borderRadius: '8px',
-                          border: 'none',
+                          padding: '12px 16px',
+                          borderRadius: '10px',
+                          border: activeCategory === category.name
+                            ? '1px solid rgba(55, 65, 81, 0.2)'
+                            : '1px solid transparent',
                           background: activeCategory === category.name
-                            ? 'rgba(55, 65, 81, 0.1)'
+                            ? 'rgba(55, 65, 81, 0.08)'
                             : 'transparent',
-                          color: activeCategory === category.name ? '#374151' : '#64748b',
+                          color: activeCategory === category.name ? '#1f2937' : '#64748b',
                           cursor: 'pointer',
-                          transition: 'all 0.2s ease',
+                          transition: 'all 0.3s ease',
                           fontSize: '14px',
-                          fontWeight: '500',
-                          marginBottom: '4px'
+                          fontWeight: activeCategory === category.name ? '600' : '500',
+                          marginBottom: '6px',
+                          boxShadow: activeCategory === category.name
+                            ? '0 2px 8px rgba(0, 0, 0, 0.05)'
+                            : 'none'
                         }}
                       >
                         <Icon size={16} strokeWidth={1.5} />
@@ -331,14 +571,131 @@ const AdvancedSkills = () => {
               {/* Main Content Area */}
               <div
                 ref={contentRef}
-                className="macos-scrollbar advanced-skills-content"
+                className="skills-scroll-container"
                 style={{
                   flex: 1,
-                  padding: '24px',
+                  padding: '28px 32px',
                   overflowY: 'auto',
-                  height: '100%'
+                  height: '100%',
+                  WebkitOverflowScrolling: 'touch',
+                  scrollBehavior: 'smooth',
+                  background: 'rgba(255, 255, 255, 0.3)',
+                  // Enhanced scrolling performance
+                  willChange: 'scroll-position',
+                  transform: 'translateZ(0)',
+                  contain: 'layout style paint',
+                  overscrollBehavior: 'contain'
                 }}
               >
+                {/* Technology Icons Section - Now First */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  style={{ marginBottom: '32px' }}
+                >
+                  <h3 style={{
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    marginBottom: '20px',
+                    color: '#1f2937'
+                  }}>
+                    Technologies I Work With
+                  </h3>
+
+                  {/* Technology Icons Grid - All Devices */}
+                  <div
+                    className="skills-icons-responsive"
+                    style={{
+                      width: '100%',
+                      maxWidth: '100%',
+                      padding: '20px 15px',
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(8, 1fr)',
+                      gap: '15px',
+                      justifyItems: 'center'
+                    }}
+                  >
+                    {filteredSkills.map((skill) => (
+                      <div
+                        key={skill.name}
+                        className="skill-icon-mobile"
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          gap: '8px',
+                          cursor: 'pointer',
+                          transition: 'transform 0.2s ease',
+                          transform: 'translateZ(0)'
+                        }}
+                        onMouseEnter={(e) => {
+                          const iconContainer = e.currentTarget.querySelector('.icon-container') as HTMLElement;
+                          if (iconContainer) {
+                            iconContainer.style.transform = 'translateY(-2px) scale(1.05)';
+                            iconContainer.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          const iconContainer = e.currentTarget.querySelector('.icon-container') as HTMLElement;
+                          if (iconContainer) {
+                            iconContainer.style.transform = 'translateY(0) scale(1)';
+                            iconContainer.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+                          }
+                        }}
+                      >
+                        {/* Technology Icon */}
+                        <div
+                          className="icon-container"
+                          style={{
+                            width: '60px',
+                            height: '60px',
+                            borderRadius: '12px',
+                            background: 'rgba(255, 255, 255, 0.8)',
+                            border: '1px solid rgba(0, 0, 0, 0.1)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            transition: 'all 0.2s ease',
+                            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                            backdropFilter: 'blur(10px)'
+                          }}
+                        >
+                          <img
+                            src={skill.icon}
+                            alt={`${skill.name} icon`}
+                            style={{
+                              width: '32px',
+                              height: '32px',
+                              objectFit: 'contain',
+                              pointerEvents: 'none'
+                            }}
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                              e.currentTarget.parentElement!.innerHTML = `<div style="width: 32px; height: 32px; background: linear-gradient(45deg, #ec4899, #8b5cf6); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold;">${skill.name.charAt(0)}</div>`;
+                            }}
+                          />
+                        </div>
+
+                        {/* Technology Name */}
+                        <span style={{
+                          fontSize: '12px',
+                          fontWeight: '600',
+                          color: '#374151',
+                          textAlign: 'center',
+                          lineHeight: '1.2',
+                          maxWidth: '70px',
+                          wordWrap: 'break-word',
+                          hyphens: 'auto',
+                          fontFamily: 'Inter, system-ui, sans-serif'
+                        }}>
+                          {skill.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+
                 {/* Favorites Section */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -418,7 +775,8 @@ const AdvancedSkills = () => {
                   }}>
                     All Skills
                   </h3>
-                  <div style={{ display: 'grid', gap: '12px' }} className="grid-cols-1 sm:grid-cols-2">
+                  {/* Desktop View - Full Cards */}
+                  <div style={{ display: 'grid', gap: '12px' }} className="desktop-skills-cards hidden md:grid grid-cols-1 sm:grid-cols-2">
                     {filteredSkills.map((skill, index) => (
                       <motion.div
                         key={skill.name}
@@ -437,27 +795,57 @@ const AdvancedSkills = () => {
                           boxShadow: '0 2px 12px rgba(0, 0, 0, 0.05)'
                         }}>
                           <CardContent style={{ padding: '16px' }}>
-                            <div style={{ marginBottom: '12px' }}>
-                              <h4 style={{ fontWeight: '600', fontSize: '15px', color: '#1f2937', marginBottom: '6px' }}>
-                                {skill.name}
-                              </h4>
-                              <div style={{ display: 'flex', gap: '6px', marginBottom: '8px' }}>
-                                <Badge style={{
-                                  background: 'linear-gradient(45deg, #ec4899, #8b5cf6)',
-                                  color: 'white',
-                                  fontSize: '10px',
-                                  fontWeight: '500'
-                                }}>
-                                  {skill.level}
-                                </Badge>
-                                <Badge variant="secondary" style={{
-                                  background: 'rgba(107, 114, 128, 0.1)',
-                                  color: '#374151',
-                                  fontSize: '10px',
-                                  fontWeight: '500'
-                                }}>
-                                  {skill.experience}
-                                </Badge>
+                            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '12px' }}>
+                              {/* Technology Icon */}
+                              <div style={{
+                                width: '40px',
+                                height: '40px',
+                                borderRadius: '8px',
+                                background: 'rgba(255, 255, 255, 0.8)',
+                                border: '1px solid rgba(0, 0, 0, 0.1)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexShrink: 0
+                              }}>
+                                <img
+                                  src={skill.icon}
+                                  alt={`${skill.name} icon`}
+                                  style={{
+                                    width: '24px',
+                                    height: '24px',
+                                    objectFit: 'contain'
+                                  }}
+                                  onError={(e) => {
+                                    e.currentTarget.style.display = 'none';
+                                    e.currentTarget.parentElement!.innerHTML = `<div style="width: 24px; height: 24px; background: linear-gradient(45deg, #ec4899, #8b5cf6); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: bold;">${skill.name.charAt(0)}</div>`;
+                                  }}
+                                />
+                              </div>
+
+                              {/* Skill Info */}
+                              <div style={{ flex: 1, minWidth: 0 }}>
+                                <h4 style={{ fontWeight: '600', fontSize: '15px', color: '#1f2937', marginBottom: '6px' }}>
+                                  {skill.name}
+                                </h4>
+                                <div style={{ display: 'flex', gap: '6px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                                  <Badge style={{
+                                    background: 'linear-gradient(45deg, #ec4899, #8b5cf6)',
+                                    color: 'white',
+                                    fontSize: '10px',
+                                    fontWeight: '500'
+                                  }}>
+                                    {skill.level}
+                                  </Badge>
+                                  <Badge variant="secondary" style={{
+                                    background: 'rgba(107, 114, 128, 0.1)',
+                                    color: '#374151',
+                                    fontSize: '10px',
+                                    fontWeight: '500'
+                                  }}>
+                                    {skill.experience}
+                                  </Badge>
+                                </div>
                               </div>
                             </div>
                             <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.4' }}>
@@ -570,6 +958,7 @@ const AdvancedSkills = () => {
 
 
     </section>
+    </>
   );
 };
 

@@ -131,11 +131,15 @@ const Navbar = () => {
 
   if (!isClient) {
     return (
-      <nav className="fixed top-0 left-0 right-0 z-40" style={{ background: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(20px)', height: '5rem' }}>
+      <nav className="fixed top-0 left-0 right-0 z-40 navbar-mobile" style={{
+        background: 'rgba(255, 255, 255, 0.1)',
+        backdropFilter: 'blur(20px)',
+        height: window.innerWidth <= 768 ? '3.5rem' : '5rem'
+      }}>
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '0 2rem',
+          padding: window.innerWidth <= 768 ? '0 0.75rem' : '0 2rem',
           height: '100%',
           display: 'flex',
           justifyContent: 'space-between',
@@ -203,7 +207,8 @@ const Navbar = () => {
               : 'none',
             transition: 'all 0.3s ease',
             position: 'relative',
-            overflow: 'visible'
+            overflow: 'visible',
+            height: typeof window !== 'undefined' && window.innerWidth <= 768 ? '3.5rem' : '5rem'
           }}
         >
           {/* Animated background gradient */}
@@ -269,10 +274,11 @@ const Navbar = () => {
             variants={navContainerVariants}
             initial="visible"
             animate="visible"
+            className="container"
             style={{
               maxWidth: '1200px',
               margin: '0 auto',
-              padding: '0 2rem',
+              padding: typeof window !== 'undefined' && window.innerWidth <= 768 ? '0 0.75rem' : '0 2rem',
               borderRadius: '0 0 16px 16px',
               background: 'rgba(255, 255, 255, 0.05)',
               border: '1px solid rgba(255, 255, 255, 0.1)',

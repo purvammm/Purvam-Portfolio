@@ -22,7 +22,7 @@ export default function Home() {
     // Simulate initial loading time and preload critical resources
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 800);
+    }, 600); // Balanced loading time
 
     return () => clearTimeout(timer);
   }, []);

@@ -16,6 +16,7 @@ import {
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isMobile, setIsMobile] = useState(false);
 
   const [typingText, setTypingText] = useState('');
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -27,6 +28,19 @@ const About = () => {
     "Full-Stack Developer",
     "Problem Solver"
   ], []);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isInView) return;
@@ -86,8 +100,10 @@ const About = () => {
 
 
   return (
-    <section id="about" ref={ref} style={{ padding: '5rem 1rem', position: 'relative' }}>
+    <section id="about" ref={ref} style={{ padding: '5rem 1rem', position: 'relative' }} className="about-section-mobile">
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+
+
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -127,13 +143,15 @@ const About = () => {
           {/* Compact Cards Grid */}
           <div className="about-cards-grid" style={{
             maxWidth: '1000px',
-            margin: '0 auto',
+            margin: '0 auto 2rem',
             display: 'grid',
             gridTemplateColumns: 'repeat(12, 1fr)',
             gridTemplateRows: 'repeat(10, 70px)',
             gap: '8px',
             padding: '0 1rem'
           }}>
+
+
 
             {/* Name Card - Large */}
             <motion.div
@@ -233,17 +251,19 @@ const About = () => {
               >
                 WORKING AT
               </div>
-              <Image
-                src="/tcs-logo.png"
-                alt="TCS Logo"
-                width={80}
-                height={32}
-                style={{
-                  height: '32px',
-                  width: 'auto',
-                  objectFit: 'contain'
-                }}
-              />
+              <div className="tcs-logo-container">
+                <Image
+                  src="/tcs-logo.png"
+                  alt="TCS Logo"
+                  width={80}
+                  height={32}
+                  style={{
+                    height: '32px',
+                    width: 'auto',
+                    objectFit: 'contain'
+                  }}
+                />
+              </div>
             </motion.div>
 
             {/* Location Card - Small */}
@@ -440,7 +460,7 @@ const About = () => {
               <div style={{ fontSize: '0.75rem', color: '#6b7280', marginBottom: '0.5rem', fontWeight: '600' }}>
                 SPECIALIZING IN
               </div>
-              <div style={{ fontSize: '1.1rem', color: '#1f2937', fontWeight: '600', lineHeight: '1.4' }}>
+              <div style={{ fontSize: '0.9rem', color: '#1f2937', fontWeight: '600', lineHeight: '1.4' }}>
                 AI/ML • Full-Stack Development • Research
               </div>
             </motion.div>
@@ -590,42 +610,49 @@ const About = () => {
             <motion.div
               variants={cardVariants}
               whileHover={{
-                scale: 1.08,
-                y: -8,
-                rotateY: 4,
-                rotateX: 4,
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
+                scale: 1.03,
+                y: -4,
+                boxShadow: '0 12px 24px rgba(0, 0, 0, 0.08)',
                 transition: {
                   type: "spring",
-                  stiffness: 450,
-                  damping: 14
+                  stiffness: 500,
+                  damping: 30
                 }
               }}
               whileTap={{
-                scale: 0.96
+                scale: 0.98
               }}
               style={{
                 gridColumn: '10 / 13',
                 gridRow: '7 / 9',
-                background: 'rgba(255, 255, 255, 0.95)',
-                borderRadius: '16px',
-                border: '1px solid rgba(0, 0, 0, 0.08)',
+                background: 'rgba(255, 255, 255, 0.98)',
+                borderRadius: '20px',
+                border: '1px solid rgba(0, 0, 0, 0.04)',
                 padding: '1rem',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+                boxShadow: '0 6px 16px rgba(0, 0, 0, 0.03)',
                 cursor: 'pointer'
               }}
             >
-              <div>
-                <School size={24} style={{ color: '#1f2937', marginBottom: '0.5rem' }} />
+              <div style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '16px',
+                background: 'rgba(0, 0, 0, 0.04)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '0.5rem'
+              }}>
+                <School size={16} style={{ color: '#374151' }} />
               </div>
-              <div style={{ fontSize: '0.875rem', color: '#1f2937', fontWeight: '600', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.8rem', color: '#111827', fontWeight: '600', textAlign: 'center' }}>
                 Charusat
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#6b7280' }}>University</div>
+              <div style={{ fontSize: '0.7rem', color: '#6b7280' }}>University</div>
             </motion.div>
 
             {/* Skills Card - Large */}
@@ -664,20 +691,24 @@ const About = () => {
                 TECHNICAL SKILLS
               </div>
               <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', lineHeight: '1.8' }}>
-                {[
-                  'Java', 'JavaScript', 'Python', 'React.js', 'Node.js', 'MongoDB', 'MySQL', 'Machine Learning'
-                ].map((skill, index) => (
+                {(isMobile ?
+                  // Reduced skills list for mobile
+                  ['JavaScript', 'React.js', 'Node.js', 'Python']
+                  :
+                  // Full skills list for desktop
+                  ['Java', 'JavaScript', 'Python', 'React.js', 'Node.js', 'MongoDB', 'MySQL', 'Machine Learning']
+                ).map((skill, index, arr) => (
                   <span
                     key={skill}
                     style={{
                       color: '#374151',
-                      fontSize: '0.9rem',
+                      fontSize: isMobile ? '0.8rem' : '0.9rem',
                       fontWeight: '500',
                       fontFamily: 'Inter, system-ui, sans-serif'
                     }}
                   >
                     {skill}
-                    {index < 7 && <span style={{ color: '#d1d5db', margin: '0 0.25rem' }}>&bull;</span>}
+                    {index < arr.length - 1 && <span style={{ color: '#d1d5db', margin: '0 0.25rem' }}>&bull;</span>}
                   </span>
                 ))}
               </div>

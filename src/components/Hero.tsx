@@ -763,6 +763,7 @@ const Hero = () => {
 
                 {/* Achievements Highlight */}
                 <motion.div
+                  className="hero-highlights"
                   style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(2, 1fr)',
@@ -777,11 +778,12 @@ const Hero = () => {
                   whileHover={{ scale: 1.02, boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08)' }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '0.85rem', color: '#6b7280', fontWeight: '600', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
+                  <div className="hero-highlight-item" style={{ textAlign: 'center' }}>
+                    <div className="text" style={{ fontSize: '0.85rem', color: '#6b7280', fontWeight: '600', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
                       SOFTWARE ENGINEER
                     </div>
                     <motion.div
+                      className="icon"
                       style={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -835,27 +837,27 @@ const Hero = () => {
                       />
                     </motion.div>
                   </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '0.85rem', color: '#6b7280', fontWeight: '600', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
+                  <div className="hero-highlight-item" style={{ textAlign: 'center' }}>
+                    <div className="text" style={{ fontSize: '0.85rem', color: '#6b7280', fontWeight: '600', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
                       CGPA B.TECH CSE
                     </div>
-                    <div style={{ fontSize: '1.5rem', color: '#1f2937', fontWeight: '700', letterSpacing: '0.02em' }}>
+                    <div className="icon" style={{ fontSize: '1.5rem', color: '#1f2937', fontWeight: '700', letterSpacing: '0.02em' }}>
                       8.84
                     </div>
                   </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '0.85rem', color: '#6b7280', fontWeight: '600', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
+                  <div className="hero-highlight-item" style={{ textAlign: 'center' }}>
+                    <div className="text" style={{ fontSize: '0.85rem', color: '#6b7280', fontWeight: '600', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
                       PROJECTS CREATED
                     </div>
-                    <div style={{ fontSize: '1.5rem', color: '#1f2937', fontWeight: '700', letterSpacing: '0.02em' }}>
+                    <div className="icon" style={{ fontSize: '1.5rem', color: '#1f2937', fontWeight: '700', letterSpacing: '0.02em' }}>
                       10+
                     </div>
                   </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '0.85rem', color: '#6b7280', fontWeight: '600', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
+                  <div className="hero-highlight-item" style={{ textAlign: 'center' }}>
+                    <div className="text" style={{ fontSize: '0.85rem', color: '#6b7280', fontWeight: '600', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
                       RESEARCH PUBLICATIONS
                     </div>
-                    <div style={{ fontSize: '1.5rem', color: '#1f2937', fontWeight: '700', letterSpacing: '0.02em' }}>
+                    <div className="icon" style={{ fontSize: '1.5rem', color: '#1f2937', fontWeight: '700', letterSpacing: '0.02em' }}>
                       2+
                     </div>
                   </div>
@@ -867,6 +869,7 @@ const Hero = () => {
           {/* Social Links - Outside the card */}
           <motion.div
             variants={itemVariants}
+            className="hero-social-links"
             style={{
               display: 'flex',
               gap: '1.5rem',

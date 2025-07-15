@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { ExternalLink, Github, ChevronLeft, ChevronRight, Code, Database, Brain, Globe, Monitor, Smartphone, FileText, Search, Bot } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Code, Database, Brain, Globe, Monitor, Smartphone, FileText, Search, Bot } from 'lucide-react';
 
 const Projects = () => {
   const ref = useRef(null);
@@ -129,7 +129,8 @@ const Projects = () => {
 
         // Calculate current project based on scroll position
         const projectWidth = 320; // Updated for smaller cards
-        const currentIndex = Math.round(scrollLeft / projectWidth);
+        const gap = 32; // 2rem gap between cards
+        const currentIndex = Math.round(scrollLeft / (projectWidth + gap));
         setCurrentProject(Math.min(currentIndex, projects.length - 1));
       }
     };
@@ -145,8 +146,16 @@ const Projects = () => {
   const scrollToProject = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const projectWidth = 320; // Updated for smaller cards
-      const scrollAmount = direction === 'left' ? -projectWidth : projectWidth;
-      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      const gap = 32; // 2rem gap between cards
+      const scrollAmount = direction === 'left' ? -(projectWidth + gap) : (projectWidth + gap);
+
+      // Use requestAnimationFrame for smoother scrolling
+      requestAnimationFrame(() => {
+        scrollRef.current?.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      });
     }
   };
 
@@ -173,7 +182,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" ref={ref} style={{ padding: '5rem 0', position: 'relative', overflow: 'hidden' }}>
+    <section id="projects" ref={ref} style={{ padding: '5rem 0', position: 'relative', overflow: 'hidden' }} className="projects-section-spacing">
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 1rem' }}>
         <motion.div
           variants={containerVariants}
@@ -297,9 +306,15 @@ const Projects = () => {
                 scrollBehavior: 'smooth',
                 paddingBottom: '1rem',
                 scrollbarWidth: 'none',
-                msOverflowStyle: 'none'
+                msOverflowStyle: 'none',
+                // Performance optimizations for smooth horizontal scrolling
+                WebkitOverflowScrolling: 'touch',
+                overscrollBehaviorX: 'contain',
+                willChange: 'scroll-position',
+                transform: 'translateZ(0)',
+                contain: 'layout style paint'
               }}
-              className="hide-scrollbar horizontal-scroll projects-scroll-container"
+              className="hide-scrollbar horizontal-scroll projects-scroll-container smooth-horizontal-scroll"
               onMouseEnter={() => {
                 // Add subtle glow effect on hover
                 if (scrollRef.current) {
@@ -323,289 +338,184 @@ const Projects = () => {
                     ease: [0.25, 0.46, 0.45, 0.94]
                   }}
                   whileHover={{
-                    y: -12,
-                    scale: 1.03,
-                    rotateY: -2,
-                    rotateX: 2,
-                    transition: { duration: 0.3, ease: "easeOut" }
+                    y: -4,
+                    scale: 1.01,
+                    transition: { duration: 0.2, ease: "easeOut" }
                   }}
-                  whileTap={{ scale: 0.98 }}
+                  whileTap={{ scale: 0.99 }}
                   className="project-card"
                   style={{
                     minWidth: '300px',
                     maxWidth: '300px',
-                    height: '420px',
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: '16px',
+                    height: '380px',
+                    background: 'rgba(255, 255, 255, 0.98)',
+                    backdropFilter: 'blur(16px)',
+                    borderRadius: '24px',
                     overflow: 'hidden',
-                    border: '1px solid rgba(0, 0, 0, 0.1)',
-                    boxShadow: '0 8px 25px rgba(0, 0, 0, 0.08)',
+                    border: '1px solid rgba(0, 0, 0, 0.06)',
+                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02)',
                     cursor: 'pointer',
-                    position: 'relative'
+                    position: 'relative',
+                    display: 'flex',
+                    flexDirection: 'column'
                   }}
                 >
 
 
-                  {/* Project Visual Header */}
-                  <div style={{ position: 'relative', height: '180px', background: 'rgba(249, 250, 251, 0.8)', overflow: 'hidden' }}>
+                  {/* Minimal Top Accent */}
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '3px',
+                    background: 'linear-gradient(90deg, #f3f4f6, #e5e7eb, #f3f4f6)',
+                    borderRadius: '24px 24px 0 0'
+                  }} />
+
+                  {/* Project Icon */}
+                  <div style={{ padding: '1.5rem 1.25rem 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <motion.div
                       style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: '80px',
-                        height: '80px',
-                        background: 'rgba(55, 65, 81, 0.1)',
-                        border: '1px solid rgba(55, 65, 81, 0.2)',
-                        borderRadius: '16px',
+                        width: '40px',
+                        height: '40px',
+                        borderRadius: '20px',
+                        background: 'rgba(0, 0, 0, 0.04)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: '#374151',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                        zIndex: 2
+                        color: '#374151'
                       }}
                       whileHover={{
                         scale: 1.05,
-                        boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)'
+                        background: 'rgba(0, 0, 0, 0.06)'
                       }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      transition={{ duration: 0.2 }}
                     >
                       {(() => {
                         const IconComponent = getProjectIcon(project.title, project.category);
-                        return <IconComponent size={32} strokeWidth={1.5} />;
+                        return <IconComponent size={18} strokeWidth={1.5} />;
                       })()}
                     </motion.div>
-
-
 
                     {/* Status Badge */}
                     <motion.div
                       style={{
-                        position: 'absolute',
-                        top: '12px',
-                        right: '12px',
-                        background: project.status === 'Live'
-                          ? 'linear-gradient(45deg, #10b981, #059669)'
-                          : 'linear-gradient(45deg, #f59e0b, #d97706)',
-                        color: 'white',
-                        padding: '4px 10px',
-                        borderRadius: '10px',
+                        background: 'rgba(0, 0, 0, 0.04)',
+                        color: project.status === 'Live' ? '#059669' : '#d97706',
+                        padding: '0.25rem 0.5rem',
+                        borderRadius: '12px',
                         fontSize: '0.7rem',
-                        fontWeight: '600',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                        zIndex: 3
+                        fontWeight: '500'
                       }}
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{
+                        scale: 1.02,
+                        background: 'rgba(0, 0, 0, 0.06)'
+                      }}
                       transition={{ duration: 0.2 }}
                     >
                       {project.status}
                     </motion.div>
-
-                    {/* Project Number */}
-                    <motion.div
-                      style={{
-                        position: 'absolute',
-                        top: '12px',
-                        left: '12px',
-                        background: 'rgba(255, 255, 255, 0.95)',
-                        backdropFilter: 'blur(10px)',
-                        color: '#374151',
-                        padding: '4px 10px',
-                        borderRadius: '10px',
-                        fontSize: '0.8rem',
-                        fontWeight: '700',
-                        zIndex: 3
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {project.id}
-                    </motion.div>
                   </div>
 
+
                   {/* Project Content */}
-                  <motion.div
-                    style={{ padding: '20px', position: 'relative', zIndex: 1 }}
-                    whileHover={{ y: -2 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {/* Category & Year */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-                      <motion.span
-                        style={{
-                          background: `linear-gradient(45deg, ${
-                            index % 4 === 0 ? '#ec4899, #8b5cf6' :
-                            index % 4 === 1 ? '#3b82f6, #06b6d4' :
-                            index % 4 === 2 ? '#10b981, #059669' :
-                            '#f59e0b, #ef4444'
-                          })`,
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text',
-                          fontSize: '0.8rem',
-                          fontWeight: '600',
-                          letterSpacing: '0.5px'
-                        }}
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        {project.category}
-                      </motion.span>
-                      <span style={{ color: '#9ca3af', fontSize: '0.8rem', fontWeight: '500' }}>
-                        {project.year}
-                      </span>
-                    </div>
-
-                    {/* Title & Subtitle */}
-                    <motion.h3
+                  <div style={{
+                    padding: '1.25rem',
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between'
+                  }}>
+                    {/* Category Badge */}
+                    <motion.div
                       style={{
-                        fontSize: '1.25rem',
-                        fontWeight: '700',
-                        marginBottom: '4px',
-                        color: '#1f2937',
-                        lineHeight: '1.3'
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        background: 'rgba(0, 0, 0, 0.04)',
+                        color: '#6b7280',
+                        padding: '0.25rem 0.5rem',
+                        borderRadius: '12px',
+                        fontSize: '0.7rem',
+                        fontWeight: '500',
+                        marginBottom: '0.75rem'
                       }}
-                      whileHover={{ x: 2 }}
-                      transition={{ duration: 0.2 }}
+                      whileHover={{
+                        scale: 1.02,
+                        background: 'rgba(0, 0, 0, 0.06)'
+                      }}
                     >
-                      {project.title}
-                    </motion.h3>
+                      {project.category} • {project.year}
+                    </motion.div>
 
+                    {/* Title */}
+                    <h3 style={{
+                      fontSize: '1.1rem',
+                      fontWeight: '600',
+                      marginBottom: '0.5rem',
+                      color: '#111827',
+                      lineHeight: '1.3'
+                    }}>
+                      {project.title}
+                    </h3>
+
+                    {/* Description */}
                     <p style={{
                       color: '#6b7280',
-                      fontSize: '0.8rem',
-                      marginBottom: '12px',
-                      fontWeight: '500',
-                      lineHeight: '1.4'
-                    }}>
-                      {project.subtitle}
-                    </p>
-
-                    <p style={{
-                      color: '#4b5563',
-                      fontSize: '0.8rem',
-                      lineHeight: '1.5',
-                      marginBottom: '16px',
+                      fontSize: '0.75rem',
+                      lineHeight: '1.4',
+                      marginBottom: '1rem',
                       display: '-webkit-box',
-                      WebkitLineClamp: 3,
+                      WebkitLineClamp: 2,
                       WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      flex: 1
                     }}>
                       {project.description}
                     </p>
 
                     {/* Technologies */}
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
-                      {project.technologies.slice(0, 4).map((tech, i) => (
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem', marginTop: 'auto' }}>
+                      {project.technologies.slice(0, 3).map((tech, i) => (
                         <motion.span
                           key={i}
                           style={{
-                            background: 'rgba(55, 65, 81, 0.08)',
-                            color: '#374151',
-                            padding: '3px 8px',
-                            borderRadius: '6px',
-                            fontSize: '0.7rem',
-                            fontWeight: '500',
-                            border: '1px solid rgba(55, 65, 81, 0.15)'
+                            background: 'rgba(0, 0, 0, 0.04)',
+                            color: '#6b7280',
+                            padding: '0.2rem 0.4rem',
+                            borderRadius: '10px',
+                            fontSize: '0.65rem',
+                            fontWeight: '500'
                           }}
                           whileHover={{
-                            scale: 1.05,
-                            y: -1,
-                            background: 'rgba(55, 65, 81, 0.12)'
+                            scale: 1.02,
+                            background: 'rgba(0, 0, 0, 0.06)'
                           }}
                           transition={{ duration: 0.2 }}
                         >
                           {tech}
                         </motion.span>
                       ))}
-                      {project.technologies.length > 4 && (
+                      {project.technologies.length > 3 && (
                         <motion.span
                           style={{
-                            background: 'rgba(107, 114, 128, 0.08)',
+                            background: 'rgba(0, 0, 0, 0.04)',
                             color: '#6b7280',
-                            padding: '3px 8px',
-                            borderRadius: '6px',
-                            fontSize: '0.7rem',
-                            fontWeight: '500',
-                            border: '1px solid rgba(107, 114, 128, 0.1)'
+                            padding: '0.2rem 0.4rem',
+                            borderRadius: '10px',
+                            fontSize: '0.65rem',
+                            fontWeight: '500'
                           }}
                           whileHover={{
-                            scale: 1.05,
-                            background: 'rgba(107, 114, 128, 0.12)'
+                            scale: 1.02,
+                            background: 'rgba(0, 0, 0, 0.06)'
                           }}
                         >
-                          +{project.technologies.length - 4}
+                          +{project.technologies.length - 3}
                         </motion.span>
                       )}
                     </div>
-
-                    {/* Action Buttons */}
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      <motion.a
-                        whileHover={{
-                          scale: 1.02,
-                          background: 'rgba(107, 114, 128, 0.15)',
-                          y: -1
-                        }}
-                        whileTap={{ scale: 0.98 }}
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          background: 'rgba(107, 114, 128, 0.08)',
-                          color: '#374151',
-                          textDecoration: 'none',
-                          fontSize: '0.75rem',
-                          fontWeight: '500',
-                          padding: '6px 12px',
-                          borderRadius: '10px',
-                          border: '1px solid rgba(107, 114, 128, 0.15)',
-                          flex: 1,
-                          justifyContent: 'center'
-                        }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <Github size={12} strokeWidth={1.5} />
-                        Code
-                      </motion.a>
-
-                      <motion.a
-                        whileHover={{
-                          scale: 1.02,
-                          background: 'rgba(17, 24, 39, 0.9)',
-                          y: -1
-                        }}
-                        whileTap={{ scale: 0.98 }}
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          background: 'rgba(17, 24, 39, 0.8)',
-                          color: 'white',
-                          textDecoration: 'none',
-                          fontSize: '0.75rem',
-                          fontWeight: '500',
-                          padding: '6px 12px',
-                          borderRadius: '8px',
-                          border: '1px solid rgba(17, 24, 39, 0.3)',
-                          flex: 1,
-                          justifyContent: 'center'
-                        }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <ExternalLink size={12} strokeWidth={1.5} />
-                        Live
-                      </motion.a>
-                    </div>
-                  </motion.div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -637,9 +547,15 @@ const Projects = () => {
                 onClick={() => {
                   if (scrollRef.current) {
                     const projectWidth = 320;
-                    scrollRef.current.scrollTo({
-                      left: index * projectWidth,
-                      behavior: 'smooth'
+                    const gap = 32; // 2rem gap
+                    const targetPosition = index * (projectWidth + gap);
+
+                    // Use requestAnimationFrame for smoother scrolling
+                    requestAnimationFrame(() => {
+                      scrollRef.current?.scrollTo({
+                        left: targetPosition,
+                        behavior: 'smooth'
+                      });
                     });
                   }
                 }}
