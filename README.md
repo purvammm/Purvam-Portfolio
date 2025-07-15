@@ -1,48 +1,87 @@
-# Modern Portfolio Website
+# Purvam Prajapati - Portfolio Website
 
-A beautiful, responsive portfolio website built with Next.js, Tailwind CSS, and Framer Motion, replicating the exact feel and behavior of modern portfolio designs.
+A modern, responsive portfolio website showcasing my journey as a Computer Science Engineer, AI/ML Researcher, and Full-Stack Developer. Built with Next.js, featuring smooth animations, interactive components, and optimized performance.
+
+## 🚀 Live Demo
+
+Visit the live portfolio: [Portfolio Website](https://purvam-portfolio.pages.dev)
 
 ## ✨ Features
 
-- **Modern Design**: Dark theme with cyan/teal accents and clean typography
-- **Smooth Animations**: Framer Motion animations on scroll, hover, and page load
-- **Responsive Layout**: Fully responsive design that works on all devices
-- **Smooth Scrolling**: Seamless navigation between sections
-- **Interactive Components**: Hover effects, animated buttons, and form interactions
-- **Performance Optimized**: Built with Next.js for optimal performance
+### 🎨 Design & UI
+- **Modern Glass Morphism Design** with beautiful blur effects
+- **Responsive Layout** optimized for all devices (mobile, tablet, desktop)
+- **Dark/Light Theme Toggle** with smooth transitions
+- **Floating Sidebar** with magnetic hover effects
+- **Interactive Animations** using Framer Motion
+- **Smooth Scrolling** with optimized performance
 
-## 🚀 Sections
+### 🔧 Technical Features
+- **Next.js 15** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **Framer Motion** for animations
+- **Lazy Loading** for optimal performance
+- **SEO Optimized** with proper meta tags
+- **Mobile-First Design** approach
 
-1. **Hero Section**: Animated introduction with profile image and call-to-action buttons
-2. **About Section**: Personal description and what you do
-3. **Experience**: Timeline-based work experience with animations
-4. **Projects**: Showcase of featured projects with tech stacks
-5. **Skills**: Categorized skills with progress bars and tech icons
-6. **Contact**: Contact form and social media links
-7. **Footer**: Built with credits and animated elements
+### 📱 Sections
+- **Hero Section** with animated background and typing effects
+- **About Me** with interactive cards and personal information
+- **Experience & Education** with draggable cards (desktop) and timeline
+- **Projects** with horizontal scrolling and detailed descriptions
+- **Skills** with categorized technology showcase
+- **Contact** with social links and contact information
 
-## 🛠️ Tech Stack
+## 🎯 Key Highlights
 
-- **Framework**: Next.js 15
-- **Styling**: Tailwind CSS
+- **8.84 CGPA** in BTech Computer Science Engineering
+- **Software Engineer** at Tata Consultancy Services (2025)
+- **10+ Projects** in AI/ML, Full-Stack Development
+- **2+ Research Publications** in Springer and IEEE
+- **Expertise** in JavaScript, Python, React.js, Node.js, AI/ML
+
+## 🛠️ Technologies Used
+
+- **Frontend**: Next.js 15, React 18, TypeScript
+- **Styling**: Tailwind CSS, Custom CSS
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
-- **Language**: TypeScript
-- **Font**: Inter (Google Fonts)
+- **Deployment**: Cloudflare Pages
+- **Version Control**: Git, GitHub
 
-## 📦 Getting Started
+## 📦 Installation & Setup
 
-First, run the development server:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/purvammm/Portfolio.git
+   cd Portfolio
+   ```
 
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
+
+## 🏗️ Build & Deployment
+
+### Build for Production
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Deploy to Cloudflare Pages
+```bash
+npx wrangler pages deploy out
+```
 
 ## 🎨 Customization
 
@@ -59,12 +98,33 @@ Update the following files with your information:
 ### Resume
 Replace `public/resume.pdf` with your actual resume file.
 
-## 🚀 Deploy on Vercel
+## 📱 Mobile Optimization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Responsive design for all screen sizes
+- Touch-optimized interactions
+- Smooth scrolling performance
+- Optimized loading times
+- Mobile-specific UI adaptations
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔧 Performance Optimizations
+
+- Lazy loading of components
+- Image optimization
+- Code splitting
+- Minimal bundle size
+- Hardware acceleration for animations
+- Efficient CSS and JavaScript
+
+## 📞 Contact
+
+- **Email**: prajapatipurvam2003@gmail.com
+- **LinkedIn**: [Purvam Prajapati](https://linkedin.com/in/purvam-prajapati)
+- **GitHub**: [purvammm](https://github.com/purvammm)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**Built with ❤️ using Next.js, Tailwind CSS, and Framer Motion**
+**Built with ❤️ by Purvam Prajapati**
