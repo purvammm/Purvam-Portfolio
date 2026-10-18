@@ -1,225 +1,308 @@
-# 🏷️ Five Taps: Purvam's NFC Sticker Playbook
+# 🏷️ Five Taps v2: iPhone 17 Edition
 
-> 5 stickers, 3 goals: **meet more people**, **date better**, **make life easier**.
-> This is v1, the general version. Answer the questions at the bottom and v2 will be built around your actual routine.
+> 5 NTAG213 stickers, and each one has **its own trick**. No two tags do the same job.
+> Goals: **meet more people** · **date better** · **make life run itself**.
 
-## The 5 tags at a glance
+## What your stickers can do (from your screenshot)
 
-| # | Name | Goal | Where it goes | Who taps it | What's on the tag |
-|---|------|------|---------------|-------------|-------------------|
-| 1 | **The Reverse Business Card** | People | A card in your wallet | Anyone you meet | A URL (WhatsApp or your own page) |
-| 2 | **The Keychain Brain** | People + Dating | Your keychain | You (and anyone who finds your keys) | Blank, or a "found my keys" URL |
-| 3 | **Date Mode** | Dating | The wall by your door | You | Blank |
-| 4 | **Tap for a Question** | Dating + People | A bookmark or small card | Your date, friends, your team | A URL to a question deck |
-| 5 | **Bedside Life OS** | Easy life + People | The side of your nightstand or bed frame | You | Blank |
+| NFC Tools showed | What it means |
+|---|---|
+| NXP NTAG213, signature **valid** | A genuine NXP chip, so it has the **built-in tap counter** that Tags 1 and 4 use. Cheap clones often don't have it. |
+| 180 bytes (45 pages) | 144 bytes are yours to use; the rest stores chip settings. That's room for one link of about 130 characters. Tags 1 and 4 use roughly 60. |
+| Writable, no password | Ready to use. |
+| Serial `04:D1:F5:FA:AC:1E:90` | Every sticker has a different one. Your iPhone recognises the private tags (2, 3, 5) by this number, so **those can stay blank**. |
 
-**There are two kinds of tags:**
-- **Public tags (1, 4)** store a URL. Any modern phone opens it on tap, with no app needed.
-- **Private tags (2, 3, 5)** run automations on *your* phone only. On iPhone they can be completely blank, because Shortcuts recognises the tag by its unique ID.
+## The five tags
 
-The recipes below use iPhone Shortcuts. If you're on Android, say so and v2 will have the Android steps.
+| # | Tag | What it does | How it works | Who taps | Where |
+|---|---|---|---|---|---|
+| 1 | **The Living Card** 🤝 | Tells each person *"you're the 37th person to tap this"*, then gets their number | The chip's own tap counter. No server, no app on their phone | Anyone | Plastic card in your wallet |
+| 2 | **Keychain Brain** 🧠 | Turns a 15-second voice note into a saved memory and a follow-up reminder at the right time | Apple Intelligence model inside Shortcuts | You | Acrylic anime charm on your keys |
+| 3 | **Launch Pad** 🚪 | Knows whether you're leaving or coming back, and whether it's date night | Saves its state between taps and reads your calendar | You | Wall beside your front door |
+| 4 | **Chemistry Deck** 🎴 | The chip picks the question **and** whose turn it is | Uses the tap counter like a dice | Anyone | Bookmark or coaster |
+| 5 | **The Mirror** 🪥 | An alarm you can only cancel by getting out of bed | You have to be at the sticker. The alarm time comes from tomorrow's calendar and traffic | You | Tile beside the bathroom mirror |
+
+**The tags share one memory**
+- 🧠 writes everyone you meet to `people.txt`. 🚪 reads it before a date to suggest topics, and saves the date debrief back into it.
+- 🤝 puts the tap number in the WhatsApp message, so "card #37" in a chat tells you who that is.
+- 🪥 saves tomorrow's "one thing" at night and reads it back to you in the morning.
 
 ---
 
-## 0. One-time setup (15 min)
+## 0. One-time setup (20 min)
 
-**Check your stickers.** The pack will say NTAG213, 215 or 216. Any of these is fine. NTAG213 holds about 144 bytes, which is plenty for a URL.
+1. **Apps**
+   - **NFC Tools** (free): reads and writes tags.
+   - **NFC.cool Tools**: needed only for the tap counter on Tags 1 and 4, which is a paid Pro feature. Subscribe for one month, write both tags, then cancel. The chip keeps counting forever after that.
+2. **Apple Intelligence:** turn it on in Settings → Apple Intelligence & Siri. Every iPhone 17 model supports it.
+3. **Alarm deletion:** turn on Settings → Apps → Shortcuts → Advanced → **Allow Deleting Without Confirmation**. The Mirror needs this to delete its own alarms.
+4. **Date Focus:** create it in Settings → Focus → **+** → Custom, and name it "Date". Let through only your wingman and family.
+5. **Each private tag (2, 3, 5):** Shortcuts → Automation → **+** → NFC → Scan. Hold the sticker to the **top edge of the iPhone**, then choose **Run Immediately** → New Blank Automation and add the actions below. Turn off *Notify When Run* if you want it silent.
+6. **Unlock first:** automations only run when the iPhone is unlocked. Glancing at it (Face ID) is enough.
+7. **Placement rules**
+   - **Never put a tag on metal:** keys, laptops, steel doors, the back of a mirror.
+   - Don't stack tags on top of each other.
+   - Cover tags with clear tape in wet places.
+   - Put a small anime sticker over each tag so people know where to tap.
 
-| | iPhone (XS or newer) | Android |
+The shortcuts store their data as text files in **iCloud Drive › Shortcuts** (`people.txt`, `door.txt`, `tomorrow.txt`, `good-things.txt`). Open them in the Files app any time.
+
+---
+
+## Tag 1: The Living Card 🤝 (meet people)
+
+**How it works:** the NTAG213 has a counter that goes up by one every time the tag is read. It can't be reset. NFC.cool sets the chip to add that count and its serial number to the link, so every tap opens a **slightly different URL**. The counting happens inside the sticker, with no server involved.
+
+**What the other person sees** (this needs a small `/hi` page on your portfolio):
+
+> **You're person #37 to tap this card.** ✅ *Genuine Purvam card*
+> Purvam Prajapati · Software Engineer @ TCS · AI/ML
+> *Currently:* rewatching ___ · reading ___ · on repeat: ___
+> [ 💬 Say hi on WhatsApp ] [ 📇 Save my contact ] [ LinkedIn ]
+
+- **Milestones:** every 25th person sees *"🎉 You're #50. Coffee's on me. Show Purvam this screen."* People will want to know their number.
+- **Changes with the time of day:** on weekdays from 9 to 7 the big button is LinkedIn. In the evenings and at weekends it's WhatsApp.
+- **A pre-filled WhatsApp message** arrives on your phone looking like this: *"Hey Purvam! It's ___ (card #37), we met at ___."* You get their number, their name and where you met.
+- **The "Currently" line** changes whenever you want, and gives people an easy question to ask you.
+
+**How to write it:** NFC.cool → NFC Tap Counter → URL `https://YOUR-SITE/hi/` → turn on **Tap Counter** and **Tag ID** → Write.
+On every tap the chip sends `https://YOUR-SITE/hi/?nfc=04D1F5FAAC1E90x000025`. The count is in hex: `0x25` = 37.
+
+**Calibrate:** your own test taps count too. When you've finished testing, note the current count; the page subtracts it so the first real person is #1.
+
+**Before the page exists (free version):** use NFC Tools to write
+`https://wa.me/91XXXXXXXXXX?text=Hey%20Purvam!%20%F0%9F%91%8B%20It%27s%20____%20-%20we%20met%20at%20____`
+
+**Where:** stick it on the back of an old plastic card (a metro or gift card). Keep it away from your bank and metro cards, because a wallet full of contactless cards confuses phones. Take it out and hand it over.
+**What to say:** *"This card counts everyone it's met. Want to see your number?"*
+
+---
+
+## Tag 2: Keychain Brain 🧠 (remember people)
+
+**Where:** on the back of a flat **acrylic anime keychain charm**, not on a key (keys are metal).
+
+People remember **that you remembered**. Tapping your keys shows a menu:
+
+- **🆕 Just met someone:** say whatever comes to mind as you walk away: *"That was Riya, PM at Zomato, met at the GDG meetup, moving to Bangalore in December, loves Jujutsu Kaisen."* Apple Intelligence sorts it into a note and decides **when** you should follow up.
+- **🔎 Who's this again?:** say a name and it reads back into your AirPods: *"Riya, a PM at Zomato you met at GDG in October. Ask how the Bangalore move went."*
+- **📊 Weekly report** (Sundays): who you met this week, plus 3 people to message, each with a suggested first line.
+
+```
+Choose from Menu: 🆕 Just met · 🔎 Who's this? · 📊 Weekly report
+
+🆕 Just met
+  Dictate Text
+  Use Model (On-Device):
+    "Voice note about someone I just met: «[Dictated Text]».
+     Reply with raw JSON only, no code fences:
+     {"name":"","where":"","facts":"","ask_about":"","days":3,"type":"work|friend|date"}
+     days = days until a natural follow-up, between 2 and 14."
+  Get Dictionary from Input
+  Get Current Location
+  Text: "[Current Date] | [type] | [name] | [where], [Location: City] | [facts] | ask: [ask_about]"
+  Append to Text File: people.txt   (Make New Line: on)
+  Adjust Date: add [days] days to Current Date
+  Add New Reminder: "Message [name] - ask about [ask_about]"   alert: [Adjusted Date] 7:00 PM
+  Show Notification: "🧠 Got [name]. I'll nudge you in [days] days."
+
+🔎 Who's this?
+  Dictate Text → Name
+  Get File: people.txt   (Error If Not Found: off)
+  Match Text: (?i).*[Name].*
+  If Matches has any value
+    Use Model (On-Device): "In 2 short sentences, brief me on [Name] from these notes:
+      [Matches]. Say how we met and the best thing to ask about."
+    Speak Text
+  Otherwise
+    Speak Text: "No memory of [Name] yet. Tap me after you talk."
+
+📊 Weekly report
+  Get File: people.txt
+  Use Model (Private Cloud Compute):
+    "Today is [Current Date]. From these notes, list who I met in the last 7 days.
+     Then pick 3 people I should message this week, each with a one-line opener
+     based on what they told me: [File]"
+  Show Result
+```
+
+The **On-Device** model keeps your notes on your phone. Only the weekly report uses Private Cloud Compute, because it needs to read the whole file.
+
+---
+
+## Tag 3: Launch Pad 🚪 (easier days and dates)
+
+**Where:** on the wall beside the front door at shoulder height. If your door is steel, it **must** go on the wall.
+
+It saves `out`, `date` or `home` in `door.txt` each time you tap. That's how the same sticker knows whether you're **leaving or coming back**. Your calendar tells it whether it's **date night**: put ❤️ in the event title, for example `❤️ Ananya · Blue Tokai`.
+
+| | 🚀 Leaving | 🏠 Coming back |
 |---|---|---|
-| Writing URLs to tags | **NFC Tools** app | **NFC Tools** app |
-| Running automations | **Shortcuts** (built in) | **MacroDroid** (NFC trigger) or NFC Tools + NFC Tasks |
+| **Normal day** | ☔ Warns you if rain is likely · tells you your next event and travel time · gives you a 🎲 **Commute Mission** | Sends "Reached home ✅" to family |
+| **Date night** (❤️ event within 4 h) | Date Focus on · 3 AI conversation topics **based on your notes about her** · checklist · sends your location to your wingman · hype playlist | Focus off · "Home ✅" to wingman · 30-second spoken debrief → AI suggests **a callback text for tomorrow** + reminder at 10 am |
 
-- **Writing a public tag (NFC Tools):** Write → Add a record → URL/URI → paste the link → OK → Write → hold the sticker to the phone. On iPhone that's the **top edge**; on most Androids it's the **middle of the back**.
-- **Setting up a private tag (iPhone):** Shortcuts → Automation → **+** → NFC → Scan → hold the tag → name it → **Run Immediately** → add the actions.
+**🎲 Commute Mission:** picks a random friend and opens WhatsApp with *"Hey ___, randomly thought of you. How's everything going?"* already typed. Once every working day, that's about 250 people a year you get back in touch with. Research on "weak ties" (Granovetter) found that new opportunities often come from acquaintances rather than close friends.
 
-**Rules to follow**
-1. **Point public tags at a URL you control**, like `your-portfolio/hi`. Then you can change where the tag sends people without rewriting it. Your portfolio is already on Cloudflare Pages, so this is easy.
-2. **Test with one iPhone and one Android, then lock the tag** (NFC Tools → Other → Lock tag) so nobody else can overwrite it. ⚠️ Locking is permanent, so test first.
-3. **Keep tags off metal.** Normal stickers don't work on laptop lids, fridges, MagSafe rings or metal cases. For those spots, use an *anti-metal* tag or put 3–5 mm of foam tape underneath.
-4. **Don't stack two tags**, and **don't put one on your office access card**, because readers get confused.
-5. **Mark each tag**, for example with a small anime sticker on top. You'll know which tag is which, people will know where to tap, and they'll ask about it.
-6. Cover tags in high-touch spots with clear tape.
+**Callback text:** instead of "had fun", send something that refers back to the date: a song, an anime, a book or a reel linked to something she said.
 
----
-
-## Tag 1: The Reverse Business Card 🤝
-**Goal:** meet more people and actually stay in touch.
-
-**What's different:** a normal NFC business card *sends* your details to someone, and then you usually never hear from them. This tag gets **their** details instead. When they tap it, WhatsApp opens on *their* phone with a message to *you* already typed:
-
-> Hey Purvam! 👋 It's ____ - we met at ____
-
-They fill in two blanks and press send. You get their number, their name and *where you met*, and the conversation has already started. Nobody has to remember to "add you later".
-
-**Write this URL** (your number with country code, no `+` and no spaces):
 ```
-https://wa.me/91XXXXXXXXXX?text=Hey%20Purvam!%20%F0%9F%91%8B%20It%27s%20____%20-%20we%20met%20at%20____
-```
+Get File: door.txt (Error If Not Found: off) → State
+If State contains "out" or "date" → ARRIVING
+Otherwise → LEAVING
 
-**Upgrade (can be added to your portfolio):** point the tag at `your-site/hi` instead. That would be a one-screen page with:
-- Your photo and one line: *Software Engineer @ TCS · AI/ML · anime, music, art & books*
-- **Save my contact**: a `.vcf` file, so their phone offers "Create New Contact"
-- **Say hi on WhatsApp**: the pre-filled message above
-- **LinkedIn / Instagram**
-- **A switch based on time of day:** on weekdays from 9 to 7 the top button is LinkedIn; in the evenings and at weekends it's WhatsApp or Instagram.
+── LEAVING ──
+Find Calendar Events: Start Date is in the next 4 hours AND Title contains ❤️, Limit 1
+If Calendar Events has any value                                   ── DATE ──
+  Replace Text "❤️ " with "" in [Event Title] → Split Text by " · " → First Item → Her
+  Save File: "date|[Her]" → door.txt (Ask Where: off, Overwrite: on)
+  Set Focus: Date → On until turned off
+  Get File: people.txt → Match Text (?i).*[Her].*
+  Use Model (On-Device): "I'm going on a date with [Her]. My notes: [Matches].
+    Give 3 light, specific conversation threads and 1 thing to avoid. Max 60 words."
+  Show Result
+  Choose from List (Select Multiple): Wallet · Keys · Phone > 50% · Perfume · Mints · Backup cash
+  Get Current Location → Get Maps URL
+  Send Message to [Wingman]: "Date mode ON 🫡 [Event Location] · I'm here: [Maps URL]"
+  Play Music: Hype playlist
+Otherwise                                                          ── DAY ──
+  Save File: "out" → door.txt (Overwrite: on)
+  Get Weather Forecast (Daily) → First Item → Precipitation Chance
+  If Precipitation Chance > 50 → Speak Text "Rain likely. Grab an umbrella."
+  Find Calendar Events: Start Date is after Current Date, today, Limit 1
+  Get Travel Time to [Event Location] → Speak Text "[Event Title] at [Start Date], [Travel Time] away"
+  Text:  Aarav|91XXXXXXXXXX
+         Neha|91XXXXXXXXXX        ← your 20-50 friends
+  Split Text by New Lines → Get Item from List: Random Item
+  Split Text by "|" → First Item → Name, Last Item → Number
+  URL Encode "Hey [Name]! Randomly thought of you - how's everything going?"
+  Open URLs: https://wa.me/[Number]?text=[URL Encoded Text]
 
-**Where to stick it:** on the back of an old plastic card (an expired metro or gift card) that lives in your wallet. Take it out and say "tap here". You could put it on your phone case instead, but test that first: your own phone may keep picking it up, and MagSafe or metal will block it.
-
-**What to say:** *"I got tired of typing numbers, so I built this. Tap here."* People usually ask how it works, which gets you talking.
-
-**Good places to use it:** tech meetups, hackathons, conferences, weddings, cafés, the gym, new teams at work.
-
----
-
-## Tag 2: The Keychain Brain 🧠
-**Goal:** remember the details about people.
-
-People don't remember what you said. They remember that *you remembered*. Messaging "How did the presentation go?" three days later does more than any networking script or pickup line. This tag makes that happen automatically.
-
-**How it works:** after you meet someone (a new colleague, someone at a meetup, a date), tap your keys to your phone as you walk away. It takes about 20 seconds:
-
-1. **Who?** (dictate it)
-2. **Where or how did you meet?**
-3. **One detail worth remembering**: their dog's name, an exam on Friday, their favourite anime, a trip next month
-4. **Type:** Work, Friend or Date
-
-The shortcut then:
-- adds a line like `📅 18 Oct · Work · Riya - AI meetup - 💡 moving to Bangalore in Dec` to a note called **People I Met**, with the date and your location filled in automatically
-- sets a reminder **3 days later at 7 pm**: "Message Riya - ask about the Bangalore move"
-- for a **Date**, also sets a reminder for **tomorrow at 10 am**: "Send her something that ties back to ____"
-
-**iPhone recipe** (Automation → NFC → "Keychain" → Run Immediately):
-```
-Dictate Text                              → Name
-Ask for Input  "Where did you meet?"      → Where
-Ask for Input  "One detail to remember?"  → Detail
-List: Work, Friend, Date → Choose from List → Type
-Get Current Location
-Text: "📅 [Current Date] · [Type] · [Name] - [Where] ([Location]) - 💡 [Detail]"
-Append to Note  "People I Met"
-Adjust Date: Current Date + 3 days
-Add New Reminder "Message [Name] - ask about [Detail]"  (alert: Adjusted Date, 7 pm)
-If Type is "Date" → Add New Reminder "Send [Name] something about [Detail]" (alert: tomorrow 10 am)
+── ARRIVING ──
+Save File: "home" → door.txt (Overwrite: on)
+If State contains "date"
+  Split State by "|" → Last Item → Her
+  Set Focus: Date → Off
+  Send Message to [Wingman]: "Home ✅"
+  Dictate Text   ("How was it? What did she say that you want to remember?")
+  Use Model (On-Device): "Date debrief: «[Dictated Text]». Reply with raw JSON only:
+    {"rating":0,"remember":"","callback":""}. callback = one specific song, anime,
+    book, place or reel tied to something she said, to send her tomorrow."
+  Get Dictionary from Input
+  Append to Text File: people.txt → "[Current Date] | date | [Her] | [rating]/10 | [remember]"
+  Add New Reminder: "Text [Her]: [callback]"   alert: tomorrow 10:00 AM
+Otherwise
+  Send Message to [Family]: "Reached home ✅"
 ```
 
-**Optional lost-keys mode:** also write this URL to the tag: `https://wa.me/91XXXXXXXXXX?text=Hi!%20I%20found%20your%20keys%20at%20____`. Anyone who finds your keys can tap them and message you. Your iPhone still runs the automation, but it will also show a small banner for the link; just ignore it. If you don't want the banner, leave the tag blank.
-
-**Every Sunday (5 min):** read through *People I Met*. If there's anyone you haven't followed up with, message them now. Doing this every week grows your network a lot over a year.
+*If your wingman or family only use WhatsApp, swap in WhatsApp's own **Send Message** action. It may ask you to confirm before sending.*
 
 ---
 
-## Tag 3: Date Mode 💫
-**Goal:** be relaxed and present on the date, then follow up well.
+## Tag 4: Chemistry Deck 🎴 (dates, friends, team)
 
-**Where:** on the wall by your door or next to the mirror, or inside your wardrobe door. Put it wherever you do your last check before leaving.
+**Where:** inside the back cover of the book you carry, or on a bookmark with a "?" drawn over it. For dates at home, stick it under a coaster.
 
-Tapping it shows a menu: **🚀 Heading out** / **🏠 Back home**
+**With the `/q` page and tap counter** (works on anyone's phone):
+- **The chip picks the question:** question = deck[count mod size]. The count goes up by one on every tap, so two taps in a row never give the same question.
+- **The chip picks the turn:** an even count shows *"🎲 YOU answer"*, an odd count shows *"🎲 THEY answer"*. Nobody gets to argue with the chip.
+- **Levels unlock as you play:** each phone remembers where tonight's session started.
+  - Taps 1–6: ⚡ **Spark.** *"Which anime character would be the worst roommate?"* · *"What song plays when you walk into a room?"*
+  - Taps 7–14: 💬 **Real.** *"What did you change your mind about recently?"* · *"What are you secretly proud of?"*
+  - Taps 15+: 🌙 **Deep**, from Arthur Aron's *36 Questions* study on closeness: *"What would be a perfect day for you?"* · *"What's your most treasured memory?"*
+- **House rule:** skipping a question means answering one from the next level up.
+- **Deck switcher:** ❤️ Date · 🍕 Friends · 💼 Team (TCS lunches, new joiners).
 
-**🚀 Heading out**
-- Turns on a **Date Focus**, which silences everything except a few favourites (set this up once under Settings → Focus). Your phone stays in your pocket and she gets your attention.
-- Shows a **pre-flight checklist** (Choose from List → Select Multiple): wallet · keys · phone over 50% · perfume · mints · UPI working · backup cash.
-- Opens a note with **3 things to ask about**, taken from her profile or her Keychain Brain entry, so you always have something to talk about.
-- Starts a **hype playlist** for the ride.
-- Sends a **wingman ping** to your best friend: "Date mode ON 🫡 - at [current location]". That covers safety and holds you to it.
+**How to write it:** NFC.cool → NFC Tap Counter → URL `https://YOUR-SITE/q/` → turn on **Tap Counter** → Write.
 
-**🏠 Back home**
-- Turns the Focus off.
-- Runs a 30-second **debrief**, added to *People I Met* with a #date tag: How did it go (1–10)? What did she mention that you should remember? What would you do differently?
-- Sets a reminder for tomorrow at 10 am to **send a callback instead of "had fun"**: a song, an anime, a book or a reel linked to something she said. It means much more to her.
-- Sends the wingman "Home ✅".
-
----
-
-## Tag 4: Tap for a Question 🎴
-**Goal:** get past small talk on dates and in groups.
-
-Put the sticker on a bookmark (you're into books, so this fits) or a small card with a little "?" drawn on it. Say "tap this" at the start, or when the conversation slows down. Their phone opens a page that shows a random question. Take turns tapping; each tap gives a new question.
-
-**Three levels**
-- **Level 1, Fun:** "Which anime or movie character would be the worst roommate?" · "What song plays when you walk into a room?" · "What's a hill you'll die on?"
-- **Level 2, Real:** "What's something you changed your mind about recently?" · "What are you secretly proud of?" · "What did 15-year-old you think your life would look like?"
-- **Level 3, Deep:** taken from psychologist Arthur Aron's *36 Questions* study on how people get close: "What would be a perfect day for you?" · "What's your most treasured memory?"
-
-**Extra decks:** a **Team** deck (safe for work, for TCS team lunches and new-joiner icebreakers) and a **Friends** deck (for parties). One tag covers all of them; the page has a deck switcher.
-
-**Why it works:** it's fun, most people have never seen anything like it, and the game takes over the job of deciding what to talk about. Aron's research found that people grow close quickly when they share a little more each time. This tag turns that into a game.
-
-**Building it:** this needs a small page. A `/q` page can be added to your portfolio: static, no backend, and it works with your Cloudflare Pages setup. Until then, point the tag at a note or doc of questions.
-
-**A one-time special move (later):** when you're with someone special, rewrite a sticker and hide it inside a gift, for example under a bookmark in a book you give her, or inside a card. When she taps it, it plays a voice note or a playlist you made for her. It costs nothing and she won't forget it.
+**Before the page exists:** leave the tag blank and add a private automation, then hand over your phone.
+```
+Choose from Menu: ⚡ Spark · 💬 Real · 🌙 Deep
+Use Model (On-Device): "One fresh [Chosen Item] question for two people on a date in India.
+  Playful, not cringe, under 20 words."
+Show Alert: [Response]
+```
+When `/q` is live, rewrite the tag with NFC.cool and delete this automation.
 
 ---
 
-## Tag 5: Bedside Life OS 🌙☀️
-**Goal:** make your mornings and nights run themselves, and keep in touch with people.
+## Tag 5: The Mirror 🪥 (life runs itself)
 
-**Where:** on the side of your nightstand or bed frame, within arm's reach. Don't put it on the charger (MagSafe magnets and metal block it) or under where your phone lies.
+**Where:** on the wall or tile **next to** the bathroom mirror at phone height. Don't stick it on the glass, because a mirror's reflective metal layer can block the signal. Cover it with clear tape against splashes.
+You brush your teeth twice a day anyway, so tapping the tag becomes part of a habit you already have.
 
-What it does depends on the time: `If Current Date is before 12:00 PM → Morning, Otherwise → Night`.
-
-**🌙 Night tap (when your phone goes on the charger)**
-- Sleep Focus on, brightness down, Low Power Mode on.
-- **Toggle Alarm**: switches on your *Weekday 7:00* or *Weekend 9:00* alarm.
-- **Tomorrow's top 3** (dictated) gets saved.
-- **One good thing today** (one line) gets added to a *Good Things 2026* note. By December you'll have a record of your year without ever sitting down to journal.
-- Plays rain sounds, lofi or an anime OST with a sleep timer.
+**🌙 Night tap**
+- Reads tomorrow's first event and the traffic, then sets the alarm: **event time − travel time − 75 min to get ready**. It's never later than your usual time (7:30 on weekdays, 9:00 at weekends if nothing's on).
+- Creates **🪥 Wake** plus 3 backup alarms at +4, +8 and +12 minutes.
+- Asks *"One thing that matters tomorrow?"* and *"One good thing today?"*. By December, `good-things.txt` is a record of your whole year.
+- Turns on Sleep Focus and Low Power Mode, then shows *"⏰ 7:05 · first up: standup 9:30 (25 min traffic)."*
 
 **☀️ Morning tap**
-- Reads out the weather, your first meeting and last night's top 3.
-- **Friendship Roulette 🎲** picks one random person from your *Keep in Touch* list (school and Charusat friends, ex-colleagues, cousins, that senior who helped you) and opens a WhatsApp chat with them, already written: *"Hey ___, randomly thought of you - how's everything going?"* One message a day is **365 people back in touch each year**. Research on "weak ties" (Granovetter) found that new jobs and opportunities often come from acquaintances, not close friends, so this is worth doing.
+- You can dismiss 🪥 Wake from bed, but **the backups keep ringing until you're standing at the mirror**. Tapping the tag deletes them, so you can't snooze your way back to sleep.
+- While you brush, Siri reads a **30-second briefing** written by Apple Intelligence: the weather, your first meeting and when to leave, reminders, and the "one thing" you set last night.
 
-**Friendship Roulette recipe**
 ```
-Text:   Aarav|91XXXXXXXXXX
-        Neha|91XXXXXXXXXX
-        ...
-Split Text by New Lines
-Get Item from List: Random Item
-Split Text by Custom "|"
-Get Item from List: First Item  → Name
-Get Item from List: Last Item   → Number
-URL Encode "Hey [Name]! Randomly thought of you - how's everything going?"
-Open URLs  https://wa.me/[Number]?text=[URL Encoded Text]
+Get All Alarms → Repeat with Each
+  If [Repeat Item] Label contains "🪥" → Delete Alarm [Repeat Item]
+End Repeat
+If Current Date is before 12:00 PM → MORNING, Otherwise → NIGHT
+
+── NIGHT ──
+Format Date: "tomorrow", custom "EEE" → Day
+Default = 9:00 AM tomorrow if Day is Sat/Sun, otherwise 7:30 AM tomorrow
+Find Calendar Events: Start Date is between "tomorrow 12:00 AM" and "tomorrow 11:59 PM",
+  Is All Day is false, Sort by Start Date (Oldest First), Limit 1
+If Calendar Events has any value
+  Get Travel Time to [Event Location]          (no location? use 30 min)
+  Calculate: [Travel Time in minutes] + 75 → Lead
+  Adjust Date: subtract [Lead] minutes from [Event Start Date] → Wake
+  If Wake is after Default → Wake = Default
+Otherwise → Wake = Default
+Create Alarm "🪥 Wake" at [Wake]
+Adjust Date +4, +8, +12 minutes → Create Alarm "🪥 Backup" (×3)
+Dictate Text ("One thing that matters tomorrow?") → Save File tomorrow.txt (Overwrite: on)
+Dictate Text ("One good thing today?") → Append to Text File good-things.txt: "[Current Date] - [Dictated Text]"
+Set Focus: Sleep → On · Set Low Power Mode: On
+Show Notification: "⏰ [Wake] · first up: [Event Title]"
+
+── MORNING ──   (the backups were already deleted above)
+Get Weather Forecast (Daily) → First Item
+Find Calendar Events: Start Date is today, Is All Day is false
+Find Reminders: Due Date is today, Is Not Completed
+Get File: tomorrow.txt
+Use Model (On-Device): "Write a spoken morning briefing for Purvam. Under 80 words, warm,
+  a bit funny, no lists. Weather: [..]. Events: [..]. Reminders: [..].
+  His one thing for today: [..]. End with one line of motivation."
+Speak Text
+Set Low Power Mode: Off
 ```
-
----
-
-## Want more? Expansion pack (stickers are cheap, so get a 10-pack)
-
-| Tag | Where | What it does |
-|---|---|---|
-| Deep Work | Desk or laptop stand (not on metal) | Turns on Focus, starts a 50-min timer and logs the session; tap again to end. Gives you weekly hours without any effort. |
-| Door | Inside the front door | Leaving: weather, "umbrella?" and commute time. Coming back: texts family "Reached home ✅". |
-| Gym bag | Bag strap | Starts your workout playlist and logs the date, so you can track streaks. |
-| Meds / supplements | Bottle cap | Logs "taken at 8:42", so you never wonder whether you took it. |
-| Lost & found | Laptop sleeve, luggage, earbuds case | "Found this? Tap to message the owner." |
-| Event badge | Back of a conference badge | Opens your `/hi` page. |
-| Guest Wi-Fi | Next to the router | One-tap Wi-Fi on most Androids (iPhones need a QR code instead). |
 
 ---
 
 ## Manners and safety
-- **Ask before anyone taps:** "Can I show you something cool?"
-- **Anything on a public tag is public.** Only put on it what you're happy for anyone to have, and think twice before leaving tags in public places.
-- These automations log *your* memories and *your* location. Never use them to track where someone else is.
-- The dating tags are there to help you be present and thoughtful, not to run a script. Listening still matters most.
+- **Ask before anyone taps:** *"Can I show you something cool?"*
+- **Anything on a public tag (1, 4) is public.** The private tags are blank, so if someone else taps them, nothing happens.
+- The only location these shortcuts share is **yours**, and only with your wingman. Never use them to track anyone else.
+- Your notes about people stay in iCloud Drive. **Don't commit `people.txt` to this repo, because it's public.**
+- The dating tags help you be present and thoughtful; they're not a script to follow. Listening still matters most.
 
----
+## This weekend
+- [ ] **Sat morning:** setup steps 1–4, then the free version of 🤝 Tag 1 (WhatsApp link).
+- [ ] **Sat:** 🧠 Keychain Brain. Test it by logging 3 people you met this week, then try 🔎 on one of them.
+- [ ] **Sat night:** 🪥 Mirror. Brush your teeth, tap, and check the alarms in the Clock app.
+- [ ] **Sun:** 🚪 Launch Pad. Add your friends list and a test ❤️ event to try the date flow.
+- [ ] **Sun:** 🎴 Chemistry Deck as a private automation until `/q` exists.
+- [ ] **Later:** NFC.cool Pro for one month → rewrite Tags 1 and 4 with the tap counter → cancel.
 
-## This weekend's plan
-- [ ] **Sat morning:** write Tag 1, test it on an iPhone and an Android, then lock it.
-- [ ] **Sat:** build the Keychain Brain (Tag 2) and test it by logging 3 people you met this week.
-- [ ] **Sat night:** set up the Bedside Life OS (Tag 5) and start your *Keep in Touch* list with 20 names.
-- [ ] **Sun:** set up Date Mode (Tag 3) and the Date Focus.
-- [ ] **Sun:** decide on Tag 4: build `/q`, or save the sticker for the gift move.
+## Still needed from you
+1. Your portfolio's live domain, and whether you want the `/hi` and `/q` pages built (static, so they work with your Cloudflare Pages export).
+2. Your wingman, and the family member who should get "Reached home ✅".
+3. 20–50 friends for the Commute Mission.
+4. Your "Currently" line (anime, book, song on repeat) for the Living Card.
 
-## Questions for v2
-1. iPhone or Android, and which model?
-2. Does the portfolio have a custom domain? Do you want the `/hi` (tap page) and `/q` (question deck) pages built?
-3. Where should people you meet end up: WhatsApp, Instagram or LinkedIn? Different for work and social?
-4. Where do you meet people now: office, meetups, gym, college friends, dating apps (which ones)?
-5. Who's your wingman for the Date Mode pings?
-6. What time do you wake up and go to bed on weekdays and weekends?
-7. Any smart home devices (smart bulb, Alexa, Google Home)? Date Mode could dim the lights and start music.
-8. Which ideas did you love, and which didn't do much for you?
+## Sources
+- Apple: [Use Apple Intelligence in Shortcuts](https://support.apple.com/en-mt/guide/shortcuts/tpg3vrvwmclv/ios), covering the Use Model action, On-Device vs Private Cloud Compute
+- NFC.cool: [How to Count NFC Tag Scans Without a Server](https://nfc.cool/blog/count-nfc-tag-scans/) and [Parse NFC Tap Counter Data](https://nfc.cool/blog/ios-shortcuts-nfc-tap-counter/), covering the NTAG21x counter, the `?nfc=` format and the Pro requirement
+- RoutineHub: [Don't Be Alarmed](https://routinehub.co/shortcut/21112/), covering deleting alarms without confirmation
+- Aron et al. (1997), *The Experimental Generation of Interpersonal Closeness* (the 36 Questions); Granovetter (1973), *The Strength of Weak Ties*
+
+*Content from these sources was rephrased for compliance with licensing restrictions.*
