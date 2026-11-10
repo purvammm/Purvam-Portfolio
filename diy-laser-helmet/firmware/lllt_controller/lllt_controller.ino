@@ -23,7 +23,10 @@
   Wiring (see electronics/schematic.svg)
     D9  -> 100R -> MOSFET gate (IRLZ44N), 10k gate->GND
     D2  -> push button -> GND
-    D3  -> interlock micro switch (NO contact) -> GND   (closed = helmet worn)
+    D3  -> HEAD wire -> interlock micro switch COM; switch NO -> helmet +5V bus.
+           10k from D3 to GND on the controller board.  HIGH = helmet worn.
+           (No GND wire ever goes into the helmet: a chafed wire can then
+           never switch the lasers on by itself.)
     D4  -> active buzzer module IN  (or passive piezo, set BUZZER_PASSIVE 1)
     D5  -> 1k -> LED -> GND
     A1  -> 1k -> shunt top (MOSFET source side), 100nF A1->GND
@@ -55,7 +58,7 @@ const uint8_t PIN_VSENSE = A2;
 // ----------------------------- session ------------------------------
 const uint8_t  PRESET_MIN[]      = {10, 15, 20, 25};
 const uint8_t  N_PRESETS         = sizeof(PRESET_MIN);
-const uint8_t  DEFAULT_PRESET    = 3;          // index -> 25 min
+const uint8_t  DEFAULT_PRESET    = 2;          // index -> 20 min (see guide: dose)
 const uint8_t  HARD_MAX_MIN      = 30;         // absolute ceiling
 const uint32_t PAUSE_TIMEOUT_MS  = 5UL * 60UL * 1000UL;
 const uint32_t HOLD_START_MS     = 2000;
@@ -156,7 +159,7 @@ bool headOn() {
 #if USE_INTERLOCK
   static bool stable = false, last = false;
   static uint32_t tc = 0;
-  bool r = digitalRead(PIN_HEAD) == LOW;
+  bool r = digitalRead(PIN_HEAD) == HIGH;   // switch pulls D3 up to +5 V when worn
   if (r != last) { last = r; tc = millis(); }
   // removing the helmet must act at once; putting it on needs 150 ms stable
   if (!r) stable = false;
@@ -372,7 +375,7 @@ void setup() {
   wdt_disable();
 
   pinMode(PIN_BUTTON, INPUT_PULLUP);
-  pinMode(PIN_HEAD, INPUT_PULLUP);
+  pinMode(PIN_HEAD, INPUT);           // external 10k pull-down, open = not worn
   pinMode(PIN_BUZZER, OUTPUT);
   pinMode(PIN_LED, OUTPUT);
   analogReference(INTERNAL);
