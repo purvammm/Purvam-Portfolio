@@ -1,0 +1,29 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 360' width='900' height='360' role='img'>
+<rect width='100%' height='100%' fill='#ffffff'/>
+<text x='450' y='32' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='21' text-anchor='middle' font-weight='bold' fill='#1f2430'>What the red light does (simplified)</text>
+<rect x='40' y='80' width='180' height='150' rx='14' fill='#fff' stroke='#ff4d4d' stroke-width='3'/>
+<text x='130' y='118' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='16' text-anchor='middle' font-weight='bold' fill='#1f2430'>650 nm light</text>
+<text x='130' y='150' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='normal' fill='#444'>passes a few mm into</text>
+<text x='130' y='170' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='normal' fill='#444'>the scalp</text>
+<path d='M226,155 L248,155' fill='none' stroke='#555' stroke-width='3' stroke-linejoin='round' stroke-linecap='round' />
+<path d='M248,155 l-9,-6 l0,12 z' fill='#555' stroke='#555' stroke-width='1' stroke-linejoin='round' stroke-linecap='round' />
+<rect x='255' y='80' width='180' height='150' rx='14' fill='#fff' stroke='#f0962a' stroke-width='3'/>
+<text x='345' y='118' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='16' text-anchor='middle' font-weight='bold' fill='#1f2430'>Mitochondria</text>
+<text x='345' y='150' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='normal' fill='#444'>cytochrome c oxidase</text>
+<text x='345' y='170' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='normal' fill='#444'>absorbs red light</text>
+<path d='M441,155 L463,155' fill='none' stroke='#555' stroke-width='3' stroke-linejoin='round' stroke-linecap='round' />
+<path d='M463,155 l-9,-6 l0,12 z' fill='#555' stroke='#555' stroke-width='1' stroke-linejoin='round' stroke-linecap='round' />
+<rect x='470' y='80' width='180' height='150' rx='14' fill='#fff' stroke='#e9c46a' stroke-width='3'/>
+<text x='560' y='118' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='16' text-anchor='middle' font-weight='bold' fill='#1f2430'>More ATP, NO</text>
+<text x='560' y='150' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='normal' fill='#444'>short ROS burst,</text>
+<text x='560' y='170' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='normal' fill='#444'>cell signalling</text>
+<path d='M656,155 L678,155' fill='none' stroke='#555' stroke-width='3' stroke-linejoin='round' stroke-linecap='round' />
+<path d='M678,155 l-9,-6 l0,12 z' fill='#555' stroke='#555' stroke-width='1' stroke-linejoin='round' stroke-linecap='round' />
+<rect x='685' y='80' width='180' height='150' rx='14' fill='#fff' stroke='#2e8b57' stroke-width='3'/>
+<text x='775' y='118' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='16' text-anchor='middle' font-weight='bold' fill='#1f2430'>Follicle</text>
+<text x='775' y='150' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='normal' fill='#444'>longer growth (anagen)</text>
+<text x='775' y='170' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='normal' fill='#444'>phase, thicker hair</text>
+<text x='450' y='280' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13.5' text-anchor='middle' font-weight='normal' fill='#1f2430'>Effects follow a bell-shaped (biphasic) dose curve: too little does nothing, too much can</text>
+<text x='450' y='300' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13.5' text-anchor='middle' font-weight='normal' fill='#1f2430'>cancel the benefit. That is why sessions are timed and capped - longer is NOT better.</text>
+<text x='450' y='330' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='12' text-anchor='middle' font-weight='normal' fill='#666'>Mechanism summary based on Avci et al. 2014 (Lasers Surg Med) and later reviews.</text>
+</svg>

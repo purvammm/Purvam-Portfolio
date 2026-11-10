@@ -1,0 +1,10 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 420' width='900' height='420' role='img'>
+<rect width='100%' height='100%' fill='#ffffff'/>
+<text x='450' y='32' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='21' text-anchor='middle' font-weight='bold' fill='#1f2430'>How the ribs lock together (egg-crate joint)</text>
+<path d='M80,300 L80,170 L230,170 L230,230 L262,230 L262,170 L420,170 L420,300 Z' fill='#4682b4' stroke='#2c5a80' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' />
+<text x='250' y='330' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='14' text-anchor='middle' font-weight='bold' fill='#2c5a80'>ear-to-ear rib: slot from the OUTER edge</text>
+<path d='M480,120 L840,120 L840,240 L676,240 L676,185 L644,185 L644,240 L480,240 Z' fill='#f0962a' stroke='#b26b12' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' />
+<text x='660' y='270' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='14' text-anchor='middle' font-weight='bold' fill='#b26b12'>front-to-back rib: slot from the INNER edge</text>
+<text x='450' y='380' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13.5' text-anchor='middle' font-weight='normal' fill='#1f2430'>Slide them together vertically. Each joint keeps 58 % of the ear-to-ear rib and 42 % of the</text>
+<text x='450' y='400' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13.5' text-anchor='middle' font-weight='normal' fill='#1f2430'>other rib, so both stay strong. 0.4 mm clearance: snug by hand, add a drop of glue when happy.</text>
+</svg>

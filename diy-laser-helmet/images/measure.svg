@@ -1,0 +1,31 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 520' width='900' height='520' role='img'>
+<rect width='100%' height='100%' fill='#ffffff'/>
+<text x='450' y='32' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='21' text-anchor='middle' font-weight='bold' fill='#1f2430'>Measure your head (over your hair, in mm)</text>
+<path d='M80,300 C70,180 140,100 240,100 C340,100 390,180 380,260 L390,290 C402,305 400,320 382,330 L380,370 C350,410 290,420 250,420 L170,420 C120,400 90,360 80,300' fill='#f2d2b6' stroke='#8c6a52' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round' />
+<ellipse cx='210' cy='330' rx='17' ry='32' fill='#eec4a4' stroke='#8c6a52' stroke-width='2'/>
+<text x='235' y='446' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='normal' fill='#555'>side view</text>
+<line x1='80' y1='230' x2='385' y2='230' stroke='#c0392b' stroke-width='2.5' stroke-linecap='round'/>
+<path d='M80,230 l10,-6 l0,12 z' fill='#c0392b' stroke='#c0392b' stroke-width='1' stroke-linejoin='round' stroke-linecap='round' />
+<path d='M385,230 l-10,-6 l0,12 z' fill='#c0392b' stroke='#c0392b' stroke-width='1' stroke-linejoin='round' stroke-linecap='round' />
+<text x='230' y='220' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='bold' fill='#c0392b'>head_length (between the eyebrows to the back)</text>
+<line x1='445' y1='298' x2='445' y2='100' stroke='#1e6fb8' stroke-width='2.5' stroke-linecap='round'/>
+<path d='M445,100 l-6,10 l12,0 z' fill='#1e6fb8' stroke='#1e6fb8' stroke-width='1' stroke-linejoin='round' stroke-linecap='round' />
+<path d='M445,298 l-6,-10 l12,0 z' fill='#1e6fb8' stroke='#1e6fb8' stroke-width='1' stroke-linejoin='round' stroke-linecap='round' />
+<line x1='180' y1='298' x2='455' y2='298' stroke='#1e6fb8' stroke-width='1.5' stroke-linecap='round' stroke-dasharray='6,5'/>
+<line x1='240' y1='100' x2='455' y2='100' stroke='#1e6fb8' stroke-width='1.5' stroke-linecap='round' stroke-dasharray='6,5'/>
+<text x='455' y='190' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='start' font-weight='bold' fill='#1e6fb8'>head_height</text>
+<text x='455' y='207' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='12' text-anchor='start' font-weight='normal' fill='#1e6fb8'>top of ear -&gt; top</text>
+<text x='455' y='224' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='12' text-anchor='start' font-weight='normal' fill='#1e6fb8'>of head</text>
+<ellipse cx='700' cy='225' rx='95' ry='120' fill='#f2d2b6' stroke='#8c6a52' stroke-width='2.5'/>
+<path d='M688,105 l12,-14 l12,14' fill='#f2d2b6' stroke='#8c6a52' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round' />
+<ellipse cx='603' cy='230' rx='8' ry='20' fill='#eec4a4' stroke='#8c6a52' stroke-width='2'/>
+<ellipse cx='797' cy='230' rx='8' ry='20' fill='#eec4a4' stroke='#8c6a52' stroke-width='2'/>
+<line x1='605' y1='215' x2='795' y2='215' stroke='#2e8b57' stroke-width='2.5' stroke-linecap='round'/>
+<path d='M605,215 l10,-6 l0,12 z' fill='#2e8b57' stroke='#2e8b57' stroke-width='1' stroke-linejoin='round' stroke-linecap='round' />
+<path d='M795,215 l-10,-6 l0,12 z' fill='#2e8b57' stroke='#2e8b57' stroke-width='1' stroke-linejoin='round' stroke-linecap='round' />
+<text x='700' y='205' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='bold' fill='#2e8b57'>head_width</text>
+<text x='700' y='231' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='12' text-anchor='middle' font-weight='normal' fill='#2e8b57'>(widest point)</text>
+<text x='700' y='375' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13' text-anchor='middle' font-weight='normal' fill='#555'>top view (nose up)</text>
+<text x='450' y='488' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='13.5' text-anchor='middle' font-weight='normal' fill='#333'>Tip: press two hardcover books against your head and measure the gap with a ruler.</text>
+<text x='450' y='508' font-family='Segoe UI,Roboto,Helvetica,Arial,sans-serif' font-size='12.5' text-anchor='middle' font-weight='normal' fill='#555'>Defaults: length 190, width 150, height 100. Ten mm either way is fine - foam pads take up the rest.</text>
+</svg>
