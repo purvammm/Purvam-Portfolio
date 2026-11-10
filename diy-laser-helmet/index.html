@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DIY Red-Light (LLLT) Laser Helmet - Complete Build Guide (India)</title>
+<meta name="description" content="Build a 113-diode 650 nm low-level laser therapy helmet at home: 3D-printable frame, parts from Indian shops, wiring, Arduino timer with safety interlock, dose calculator.">
+<style>
+  :root {
+    --ink: #1f2430; --muted: #5b6372; --line: #e3e6ee; --bg: #ffffff; --soft: #f6f8fc;
+    --blue: #2f6fb0; --red: #c62828; --amber: #b7791f; --green: #2e7d4f;
+    --warnbg: #fff4f2; --warnline: #f2b8b0; --notebg: #f2f7ff; --noteline: #bcd3f5;
+    --okbg: #f1faf4; --okline: #b9e2c7;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font: 16px/1.6 "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); }
+  a { color: var(--blue); }
+  img, svg { max-width: 100%; height: auto; }
+  header.hero { background: linear-gradient(135deg, #1b2335 0%, #2b3a5c 60%, #7a1f1f 140%); color: #fff; padding: 36px 20px 30px; }
+  header.hero .wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; }
+  header.hero h1 { font-size: 2.1rem; line-height: 1.2; margin: 0 0 10px; }
+  header.hero p { color: #d8deea; margin: 8px 0; }
+  header.hero img { background: #fff; border-radius: 14px; padding: 6px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+  .stat { background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 10px 12px; }
+  .stat b { display: block; font-size: 1.35rem; color: #fff; }
+  .stat span { font-size: 0.85rem; color: #c9d2e3; }
+  .layout { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 250px 1fr; gap: 34px; padding: 26px 20px 60px; }
+  nav.toc { position: sticky; top: 14px; align-self: start; max-height: calc(100vh - 28px); overflow: auto; font-size: 0.92rem; border-right: 1px solid var(--line); padding-right: 14px; }
+  nav.toc b { display: block; margin: 4px 0 8px; }
+  nav.toc a { display: block; padding: 3px 0; color: var(--ink); text-decoration: none; }
+  nav.toc a:hover { color: var(--blue); }
+  nav.toc a.sub { padding-left: 14px; color: var(--muted); font-size: 0.88rem; }
+  .layout > main, .layout > nav { min-width: 0; }   /* let wide tables scroll instead of widening the page */
+  main section { margin-bottom: 46px; }
+  main h2 { font-size: 1.55rem; margin: 0 0 12px; padding-top: 8px; border-top: 3px solid var(--ink); }
+  main h3 { font-size: 1.15rem; margin: 26px 0 8px; }
+  .step-no { display: inline-block; background: var(--ink); color: #fff; border-radius: 8px; padding: 0 10px; margin-right: 8px; font-size: 1rem; }
+  .callout { border: 1px solid; border-radius: 12px; padding: 14px 18px; margin: 16px 0; }
+  .callout.warn { background: var(--warnbg); border-color: var(--warnline); }
+  .callout.note { background: var(--notebg); border-color: var(--noteline); }
+  .callout.ok { background: var(--okbg); border-color: var(--okline); }
+  .callout > b:first-child { display: block; margin-bottom: 4px; }
+  .callout ul { margin: 6px 0 0; padding-left: 20px; }
+  figure { margin: 18px 0; }
+  figure img, figure .svgbox { border: 1px solid var(--line); border-radius: 12px; background: #fff; display: block; }
+  figcaption { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.93rem; margin: 10px 0; }
+  th, td { border-bottom: 1px solid var(--line); padding: 7px 8px; text-align: left; vertical-align: top; }
+  th { background: var(--soft); font-weight: 600; }
+  td.num, th.num { text-align: right; white-space: nowrap; }
+  .tablewrap { overflow-x: auto; }
+  code, kbd { font-family: Consolas, "SFMono-Regular", Menlo, monospace; font-size: 0.9em; background: #f1f3f8; padding: 1px 5px; border-radius: 4px; }
+  pre { background: #10151f; color: #e7ebf3; padding: 12px 14px; border-radius: 10px; overflow-x: auto; font-size: 0.88rem; }
+  ol.steps > li, ul.checks > li { margin-bottom: 8px; }
+  ul.checks { list-style: none; padding-left: 0; }
+  ul.checks > li::before { content: "\2610"; margin-right: 8px; color: var(--muted); }
+  .pill { display: inline-block; font-size: 0.78rem; padding: 1px 8px; border-radius: 99px; background: #eef1f7; color: var(--muted); margin-left: 6px; vertical-align: middle; }
+  .calc { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; background: var(--soft); }
+  .calc .inputs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .calc label { font-size: 0.85rem; color: var(--muted); display: block; }
+  .calc input { width: 100%; padding: 7px 9px; border: 1px solid #c9cfdb; border-radius: 8px; font-size: 1rem; }
+  .calc .out { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
+  .calc .out div { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
+  .calc .out b { display: block; font-size: 1.25rem; }
+  .bars { margin-top: 14px; }
+  .bar { display: grid; grid-template-columns: 210px 1fr 70px; gap: 8px; align-items: center; font-size: 0.88rem; margin: 5px 0; }
+  .bar .track { background: #fff; border: 1px solid var(--line); border-radius: 6px; height: 16px; position: relative; overflow: hidden; }
+  .bar .fill { height: 100%; background: #8aa7d6; }
+  .bar.you .fill { background: var(--red); }
+  .bar .band { position: absolute; top: 0; bottom: 0; background: rgba(46,125,79,0.16); border-left: 1px dashed var(--green); border-right: 1px dashed var(--green); }
+  button { font: inherit; padding: 7px 14px; border-radius: 8px; border: 1px solid #b9c2d3; background: #fff; cursor: pointer; }
+  button.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .tracker-list { font-size: 0.9rem; color: var(--muted); }
+  .small { font-size: 0.88rem; color: var(--muted); }
+  .refs li { margin-bottom: 6px; font-size: 0.93rem; }
+  footer { border-top: 1px solid var(--line); padding: 20px; text-align: center; color: var(--muted); font-size: 0.88rem; }
+  @media (max-width: 900px) {
+    header.hero .wrap { grid-template-columns: 1fr; }
+    .layout { grid-template-columns: 1fr; }
+    nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding-bottom: 10px; columns: 2; }
+    .grid2, .calc .inputs, .calc .out, .stats { grid-template-columns: 1fr 1fr; }
+    .bar { grid-template-columns: 110px 1fr 52px; font-size: 0.8rem; }
+  }
+  @media (max-width: 560px) {
+    .grid2 { grid-template-columns: 1fr; }
+    header.hero h1 { font-size: 1.7rem; }
+  }
+  @media print {
+    nav.toc, .calc button, #tracker { display: none; }
+    .layout { grid-template-columns: 1fr; }
+    header.hero { background: none; color: var(--ink); }
+    header.hero p, .stat span { color: var(--muted); }
+    .stat { border-color: var(--line); }
+    .stat b { color: var(--ink); }
+    section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1>DIY red-light laser helmet (LLLT)</h1>
+      <p>A complete, do-it-yourself build: a 3D-printed frame that holds 113 cheap 650&nbsp;nm laser modules over your scalp, wiring, a small Arduino timer with a head-switch interlock, and the numbers to dose it like the FDA-cleared helmets do. Everything is sourced from Indian shops.</p>
+      <p><b>Read the <a href="#safety" style="color:#ffd1cc">safety section</a> before you buy anything.</b> This is a hobby project, not a medical device.</p>
+      <div class="stats">
+        <div class="stat"><b>113</b><span>laser modules, 650 nm, 5 mW each</span></div>
+        <div class="stat"><b>~&#8377;9-10k</b><span>parts, see the parts list</span></div>
+        <div class="stat"><b>12 parts</b><span>print flat, no supports, fit a 180 mm bed</span></div>
+        <div class="stat"><b>~300 g</b><span>PETG filament</span></div>
+        <div class="stat"><b>20 min</b><span>default session, every other day</span></div>
+        <div class="stat"><b>~1.5 mW/cm&sup2;</b><span>average irradiance (4 mW modules)</span></div>
+      </div>
+    </div>
+    <img src="images/hero.png" alt="Render of the laser helmet frame on a head model: blue ear-to-ear ribs, orange front-to-back ribs, brass laser modules in every hole">
+  </div>
+</header>
+
+<div class="layout">
+<nav class="toc" aria-label="Contents">
+  <b>Contents</b>
+  <a href="#safety">1. Safety first</a>
+  <a href="#science">2. What LLLT can and cannot do</a>
+  <a href="#design">3. The design</a>
+  <a href="#parts">4. Parts list (India)</a>
+  <a href="#tools">5. Tools</a>
+  <a href="#build">6. Build steps</a>
+  <a class="sub" href="#s1">Measure your head</a>
+  <a class="sub" href="#s2">Print the parts</a>
+  <a class="sub" href="#s3">Test the laser modules</a>
+  <a class="sub" href="#s4">Assemble the frame</a>
+  <a class="sub" href="#s5">Fit the modules</a>
+  <a class="sub" href="#s6">Wire the helmet</a>
+  <a class="sub" href="#s7">Build the controller</a>
+  <a class="sub" href="#s8">Flash the firmware</a>
+  <a class="sub" href="#s9">Strap, pads, interlock</a>
+  <a class="sub" href="#s10">First power-up</a>
+  <a href="#use">7. How to use it</a>
+  <a href="#dose">8. Dose calculator</a>
+  <a href="#tracker">9. Session log</a>
+  <a href="#trouble">10. Troubleshooting</a>
+  <a href="#faq">11. FAQ</a>
+  <a href="#files">12. Files in this folder</a>
+  <a href="#refs">13. Sources</a>
+</nav>
+
+<main>
+
+<!-- =============================================================== -->
+<section id="safety">
+  <h2>1. Safety first</h2>
+  <div class="callout warn">
+    <b>This is not a medical device and this guide is not medical advice.</b>
+    Commercial laser caps go through electrical, optical and clinical testing before they are sold. A home build has none of that. See a dermatologist first: thinning hair can come from thyroid problems, iron deficiency, stress shedding (telogen effluvium) or alopecia areata, and those need different treatment. LLLT is only studied for pattern hair loss (androgenetic alopecia). Build this for yourself only. Do not sell it or give it to others.
+  </div>
+
+  <h3>Eyes: the main risk</h3>
+  <p>Each module is a 5 mW visible laser. That is laser Class 3R: your blink reflex is not enough protection, but the chance of injury from a brief exposure is small (<a href="https://drs.illinois.edu/SAfetyLibrary/LaserClassification">Illinois Division of Research Safety</a>). 113 of them point into the helmet, so never look into it while it is on.</p>
+  <ul>
+    <li><b>Buy laser safety glasses rated for 650 nm</b> (the label must list a band such as 630-660 nm with OD 2 or higher; the lenses look green or blue-green). Many cheap "laser glasses" are rated 190-540 nm and 800-1100 nm. Those let red light straight through.</li>
+    <li>Wear them for every bench test, for diode testing and whenever the helmet is powered and not on your head.</li>
+    <li>The firmware only lets the lasers run while the head switch is pressed by your head, and cuts them the moment you lift the helmet. Fit that switch (<a href="#s9">step 9</a>). Do not bypass it.</li>
+    <li><b>Test every module before fitting it</b> (<a href="#s3">step 3</a>). Cheap modules sold as "5 mW" vary a lot. Some listings even state 40 mA current or tens of mW in the spec table (<a href="https://rees52.com/products/650nm-red-laser-diode-module-5v-laser-transmitter">example listing</a>). Anything clearly above 5 mW is Class 3B and does not belong in this helmet.</li>
+    <li>Keep children and pets away. No mirrors or shiny surfaces near the open helmet.</li>
+  </ul>
+
+  <h3>Skin and medical</h3>
+  <ul>
+    <li>Do not use it if you have scalp cancer, open wounds or a scalp condition, light-sensitive skin, or are under 18. Commercial makers give the same warnings (<a href="https://www.manualslib.com/guide/4239021/irestore-professional-laser-hair-therapy-device-operating-manual.html">iRestore manual</a>).</li>
+    <li>Do not use it while taking light-sensitising medicines or products (<a href="https://www.capillus.com/pages/spectrum-details-23-circumference">Capillus</a>). Examples include some antibiotics (doxycycline), isotretinoin and some diuretics. Ask your doctor or pharmacist.</li>
+    <li>Pregnancy: no safety data, so skip it.</li>
+    <li>Stop if you get redness, itching, headaches or a burning feeling.</li>
+  </ul>
+
+  <h3>Electrical and heat</h3>
+  <ul>
+    <li>Everything runs from a 5 V supply, so there is no shock risk. The risks are short circuits and heat. The design has a fuse, a current monitor that switches off on a short, and an alarm if current flows when the lasers should be off.</li>
+    <li>Use a branded power bank. Do not build battery packs from loose lithium cells.</li>
+    <li>113 modules draw about 2.8 A at 5 V, which is about 14 W of heat spread over the frame. The open frame lets that air out. Modules feel warm, not hot. If any spot gets hot, stop and find out why.</li>
+    <li>Print in PETG, not PLA. PLA starts to soften around 55-60 &deg;C.</li>
+  </ul>
+</section>
+
+<!-- =============================================================== -->
+<section id="science">
+  <h2>2. What LLLT can and cannot do</h2>
+  <figure><img src="images/mechanism.svg" alt="Four steps: red light enters the scalp, mitochondria absorb it, more ATP and nitric oxide, follicles stay longer in the growth phase"><figcaption>Proposed mechanism (simplified), after <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3944668/">Avci et al. 2014</a>.</figcaption></figure>
+  <p><b>What the trials show.</b> The best-known randomised, sham-controlled trials used a bicycle-helmet device ("TOPHAT655") with 21 lasers of 5 mW at 655 nm plus 30 LEDs. Users treated at home for 25 minutes every other day for 16 weeks. Hair counts rose about 35 % more than with a sham helmet in men (<a href="https://pubmed.ncbi.nlm.nih.gov/24078483/">Lanzafame 2013</a>) and 37 % more in women (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4265291/">Lanzafame 2014</a>), with no side effects reported. A 2025 meta-analysis of 38 studies (3,098 patients) found hair density improved versus placebo in pattern hair loss, with large differences between studies (<a href="https://pubmed.ncbi.nlm.nih.gov/39404126/">Perez et al., Dermatologic Surgery</a>).</p>
+  <p><b>Not every trial is positive.</b> A 2023 randomised trial from Bhavnagar, Gujarat added LLLT twice a week to 5 % minoxidil. After 16 weeks the gain in hair density was 14.8 % versus 11.4 % with minoxidil alone, and the difference was not statistically significant (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10251294/">Sondagar et al., IDOJ</a>).</p>
+  <div class="callout note">
+    <b>Realistic expectations</b>
+    <ul>
+      <li>It works best for early to moderate thinning (Norwood II-V, Ludwig I-II). It does not bring back shiny, completely bald skin.</li>
+      <li>Hair grows slowly. Judge it after 4-6 months, using photos taken the same way every month.</li>
+      <li>The gains are modest. LLLT is usually an add-on to the treatments your doctor recommends (minoxidil, finasteride and others), not a replacement.</li>
+      <li>More light is not better. Light therapy has a bell-shaped dose response, so stick to the timed sessions.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<section id="design">
+  <h2>3. The design</h2>
+  <p>The frame is an "egg-crate" made of flat ribs that slot into each other. Eight ear-to-ear ribs (blue) cross three front-to-back ribs (orange). Every rib is cut from a mathematical model of your head (a half-ellipsoid), so its inner face sits <b>12 mm</b> above your scalp all over. Each laser hole points at the scalp and has a small stop lip, so all modules sit at the same depth.</p>
+  <div class="grid2">
+    <figure><img src="images/exploded.png" alt="Exploded view: three orange front-to-back ribs lifted above eight blue ear-to-ear ribs"><figcaption>Exploded view. The orange ribs drop onto the blue ribs from above.</figcaption></figure>
+    <figure><img src="images/top_layout.png" alt="Top view showing the grid of laser modules"><figcaption>Top view: 113 modules, about 1.6 cm apart on average.</figcaption></figure>
+  </div>
+  <div class="grid2">
+    <figure><img src="images/side.png" alt="Side view of the frame on the head model"><figcaption>Side view. The lowest modules sit about 5 cm above your ears. Pattern hair loss rarely reaches lower.</figcaption></figure>
+    <figure><img src="images/diode_section.svg" alt="Cross-section of one laser module in a rib, with stop lip and 12 mm gap to the scalp"><figcaption>One module in its hole.</figcaption></figure>
+  </div>
+  <h3>Why it is built this way</h3>
+  <ul>
+    <li><b>Flat parts only.</b> Curved helmet shells need supports and a big printer. Flat ribs print fast, need no supports and fit a 180 x 180 mm bed (largest part is 174 mm when placed diagonally).</li>
+    <li><b>Open frame.</b> About 14 W of heat leaves through the gaps. You can wear a stretchy beanie over it to hide it and block stray light.</li>
+    <li><b>Parametric.</b> Change three head measurements in OpenSCAD and every rib, slot and hole is recalculated. The model checks that no two ribs collide and reports the module count.</li>
+    <li><b>Safety in the controller.</b> Hold-to-start, a head switch, a hard 30-minute limit, a watchdog, and current and voltage monitoring.</li>
+  </ul>
+  <figure><img src="images/eggcrate.svg" alt="Egg-crate joint: one rib slotted from the top, the other from the bottom"><figcaption>The joint between the two rib families.</figcaption></figure>
+</section>
+
+<!-- =============================================================== -->
+<section id="parts">
+  <h2>4. Parts list (India)</h2>
+  <p>Prices are approximate (November 2026) and change often. Search the shop names below with the text in the "what to search for" column. The same list is in <a href="bom/bom_india.csv">bom/bom_india.csv</a> for a spreadsheet. For comparison, commercial devices start at about $499 (iRestore) and $1,699 (Capillus) in the US (<a href="https://cybernews.com/health-tech/irestore-vs-capillus/">Cybernews comparison</a>).</p>
+  <div class="tablewrap">
+  <!--BOM_TABLE-->
+<table class="bom">
+<tr><th>Item</th><th>What to search for</th><th class="num">Qty</th><th class="num">Approx. &#8377;</th><th>Where (India)</th><th>Notes</th></tr>
+<tr><td colspan="6" style="background:#fbfcfe;font-weight:600;color:#33405c">Lasers</td></tr>
+<tr><td>Red laser dot module</td><td>650 nm 5 mW 6 mm 5V laser dot diode module with leads (about 25 mA)</td><td class="num">130</td><td class="num">3,250</td><td>Robocraze, Robu.in, RoboticsDNA, REES52, Amazon.in packs of 10-50, AliExpress (cheapest in bulk)</td><td>113 needed + spares. Avoid listings that say 40 mA or more than 5 mW. Test every one.</td></tr>
+<tr><td>Laser safety glasses</td><td>Laser safety glasses rated for 650 nm (630-660 nm band, OD 2 or higher). Lenses look green/cyan</td><td class="num">1</td><td class="num">1,000</td><td>Amazon.in, AliExpress, laser-equipment shops</td><td>Glasses rated only for 190-540 nm / 800-1100 nm do NOT block red. Check the printed band.</td></tr>
+<tr><td>BPW34 photodiode</td><td>BPW34 PIN photodiode</td><td class="num">2</td><td class="num">100</td><td>Robu.in, ElectronicsComp, Probots, local electronics market</td><td>Only for the diode tester.</td></tr>
+<tr><td colspan="6" style="background:#fbfcfe;font-weight:600;color:#33405c">Printing</td></tr>
+<tr><td>PETG filament</td><td>PETG 1.75 mm 1 kg (black or dark grey)</td><td class="num">1</td><td class="num">1,150</td><td>REES52 (eSUN), WOL3D, Flipkart, Amazon.in</td><td>About 300 g used. Or order the STLs from a 3D printing service.</td></tr>
+<tr><td colspan="6" style="background:#fbfcfe;font-weight:600;color:#33405c">Controller</td></tr>
+<tr><td>Arduino Nano</td><td>Nano V3 ATmega328P 5V CH340</td><td class="num">2</td><td class="num">500</td><td>Robocraze, Robu.in, Quartz Components</td><td>One for the controller, one for the tester (or reuse).</td></tr>
+<tr><td>Logic-level MOSFET</td><td>IRLZ44N TO-220</td><td class="num">2</td><td class="num">80</td><td>Robu.in, Robocraze, ElectronicsComp</td><td>Must be logic-level (IRL...). IRF520/IRFZ44N are not.</td></tr>
+<tr><td>USB-C PD trigger</td><td>USB-C PD decoy / trigger board 9V (ZY12PDN, IP2721 / PDC004)</td><td class="num">1</td><td class="num">200</td><td>Quartz Components, Robu.in, Amazon.in</td><td>Set or solder-jumper it to 9 V. Skip for the simple 5 V option.</td></tr>
+<tr><td>Buck converter</td><td>XL4015 5A DC-DC step-down module (with heatsink)</td><td class="num">1</td><td class="num">250</td><td>Robocraze, Quartz Components, REES52, Flipkart</td><td>Adjust to 5.0 V with no load BEFORE connecting the helmet.</td></tr>
+<tr><td>Fuse</td><td>3 A resettable PTC fuse (or 3 A blade fuse + inline holder)</td><td class="num">1</td><td class="num">30</td><td>Robu.in, local market</td><td>About 1.2 x total laser current.</td></tr>
+<tr><td>Resistor assortment</td><td>1/4 W resistor kit (needs 100R x3, 10k x3, 1k x2, 2.2k, 470R, 10R)</td><td class="num">1</td><td class="num">200</td><td>Robu.in, Robocraze, Amazon.in</td><td></td></tr>
+<tr><td>Shunt resistors</td><td>0.1 ohm 2 W resistor</td><td class="num">2</td><td class="num">20</td><td>Robu.in, local market</td><td>Two in parallel = 0.05 ohm current sense.</td></tr>
+<tr><td>Capacitors</td><td>1000 uF 16 V electrolytic x1, 100 nF ceramic x3</td><td class="num">1</td><td class="num">40</td><td>Robu.in, local market</td><td></td></tr>
+<tr><td>Push button</td><td>12 mm momentary push button, panel mount</td><td class="num">1</td><td class="num">40</td><td>Robu.in, Robocraze</td><td></td></tr>
+<tr><td>LED</td><td>5 mm LED (any colour except red)</td><td class="num">1</td><td class="num">5</td><td>anywhere</td><td>Green or blue so it is not confused with the lasers.</td></tr>
+<tr><td>Buzzer</td><td>5V active buzzer module</td><td class="num">1</td><td class="num">40</td><td>Robu.in, Robocraze</td><td></td></tr>
+<tr><td>Interlock switch</td><td>KW11-3Z lever micro limit switch</td><td class="num">2</td><td class="num">30</td><td>Robu.in, mikroelectron, local market</td><td>One spare.</td></tr>
+<tr><td>Perfboard</td><td>5 x 7 cm double-side prototype PCB</td><td class="num">2</td><td class="num">80</td><td>Robu.in, Robocraze</td><td></td></tr>
+<tr><td>Helmet connector</td><td>GX12 3-pin aviation connector pair (or XT30 + 2-pin JST)</td><td class="num">1</td><td class="num">80</td><td>Robu.in, Amazon.in</td><td>Keyed, so it cannot be plugged in backwards.</td></tr>
+<tr><td colspan="6" style="background:#fbfcfe;font-weight:600;color:#33405c">Power</td></tr>
+<tr><td>USB-C cable</td><td>USB-C to USB-C cable rated 3 A / 60 W, 1 m</td><td class="num">1</td><td class="num">200</td><td>anywhere</td><td>Short and thick. Thin cables drop voltage.</td></tr>
+<tr><td>Power bank</td><td>10000 mAh power bank, USB-C PD 18 W or more (9 V output)</td><td class="num">1</td><td class="num">1,200</td><td>Mi, Ambrane, Anker, Portronics etc.</td><td>You may already own one. About 4-6 sessions per charge.</td></tr>
+<tr><td colspan="6" style="background:#fbfcfe;font-weight:600;color:#33405c">Wiring</td></tr>
+<tr><td>Silicone wire 24 AWG</td><td>24 AWG silicone wire, red + black, 5 m each</td><td class="num">1</td><td class="num">300</td><td>Robu.in, Amazon.in</td><td>Rib pairs.</td></tr>
+<tr><td>Silicone wire 18 AWG</td><td>18 AWG silicone wire, red + black, 2 m each</td><td class="num">1</td><td class="num">150</td><td>Robu.in, Amazon.in</td><td>Spine bus and helmet cable.</td></tr>
+<tr><td>Heat-shrink kit</td><td>Heat-shrink tube assortment</td><td class="num">1</td><td class="num">150</td><td>anywhere</td><td></td></tr>
+<tr><td>Kapton tape</td><td>Polyimide (Kapton) tape 10 mm</td><td class="num">1</td><td class="num">150</td><td>Robu.in, Amazon.in</td><td>Optional, insulates joints neatly.</td></tr>
+<tr><td>Solder + flux</td><td>60/40 or 63/37 0.8 mm solder, flux pen</td><td class="num">1</td><td class="num">200</td><td>anywhere</td><td>If you do not have them.</td></tr>
+<tr><td colspan="6" style="background:#fbfcfe;font-weight:600;color:#33405c">Fit</td></tr>
+<tr><td>Elastic strap</td><td>25 mm elastic band 1 m + 25 mm plastic buckle or velcro</td><td class="num">1</td><td class="num">150</td><td>tailoring / haberdashery shop, Amazon.in</td><td>Goes through the strap slots.</td></tr>
+<tr><td>Foam</td><td>EVA foam sheet 5-10 mm or self-adhesive foam strip</td><td class="num">1</td><td class="num">150</td><td>stationery / hardware shop</td><td>Pads at the rib feet and forehead.</td></tr>
+<tr><td>Glue</td><td>Hot-glue sticks + CA gel or 2-part epoxy</td><td class="num">1</td><td class="num">250</td><td>stationery / hardware shop</td><td></td></tr>
+<tr><td>Screws</td><td>M3 x 8 self-tapping x4 (box lid), M2 x 10 + nuts x2 (switch)</td><td class="num">1</td><td class="num">80</td><td>hardware shop, Robu.in</td><td></td></tr>
+<tr><td>Zip ties</td><td>100 mm cable ties</td><td class="num">1</td><td class="num">60</td><td>anywhere</td><td></td></tr>
+<tr><td>Cap cover (optional)</td><td>stretchy beanie / skull cap that fits over the frame</td><td class="num">1</td><td class="num">200</td><td>anywhere</td><td>Hides the frame and blocks stray light.</td></tr>
+<tr><td colspan="6" style="background:#fbfcfe;font-weight:600;color:#33405c">Tools (if needed)</td></tr>
+<tr><td>Soldering iron</td><td>25-60 W temperature-controlled iron</td><td class="num">1</td><td class="num">(800)</td><td>Robu.in, Amazon.in</td><td>Not counted in the total.</td></tr>
+<tr><td>Multimeter</td><td>Basic digital multimeter</td><td class="num">1</td><td class="num">(600)</td><td>anywhere</td><td>Not counted in the total. Needed to set the buck to 5.0 V.</td></tr>
+<tr><td>USB-C power meter</td><td>USB-C inline voltage/current meter</td><td class="num">1</td><td class="num">(500)</td><td>Amazon.in</td><td>Optional, very handy.</td></tr>
+<tr><th colspan="3">Total (approx.)</th><th class="num">&#8377;10,335</th><th colspan="2">Approximate, Nov 2026 prices. About 9,100 without the power bank (if you already own one).</th></tr>
+</table>
+<!--/BOM_TABLE-->
+  </div>
+  <div class="callout note"><b>Buying the laser modules</b>
+    Look for the 6 mm brass "laser dot diode module" with leads, 650 nm, 5 mW, <b>5 V</b> (it has a resistor built in) and about 25 mA (<a href="https://shillehtek.com/blogs/shillehtek-product-manuals/shillehtek-6mm-650nm-5mw-red-laser-diode-module-manual">typical spec sheet</a>). Buy from one seller in one batch so they match, and get about 15 % spares. 3 V modules also exist. Do not mix them in, because they need a lower supply voltage.
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<section id="tools">
+  <h2>5. Tools</h2>
+  <ul>
+    <li>A 3D printer that can print PETG (any 180 x 180 mm bed or bigger), or an online/local 3D printing service.</li>
+    <li>Soldering iron, solder, flux, side cutters, wire stripper.</li>
+    <li>A multimeter. You need it to set the buck converter to 5.0 V.</li>
+    <li>A computer with the free <a href="https://openscad.org/">OpenSCAD</a> (only if your head size differs from the defaults) and the <a href="https://www.arduino.cc/en/software">Arduino IDE</a>.</li>
+    <li>Hot glue gun. A USB-C power meter is optional but handy.</li>
+  </ul>
+</section>
+
+<!-- =============================================================== -->
+<section id="build">
+  <h2>6. Build steps</h2>
+
+  <h3 id="s1"><span class="step-no">1</span>Measure your head</h3>
+  <figure><img src="images/measure.svg" alt="How to measure head length, width and height"></figure>
+  <p>Measure over your hair, in millimetres. The defaults are <code>head_length = 190</code>, <code>head_width = 150</code>, <code>head_height = 100</code>. If you are within about 10 mm of those, use the ready-made STL files in <code>stl/</code>. Otherwise:</p>
+  <ol class="steps">
+    <li>Install OpenSCAD and open <code>cad/lllt_helmet.scad</code>.</li>
+    <li>Open <i>Window &gt; Customizer</i>, type your three measurements, keep <code>part = assembly</code> and press F5 to preview the frame on a head model.</li>
+    <li>Pick each part from the <code>part</code> list, press F6 (render) and F7 (export STL). Or run <code>tools/export_all.sh -D head_length=200 -D head_width=158 -D head_height=105</code> to export everything in one go.</li>
+    <li>The console prints the module count, for example <code>DIODES TOTAL: 113</code>. Buy that many plus spares.</li>
+  </ol>
+
+  <h3 id="s2"><span class="step-no">2</span>Print the parts</h3>
+  <figure><img src="images/parts_sheet.png" alt="All 12 printable parts with quantities"><figcaption>Every part, shown in print orientation, with how many to print.</figcaption></figure>
+  <p><b>Print <code>fit_test</code> first (two copies).</b> It has four holes, 6.0 / 6.1 / 6.2 / 6.3 mm, marked with 1-4 dots, and one rib slot.</p>
+  <ul>
+    <li>Push a module into each hole from the flat side. Pick the hole where it needs a firm push and does not fall out. If that is the 3-dot hole (6.2 mm), set <code>diode_fit = 0.2</code>. The default 0.15 sits between the 2- and 3-dot holes.</li>
+    <li>Cross the two coupons at their slots. They should slide together by hand without wobbling. If they are tight, raise <code>slot_clear</code> to 0.5-0.6. If loose, lower it to 0.3.</li>
+  </ul>
+  <div class="tablewrap"><table>
+    <tr><th>Setting</th><th>Value</th></tr>
+    <tr><td>Material</td><td>PETG (dark colour hides stray light). Nozzle about 235-245 &deg;C, bed 75-80 &deg;C</td></tr>
+    <tr><td>Layer height</td><td>0.2 mm, 0.4 mm nozzle</td></tr>
+    <tr><td>Walls / top / bottom</td><td>4 walls, 5 top and bottom layers (holes need solid walls)</td></tr>
+    <tr><td>Infill</td><td>25-30 % gyroid</td></tr>
+    <tr><td>Supports</td><td><b>None.</b> Holes have teardrop tops so they bridge cleanly</td></tr>
+    <tr><td>Adhesion</td><td>5 mm brim on the long ribs</td></tr>
+    <tr><td>Orientation</td><td>As exported: ribs lie flat; the box stands on its floor</td></tr>
+  </table></div>
+  <p>Print time depends on your printer; expect roughly a day of printing in total. After printing, clear stringing from the holes with a 6 mm drill bit turned by hand. Do not drill them bigger.</p>
+
+  <h3 id="s3"><span class="step-no">3</span>Test and sort the laser modules</h3>
+  <p>This is the most important safety step. Wear the 650 nm glasses.</p>
+  <ol class="steps">
+    <li>Build the tester on a breadboard: an Arduino Nano, an IRLZ44N MOSFET to switch the module, a 10 &Omega; resistor in the module's ground path (current sense), and a BPW34 photodiode in the printed <code>tester_jig</code> (wiring is at the top of <code>firmware/diode_tester/diode_tester.ino</code>).</li>
+    <li>Upload <code>diode_tester.ino</code>, open the Serial Monitor at 115200 baud.</li>
+    <li>Put a module in the jig, lens down. Press the button. You get one line per module, for example <code>12,24.6,4.12,OK</code> (number, mA, approximate mW, verdict).</li>
+    <li>The tester rejects modules that draw too much current, are weak, are above 5.5 mW, or are far from the batch median. Put rejects in a separate bag and never use them.</li>
+    <li>Type <code>m</code> for a summary. Note the <b>median mW</b>. You will enter it in the <a href="#dose">dose calculator</a>.</li>
+  </ol>
+  <div class="callout note"><b>About accuracy</b> The current reading is accurate to a few percent. The optical power reading is an estimate (about &plusmn;25 %), because it depends on the photodiode's sensitivity at 650 nm (about 0.44 A/W, derived from the <a href="https://courses.egr.uh.edu/ECE/ECE3340/Class%20Notes2100/lab_4_opamp/BPW%2034.pdf">BPW34 datasheet</a>) and on the beam fitting its 2.65 mm sensor. It is good for comparing modules and catching bad ones. <b>No tester?</b> At minimum, measure each module's current on 5 V with a multimeter in series and keep only 18-32 mA.</div>
+
+  <h3 id="s4"><span class="step-no">4</span>Assemble the frame</h3>
+  <p>Ribs carry engraved dots: ear-to-ear ribs have 1-4 dots near both feet (1 = middle pair, 4 = front and back pair). The front-to-back ribs have 5 dots (centre) or 6 dots (sides) at the top.</p>
+  <ol class="steps">
+    <li>Lay the centre rib (5 dots) on the table, curved outer edge down, so its slots face up.</li>
+    <li>Push the ear-to-ear ribs into it, upside down, in order 4-3-2-1-1-2-3-4 from front to back. The front and back halves are identical.</li>
+    <li>Add the two side ribs (6 dots) into the slots of ribs 1-3.</li>
+    <li>Turn it over and check it on your head. Every rib should sit square, with no rocking.</li>
+    <li>Once you are happy, put a drop of CA gel or epoxy into every joint. Leave the frame to cure overnight.</li>
+  </ol>
+
+  <h3 id="s5"><span class="step-no">5</span>Fit the laser modules</h3>
+  <ol class="steps">
+    <li>Cut each module's leads to about 3 cm and strip 4 mm.</li>
+    <li>Push each module in from the <b>outside</b> until it stops at the lip. The lens faces your head.</li>
+    <li>Put a small bead of hot glue where the module meets the rib on the outside. Keep glue away from the lens side.</li>
+    <li>Bend the red lead to one edge of the rib and the black lead to the other edge. Keep the same side on every rib.</li>
+  </ol>
+
+  <h3 id="s6"><span class="step-no">6</span>Wire the helmet</h3>
+  <figure><img src="electronics/wiring.svg" alt="Top view wiring: each rib has a red/black pair joined to a spine bus on the centre rib"></figure>
+  <ol class="steps">
+    <li>On each rib, run a red and a black 24 AWG wire along the outer face. At every module, strip a 5 mm window in the insulation, wrap the lead around it and solder. Insulate each joint with Kapton tape or a dab of hot glue.</li>
+    <li><b>Test every rib on its own before joining.</b> With glasses on, connect the rib's pair to 5 V and point it at a sheet of paper. Count the dots. A dark module is almost always reversed or not soldered.</li>
+    <li>Run the spine bus: 18-20 AWG red and black along the centre rib. Solder each rib's pair to it where that rib crosses the centre rib.</li>
+    <li>At the back, connect the spine bus and the HEAD wire to the 3-pin plug (pin 1 = +5 V, pin 2 = LASER-, pin 3 = HEAD). Use 18 AWG and keep the cable to the controller under 50 cm.</li>
+    <li>Tie the wires to the ribs with zip ties so nothing can snag.</li>
+  </ol>
+
+  <h3 id="s7"><span class="step-no">7</span>Build the controller</h3>
+  <figure><a href="electronics/schematic.svg"><img src="electronics/schematic.svg" alt="Controller schematic: power input, MOSFET switch with current sense, helmet wiring, Arduino Nano connections"></a><figcaption>Click to open full size.</figcaption></figure>
+  <ol class="steps">
+    <li><b>Set the buck converter first.</b> Connect only the PD trigger (set to 9 V) and the buck converter to the power bank. Turn the buck's screw until your multimeter reads <b>5.0 V</b> at its output. Only then connect anything else.</li>
+    <li>Build the circuit on the 5 x 7 cm perfboard: Nano, IRLZ44N, two 0.1 &Omega; resistors in parallel (current sense), the fuse, resistors and capacitors from the schematic. Use thick wire or solder bridges for the high-current path: +5 V &gt; helmet &gt; MOSFET &gt; shunt &gt; GND.</li>
+    <li>Fit the perfboard on the four posts in <code>controller_box</code>, the buck converter next to it (near the vents), the USB-C input in the end wall, and the 3-pin socket in the other end wall. The button, status LED and buzzer go in the lid.</li>
+    <li>Before connecting the helmet, measure resistance between +5 V and GND. It must not be near zero.</li>
+  </ol>
+  <div class="callout note"><b>Simple power option.</b> You can skip the PD trigger and buck converter and use a USB-C 5 V breakout straight from a power bank's 3 A port, with the fuse. It works if the cable is short and thick. Thin cables drop voltage and the lasers get dimmer, and the firmware warns you when the supply falls below 4.65 V. The PD-plus-buck version holds a steady 5.0 V at the helmet.</div>
+
+  <h3 id="s8"><span class="step-no">8</span>Flash the firmware</h3>
+  <ol class="steps">
+    <li>In the Arduino IDE open <code>firmware/lllt_controller/lllt_controller.ino</code>.</li>
+    <li>Board: <i>Arduino Nano</i>. Processor: <i>ATmega328P</i>, or <i>ATmega328P (Old Bootloader)</i> for most cheap clones. Pick the port and upload. Disconnect the power bank while the USB cable is plugged into your computer.</li>
+    <li>Open the Serial Monitor at 115200 baud. Type <code>h</code> for help and <code>s</code> for status.</li>
+    <li>Optional calibration: measure the voltage on the Nano's AREF pin and write it into <code>VREF_MV</code> (for example 1082). This makes the voltage and current readings exact.</li>
+    <li>If you left out the current shunt or the voltage divider, set <code>USE_CURRENT_SENSE</code> or <code>USE_VCC_SENSE</code> to 0 before uploading.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <tr><th>Button</th><th>What happens</th></tr>
+    <tr><td>Short press (idle)</td><td>Change preset. Beeps tell you which: 1 = 10 min, 2 = 15, 3 = 20 (default), 4 = 25</td></tr>
+    <tr><td>Hold 2 s (idle)</td><td>Start, only if the helmet is on your head. One long beep, LED on</td></tr>
+    <tr><td>Lift the helmet</td><td>Lasers off instantly, session paused, four beeps</td></tr>
+    <tr><td>Hold 1 s (paused)</td><td>Resume. Lasers never come back on by themselves</td></tr>
+    <tr><td>Short press (running / paused)</td><td>Pause / end the session</td></tr>
+    <tr><td>Hold 3 s (running)</td><td>Stop</td></tr>
+    <tr><td>Session done</td><td>Three beeps, lasers off, the session is counted</td></tr>
+  </table></div>
+  <p class="small">A short chirp sounds every 5 minutes. LED: short blink every 2 s = idle, steady = running, fast blink = paused, triple flash = fault. Faults (short circuit, no current, low supply, current while off) latch until you unplug the power.</p>
+
+  <h3 id="s9"><span class="step-no">9</span>Strap, pads and interlock</h3>
+  <ol class="steps">
+    <li><b>Strap:</b> thread a 25 mm elastic band through the slots in the feet of ribs 1 and 2 on both sides. It runs across your forehead and around the back, like a headlamp strap. Close it with a buckle or velcro.</li>
+    <li><b>Pads:</b> stick 8-10 mm foam pads on the inner face of the rib feet, below the strap slots. Adjust thickness until the frame sits evenly with a finger-width gap above your hair.</li>
+    <li><b>Standoff pegs (optional):</b> put 3 pegs in place of 3 modules near the crown, on the centre rib. The shaft goes in from outside like a module, and the foot presses onto its tip from inside. Then you run 110 modules.</li>
+    <li><b>Interlock:</b> screw a KW11-3Z lever switch onto <code>interlock_clip</code> (M2 screws through the slots) and snap the clip onto a rib-3 foot, below its lowest module. Slide the switch so the lever is pressed by your head when the strap is on, and released when the helmet is lifted 1 cm. Wire COM to the helmet's +5 V bus and NO to the HEAD wire.</li>
+  </ol>
+
+  <h3 id="s10"><span class="step-no">10</span>First power-up checklist</h3>
+  <ul class="checks">
+    <li>Safety glasses on. Helmet placed on a head-sized object (a football or a pot) with a light cloth over it, so the head switch is pressed.</li>
+    <li>Supply reads 5.0 V on the Serial Monitor (<code>s</code>).</li>
+    <li>Start a 10-minute session. The first session learns the normal current after 20 s. It should be close to modules x 25 mA (about 2.8 A for 113).</li>
+    <li>Count the red dots on the cloth, or check rib by rib. All should be lit.</li>
+    <li>Lift the helmet: the lasers must go off immediately. Put it back: they must stay off until you hold the button.</li>
+    <li>After 10 minutes, touch the modules, the controller box and the buck converter. Warm is fine. Hot is not.</li>
+  </ul>
+</section>
+
+<!-- =============================================================== -->
+<section id="use">
+  <h2>7. How to use it</h2>
+  <div class="callout ok"><b>Suggested routine</b>
+    <ul>
+      <li>One <b>20-minute</b> session <b>every other day</b> (3-4 times a week). Never two days in a row.</li>
+      <li>Clean, dry scalp: no oil, gel or minoxidil residue during the session. If you use minoxidil, apply it after.</li>
+      <li>Keep going at least 16 weeks before you judge, and up to 6 months.</li>
+      <li>Take photos every 4 weeks in the same light, from the same angle, with the hair parted the same way.</li>
+    </ul>
+  </div>
+  <p><b>Why 20 minutes?</b> Cleared devices deliver roughly 450-650 J of laser light per session: Capillus 272 (272 lasers, 6 min daily), Theradome PRO (80 lasers, 20 min twice a week, <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf12/K122950.pdf">FDA K122950</a>), iRestore Professional (82 lasers plus 200 LEDs, 25 min every other day, <a href="https://www.manualslib.com/manual/1616826/Irestore-Professional-282.html">manual</a>). These figures assume 5 mW per laser and do not count LEDs. With 113 modules at about 4 mW, 20 minutes gives about 540 J, in the middle of that range. Capillus also states that going over the recommended time does not add benefit and may reduce it (<a href="https://www.capillus.com/pages/details-24-circumference-spectrum">Capillus</a>). Use the calculator below with <b>your</b> tester median.</p>
+  <p>During a session you can sit, read or watch TV. Do not sleep with it on. Do not look up into the helmet when you take it off; the lasers switch off when the head switch opens, but make it a habit.</p>
+</section>
+
+<!-- =============================================================== -->
+<section id="dose">
+  <h2>8. Dose calculator</h2>
+  <div class="calc" id="calc">
+    <div class="inputs">
+      <div><label for="n">Laser modules</label><input id="n" type="number" min="1" max="400" value="113"></div>
+      <div><label for="mw">mW per module (tester median)</label><input id="mw" type="number" min="0.5" max="10" step="0.1" value="4.0"></div>
+      <div><label for="min">Minutes per session</label><input id="min" type="number" min="1" max="30" value="20"></div>
+      <div><label for="area">Treated scalp area (cm&sup2;)</label><input id="area" type="number" min="50" max="900" value="295"></div>
+    </div>
+    <p class="small" style="margin:10px 0 0">Area: <button type="button" id="areaBtn">estimate from head size</button> length <input id="hl" type="number" value="190" style="width:70px"> width <input id="hw" type="number" value="150" style="width:70px"> height <input id="hh" type="number" value="100" style="width:70px"> mm (scalp more than 4 cm above the ears).</p>
+    <div class="out">
+      <div><span class="small">Total laser power</span><b id="oP">-</b></div>
+      <div><span class="small">Average irradiance</span><b id="oI">-</b></div>
+      <div><span class="small">Energy per session</span><b id="oE">-</b></div>
+      <div><span class="small">Average fluence</span><b id="oF">-</b></div>
+    </div>
+    <p id="advice" style="margin:12px 0 0"></p>
+    <div class="bars" id="bars"></div>
+    <p class="small">Green band: 450-650 J, the range the cleared devices above deliver per session (lasers only, assuming 5 mW each). These are engineering comparisons, not a prescription.</p>
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<section id="tracker">
+  <h2>9. Session log</h2>
+  <p>Stored only in this browser (localStorage). It warns you if you already had a session yesterday.</p>
+  <p><button class="primary" type="button" id="logBtn">Log a session today</button> <button type="button" id="csvBtn">Download CSV</button> <button type="button" id="clrBtn">Clear</button></p>
+  <p id="logMsg"></p>
+  <div class="tracker-list" id="logList"></div>
+</section>
+
+<!-- =============================================================== -->
+<section id="trouble">
+  <h2>10. Troubleshooting</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Symptom</th><th>Likely cause and fix</th></tr>
+    <tr><td>Two long beeps, will not start</td><td>Head switch is open. Check the lever reaches your head, the HEAD wire, and the 10 k pull-down. Serial says "Put the helmet on first".</td></tr>
+    <tr><td>One rib dark</td><td>Its pair is not soldered to the spine bus, or red and black are swapped on that rib.</td></tr>
+    <tr><td>One module dark</td><td>Reversed or broken joint. Swap it for a tested spare.</td></tr>
+    <tr><td>"supply ... lasers are dimmer"</td><td>Supply under 4.65 V. Use the PD-plus-buck option, a shorter thicker cable, or a charged power bank.</td></tr>
+    <tr><td>FAULT "over-current" / "current far above normal"</td><td>Short circuit, often a bare lead touching the other bus. Unplug and inspect with a multimeter.</td></tr>
+    <tr><td>FAULT "no laser current"</td><td>Helmet plug out, broken cable, blown fuse, or the MOSFET is not switching (wrong type, gate wire).</td></tr>
+    <tr><td>FAULT "current flows while lasers are OFF"</td><td>The MOSFET has failed shorted, so the lasers are on all the time. Unplug at once and replace it.</td></tr>
+    <tr><td>Warning "current is low"</td><td>A rib or module came loose since the current was learned. After replacing modules, type <code>b</code> so it learns again.</td></tr>
+    <tr><td>Nano keeps rebooting</td><td>Some clones with old bootloaders reboot-loop with the watchdog. Burn a new bootloader, or set <code>USE_WATCHDOG 0</code>.</td></tr>
+    <tr><td>Power bank switches off</td><td>It may not support 9 V PD (use the simple 5 V option) or its port is under 3 A.</td></tr>
+    <tr><td>Modules fall out</td><td>Holes are too big. Reprint with a smaller <code>diode_fit</code>, or glue them.</td></tr>
+  </table></div>
+</section>
+
+<!-- =============================================================== -->
+<section id="faq">
+  <h2>11. FAQ</h2>
+  <h3>Why lasers and not red LEDs?</h3>
+  <p>Red LEDs are cheaper and spread their light wider, and some studies used them. The studies this design copies used 5 mW lasers at 650-655 nm, and laser modules make the dose easy to calculate. An LED version would need different spacing and dosing.</p>
+  <h3>Why 650 nm?</h3>
+  <p>Cleared devices use about 630-680 nm. 650 nm modules are the cheapest and easiest to find in India.</p>
+  <h3>Can I use more modules or longer sessions?</h3>
+  <p>More modules give better coverage; reduce the minutes so the energy stays in the green band. Longer sessions do not help and may work against you.</p>
+  <h3>Can I use the 3 V modules?</h3>
+  <p>Only if all of them are 3 V and you set the buck converter to their rated voltage. Never run 3 V modules on 5 V.</p>
+  <h3>Every day instead of every other day?</h3>
+  <p>The helmet protocols in the trials and manuals above use every other day, or twice a week. Stick to that.</p>
+  <h3>Does hair block the light?</h3>
+  <p>Thick hair absorbs some of it. That matters less where hair is thinning, which is where you want the light. Keep the scalp clean and dry.</p>
+  <h3>Can I build these for friends or sell them?</h3>
+  <p>No. This is an uncertified home build for your own use.</p>
+</section>
+
+<!-- =============================================================== -->
+<section id="files">
+  <h2>12. Files in this folder</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Path</th><th>What it is</th></tr>
+    <tr><td><code>cad/lllt_helmet.scad</code></td><td>Parametric OpenSCAD model of every part. Also checks for collisions (<code>part = check_interference</code> must render empty).</td></tr>
+    <tr><td><code>stl/*.stl</code></td><td>Ready-to-print parts for the default head size</td></tr>
+    <tr><td><code>firmware/lllt_controller/</code></td><td>Controller firmware (Arduino Nano)</td></tr>
+    <tr><td><code>firmware/diode_tester/</code></td><td>Module tester firmware</td></tr>
+    <tr><td><code>electronics/schematic.svg</code>, <code>wiring.svg</code></td><td>Controller schematic and helmet wiring diagram</td></tr>
+    <tr><td><code>bom/bom_india.csv</code></td><td>Parts list with Indian shops and prices</td></tr>
+    <tr><td><code>tools/export_all.sh</code></td><td>Exports every STL with your measurements</td></tr>
+    <tr><td><code>tools/make_images.py</code>, <code>render_stl.py</code>, <code>make_svgs.py</code></td><td>Regenerate the pictures in this guide</td></tr>
+    <tr><td><code>DIY-LLLT-Helmet-Guide.html</code></td><td>This guide as one self-contained file (images built in), for your phone</td></tr>
+  </table></div>
+</section>
+
+<!-- =============================================================== -->
+<section id="refs">
+  <h2>13. Sources</h2>
+  <ol class="refs">
+    <li>Lanzafame RJ et al. The growth of human scalp hair mediated by visible red light laser and LED sources in males. <i>Lasers Surg Med</i> 2013;45:487-495. <a href="https://pubmed.ncbi.nlm.nih.gov/24078483/">PubMed 24078483</a></li>
+    <li>Lanzafame RJ et al. The growth of human scalp hair in females using visible red light laser and LED sources. <i>Lasers Surg Med</i> 2014;46:601-607. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4265291/">PMC4265291</a></li>
+    <li>Perez SM et al. Low-Level Laser and LED Therapy in Alopecia: A Systematic Review and Meta-Analysis. <i>Dermatol Surg</i> 2025;51:179-183. <a href="https://pubmed.ncbi.nlm.nih.gov/39404126/">PubMed 39404126</a></li>
+    <li>Sondagar DM et al. Efficacy of Low-Level Laser Therapy in Androgenetic Alopecia: A Randomized Controlled Trial. <i>Indian Dermatol Online J</i> 2023. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10251294/">PMC10251294</a></li>
+    <li>Avci P et al. Low-level laser (light) therapy (LLLT) for treatment of hair loss. <i>Lasers Surg Med</i> 2014. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3944668/">PMC3944668</a></li>
+    <li>FDA 510(k) K122950, Theradome Laser Helmet LH80 PRO (20 min twice a week, automatic timer). <a href="https://www.accessdata.fda.gov/cdrh_docs/pdf12/K122950.pdf">PDF</a></li>
+    <li>iRestore Professional 282 user manual (25 min every other day). <a href="https://www.manualslib.com/manual/1616826/Irestore-Professional-282.html">ManualsLib</a>; iRestore warnings: <a href="https://www.manualslib.com/guide/4239021/irestore-professional-laser-hair-therapy-device-operating-manual.html">operating manual</a></li>
+    <li>Capillus usage notes (6 min daily, do not exceed; photosensitising products). <a href="https://www.capillus.com/pages/details-24-circumference-spectrum">capillus.com</a>, <a href="https://www.capillus.com/pages/spectrum-details-23-circumference">capillus.com</a></li>
+    <li>Laser classification (Class 3R). University of Illinois Division of Research Safety. <a href="https://drs.illinois.edu/SAfetyLibrary/LaserClassification">drs.illinois.edu</a></li>
+    <li>Typical 6 mm 650 nm 5 mW module specifications (5 V, about 25 mA). <a href="https://shillehtek.com/blogs/shillehtek-product-manuals/shillehtek-6mm-650nm-5mw-red-laser-diode-module-manual">ShillehTek manual</a></li>
+    <li>BPW34 photodiode datasheet (0.62 A/W at 850 nm, 2.65 x 2.65 mm sensor). <a href="https://courses.egr.uh.edu/ECE/ECE3340/Class%20Notes2100/lab_4_opamp/BPW%2034.pdf">Osram datasheet</a></li>
+  </ol>
+  <p class="small">Study summaries in this guide are paraphrased.</p>
+</section>
+
+</main>
+</div>
+
+<footer>DIY LLLT helmet - open hardware hobby project. Use at your own risk. Not a medical device.</footer>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var REF = [
+    { name: "Capillus 272 (6 min)", J: 272 * 5 * 6 * 60 / 1000 },
+    { name: "Theradome PRO (20 min)", J: 80 * 5 * 20 * 60 / 1000 },
+    { name: "iRestore Pro, lasers (25 min)", J: 82 * 5 * 25 * 60 / 1000 },
+    { name: "TOPHAT655, lasers (25 min)", J: 21 * 5 * 25 * 60 / 1000 }
+  ];
+  var BAND = [450, 650];
+
+  function num(id) { var v = parseFloat($(id).value); return isFinite(v) ? v : 0; }
+
+  // scalp area of a half-ellipsoid above z0 (mm), returned in cm^2
+  function scalpArea(L, W, H, z0) {
+    var a = L / 2, b = W / 2, c = H, n = 240, m = 480, sum = 0;
+    var dt = (Math.PI / 2) / n, dp = (2 * Math.PI) / m;
+    for (var i = 0; i < n; i++) {
+      var t = (i + 0.5) * dt;
+      if (c * Math.cos(t) < z0) continue;
+      for (var j = 0; j < m; j++) {
+        var p = (j + 0.5) * dp;
+        var xt = [a * Math.cos(t) * Math.cos(p), b * Math.cos(t) * Math.sin(p), -c * Math.sin(t)];
+        var xp = [-a * Math.sin(t) * Math.sin(p), b * Math.sin(t) * Math.cos(p), 0];
+        var cx = xt[1] * xp[2] - xt[2] * xp[1], cy = xt[2] * xp[0] - xt[0] * xp[2], cz = xt[0] * xp[1] - xt[1] * xp[0];
+        sum += Math.sqrt(cx * cx + cy * cy + cz * cz);
+      }
+    }
+    return sum * dt * dp / 100;
+  }
+
+  function update() {
+    var n = num("n"), mw = num("mw"), mins = num("min"), area = Math.max(1, num("area"));
+    var P = n * mw;                 // mW
+    var E = P / 1000 * mins * 60;   // J
+    $("oP").textContent = P.toFixed(0) + " mW";
+    $("oI").textContent = (P / area).toFixed(2) + " mW/cm\u00b2";
+    $("oE").textContent = E.toFixed(0) + " J";
+    $("oF").textContent = (E / area).toFixed(2) + " J/cm\u00b2";
+    var target = 550, tmin = P > 0 ? target / (P / 1000) / 60 : 0;
+    var msg = "";
+    if (mins > 30) msg = "The firmware caps sessions at 30 minutes.";
+    else if (E < BAND[0]) msg = "Below the reference band. About " + tmin.toFixed(0) + " min would give ~550 J.";
+    else if (E > BAND[1]) msg = "Above the reference band. About " + tmin.toFixed(0) + " min would give ~550 J.";
+    else msg = "Inside the reference band.";
+    $("advice").textContent = msg;
+    var rows = REF.concat([{ name: "Your helmet", J: E, you: true }]);
+    var max = Math.max(900, E * 1.1);
+    var html = "";
+    rows.forEach(function (r) {
+      var w = Math.min(100, r.J / max * 100);
+      html += '<div class="bar' + (r.you ? " you" : "") + '"><span>' + r.name + '</span><div class="track">' +
+        '<div class="band" style="left:' + (BAND[0] / max * 100) + '%;width:' + ((BAND[1] - BAND[0]) / max * 100) + '%"></div>' +
+        '<div class="fill" style="width:' + w + '%"></div></div><span class="num">' + r.J.toFixed(0) + ' J</span></div>';
+    });
+    $("bars").innerHTML = html;
+  }
+  ["n", "mw", "min", "area"].forEach(function (id) { $(id).addEventListener("input", update); });
+  $("areaBtn").addEventListener("click", function () {
+    $("area").value = scalpArea(num("hl"), num("hw"), num("hh"), 40).toFixed(0);
+    update();
+  });
+  update();
+
+  // ---------------- session log ----------------
+  var KEY = "lllt_sessions_v1";
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; } }
+  function save(a) { try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (e) {} }
+  function today() { var d = new Date(); d.setHours(0, 0, 0, 0); return d; }
+  function fmt(d) { return d.toISOString().slice(0, 10); }
+  function render() {
+    var a = load();
+    if (!a.length) { $("logList").textContent = "No sessions logged yet."; return; }
+    var last = a.slice(-14).reverse();
+    $("logList").innerHTML = "<b>" + a.length + " sessions logged.</b> Latest: " + last.join(", ");
+  }
+  $("logBtn").addEventListener("click", function () {
+    var a = load(), t = today(), ts = fmt(t);
+    var y = new Date(t); y.setDate(y.getDate() - 1);
+    if (a.indexOf(ts) >= 0) { $("logMsg").textContent = "Already logged today."; return; }
+    var warn = a.indexOf(fmt(y)) >= 0 ? " You also had one yesterday: the routine is every other day." : "";
+    a.push(ts); save(a); render();
+    $("logMsg").textContent = "Logged " + ts + "." + warn;
+  });
+  $("csvBtn").addEventListener("click", function () {
+    var blob = new Blob(["date\n" + load().join("\n") + "\n"], { type: "text/csv" });
+    var url = URL.createObjectURL(blob), link = document.createElement("a");
+    link.href = url; link.download = "lllt_sessions.csv"; document.body.appendChild(link); link.click();
+    setTimeout(function () { URL.revokeObjectURL(url); link.remove(); }, 500);
+  });
+  $("clrBtn").addEventListener("click", function () {
+    if (confirm("Delete all logged sessions from this browser?")) { save([]); render(); $("logMsg").textContent = ""; }
+  });
+  render();
+})();
+</script>
+</body>
+</html>
